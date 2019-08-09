@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/Password"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/EmailAdd"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/Password"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <TextView
+        android:id="@+id/Fgtpawd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Fgtpswd"
+        android:layout_below="@id/Password"
+        android:layout_alignEnd="@id/Password"/>
+
+
+    <Button
+        android:id="@+id/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Fgtpawd"
+        android:layout_alignEnd="@id/Fgtpawd"
+        android:text="@string/Login" />
+
+    <Button
+        android:id="@+id/SignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Fgtpawd"
+        android:layout_alignStart="@id/Password"
+        android:text="@string/SignUp" />
+</RelativeLayout>
