@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.rmit.twig.Controller.SignUpController;
 import com.rmit.twig.R;
 
 public class SignupActivity extends AppCompatActivity {
@@ -45,12 +46,13 @@ public class SignupActivity extends AppCompatActivity {
                     nodetail.show();
                 }
                 else{
+                    SignUpController signUpController=new SignUpController(activity);
+                    signUpController.run();
                     Toast succeed=Toast.makeText(context, "Sign up successful, please log in", Toast.LENGTH_SHORT);
                     succeed.show();
                     activity.finish();
                 }
             }
         });
-
     }
 }

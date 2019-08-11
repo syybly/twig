@@ -7,7 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.rmit.twig.Controller.DataHolder;
 import com.rmit.twig.Controller.SignInController;
 import com.rmit.twig.R;
 
@@ -23,9 +25,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.loginpage);
+        DataHolder dataHolder=new DataHolder();
         context=this;
-        Email=findViewById(R.id.Email);
-        password=findViewById(R.id.Password);
         signin=findViewById(R.id.Login);
         signup=findViewById(R.id.SignUp);
         signup.setOnClickListener(new View.OnClickListener() {
@@ -35,8 +36,21 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        if(Email.getText().length()>0&&password.getText().length()>0) {
-            signin.setOnClickListener(new SignInController(Email.getText().toString(),password.getText().toString(),this));
-        }
+        signin.setOnClickListener(new SignInController(this));
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 }
