@@ -2,11 +2,9 @@
     <string name="app_name">TWIG</string>
     <string name="EmailAdd">Email Address</string>
     <string name="Password">Password</string>
-    <string name="NewPassword">New Password</string>
     <string name="ConfirmPassword">Confirm Password</string>
     <string name="FullName">FullName</string>
     <string name="Spinner">Select your account roll?</string>
-    <string name="SentEmailConfirmation">A code already sent to your Emailbox</string>
 
     <string-array name="spinnerItems">
         <item>Student</item>
@@ -17,7 +15,6 @@
     <string name="SignUp">Sign Up</string>
     <string name="Fgtpswd">Forget Password</string>
     <string name="Login">Login</string>
-    <string name="ResetPassword">Reset Password</string>
 
     <string name="Submit">Submit</string>
 </resources>

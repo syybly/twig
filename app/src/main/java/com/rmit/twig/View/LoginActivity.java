@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.rmit.twig.Controller.DataHolder;
@@ -21,7 +20,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button signin;
     private Button signup;
     private Context context;
-    private TextView forgetPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         context=this;
         signin=findViewById(R.id.Login);
         signup=findViewById(R.id.SignUp);
-        forgetPassword=findViewById(R.id.Fgtpawd);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,14 +37,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
         signin.setOnClickListener(new SignInController(this));
-        forgetPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent student=new Intent(context, ForgetPasswordActivity.class);
-                startActivity(student);
-            }
-        });
-
     }
 
     @Override
