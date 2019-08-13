@@ -6,44 +6,45 @@
         android:id="@+id/Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/Password"
         android:layout_centerHorizontal="true"
-        android:hint="@string/EmailAdd"
+        android:layout_marginTop="400dp"
+        android:layout_marginEnd="70dp"
         android:ems="10"
+        android:hint="@string/EmailAdd"
         android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/Email"
         android:layout_centerHorizontal="true"
-        android:hint="@string/Password"
         android:ems="10"
+        android:hint="@string/Password"
         android:inputType="textPassword" />
 
     <TextView
         android:id="@+id/Fgtpawd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Fgtpswd"
-        android:layout_below="@id/Password"
-        android:layout_alignEnd="@id/Password"/>
+        android:layout_below="@id/Login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="@string/Fgtpswd" />
 
 
     <Button
         android:id="@+id/Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Fgtpawd"
-        android:layout_alignEnd="@id/Fgtpawd"
+        android:layout_below="@id/Password"
+        android:layout_centerHorizontal="true"
+
+
+        android:layout_marginTop="40dp"
+        android:background="@color/colorAccent"
+        android:ems="10"
         android:text="@string/Login" />
 
-    <Button
-        android:id="@+id/SignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Fgtpawd"
-        android:layout_alignStart="@id/Password"
-        android:text="@string/SignUp" />
+
 </RelativeLayout>
