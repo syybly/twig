@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditText
         android:id="@+id/EmailAdd"
-        android:layout_width="189dp"
-        android:layout_height="55dp"
-        android:layout_above="@id/Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/FullName"
         android:layout_centerHorizontal="true"
         android:hint="@string/EmailAdd"
         android:ems="10"
@@ -16,7 +18,7 @@
         android:id="@+id/Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/ConfirmPassword"
+        android:layout_below="@id/EmailAdd"
         android:layout_centerHorizontal="true"
         android:hint="@string/Password"
         android:ems="10"
@@ -26,7 +28,7 @@
         android:id="@+id/ConfirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/Password"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:hint ="@string/ConfirmPassword"
@@ -36,31 +38,27 @@
         android:id="@+id/FullName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@id/EmailAdd"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="70dp"
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="@string/FullName"
         android:autofillHints="" />
 
-    <Spinner
-        android:id="@+id/Spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ConfirmPassword"
-        android:layout_centerHorizontal="true"
-        android:ems="10"
-        android:text="@string/Spinner"
-        android:entries="@array/spinnerItems"
-        android:spinnerMode="dropdown" />
-
     <Button
         android:id="@+id/SignUp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Spinner"
-
+        android:layout_below="@id/ConfirmPassword"
+        android:background="@color/colorAccent"
         android:layout_centerHorizontal="true"
-        android:text="@string/SignUp" />
+        android:text="@string/SignUp"
+        android:layout_marginTop="20dp"
+        android:ems="12"/>
+
+
+
+
 
 </RelativeLayout>
