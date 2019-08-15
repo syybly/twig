@@ -17,7 +17,7 @@ public class SignUpController{
     private EditText email;
     private EditText password;
 //    private Spinner type;
-    private String Type="Student";
+    private String Type;
 
     public SignUpController(Activity activity) {
         this.activity = activity;
@@ -29,6 +29,7 @@ public class SignUpController{
 
     public void run() {
 //        Type=type.getSelectedItem().toString();
+        Type="Student";
         String Email=email.getText().toString();
         String Password=password.getText().toString();
         String fullname=name.getText().toString();

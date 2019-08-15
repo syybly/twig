@@ -3,7 +3,7 @@
     <string name="EmailAdd">Email</string>
     <string name="Password">Password</string>
     <string name="ConfirmPassword">Confirm Password</string>
-    <string name="FullName">Username</string>
+    <string name="FullName">Full Name</string>
     <string name="Spinner">Select your account roll?</string>
 
     <string-array name="spinnerItems">

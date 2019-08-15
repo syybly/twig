@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +51,10 @@ public class SignupFragment extends Fragment {
                     signUpController.run();
                     Toast succeed=Toast.makeText(context, "Sign up successful, please log in", Toast.LENGTH_SHORT);
                     succeed.show();
-                    activity.finish();
+                    Email.getText().clear();
+                    password.getText().clear();
+                    comfirmpass.getText().clear();
+                    fullname.getText().clear();
                 }
             }
         });
