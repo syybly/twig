@@ -3,8 +3,11 @@ package com.rmit.twig.View;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -13,27 +16,26 @@ import android.widget.Toast;
 import com.rmit.twig.Controller.SignUpController;
 import com.rmit.twig.R;
 
-public class SignupActivity extends AppCompatActivity {
+public class SignupFragment extends Fragment {
     private EditText Email;
     private EditText password;
     private EditText comfirmpass;
     private EditText fullname;
-    private Spinner typespin;
+//    private Spinner typespin;
     private Context context;
     private Activity activity;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.signup);
-        context=this;
-        activity=this;
-        Email=findViewById(R.id.EmailAdd);
-        password=findViewById(R.id.Password);
-        comfirmpass=findViewById(R.id.ConfirmPassword);
-        fullname=findViewById(R.id.FullName);
-        typespin=findViewById(R.id.Spinner);
-        Button signup=findViewById(R.id.SignUp);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view=inflater.inflate(R.layout.signup, container, false);
+        context=view.getContext();
+        activity=getActivity();
+        Email=view.findViewById(R.id.EmailAdd);
+        password=view.findViewById(R.id.Password);
+        comfirmpass=view.findViewById(R.id.ConfirmPassword);
+        fullname=view.findViewById(R.id.FullName);
+//        typespin=findViewById(R.id.Spinner);
+        Button signup=view.findViewById(R.id.SignUp);
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,5 +56,6 @@ public class SignupActivity extends AppCompatActivity {
                 }
             }
         });
+        return view;
     }
 }

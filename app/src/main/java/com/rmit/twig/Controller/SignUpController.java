@@ -16,19 +16,19 @@ public class SignUpController{
     private EditText name;
     private EditText email;
     private EditText password;
-    private Spinner type;
-    private String Type;
+//    private Spinner type;
+    private String Type="Student";
 
     public SignUpController(Activity activity) {
         this.activity = activity;
         name=activity.findViewById(R.id.FullName);
         email=activity.findViewById(R.id.EmailAdd);
         password=activity.findViewById(R.id.Password);
-        type=activity.findViewById(R.id.Spinner);
+//        type=activity.findViewById(R.id.Spinner);
     }
 
     public void run() {
-        Type=type.getSelectedItem().toString();
+//        Type=type.getSelectedItem().toString();
         String Email=email.getText().toString();
         String Password=password.getText().toString();
         String fullname=name.getText().toString();
