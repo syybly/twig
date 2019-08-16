@@ -40,7 +40,6 @@
         android:layout_below="@id/Password"
         android:layout_centerHorizontal="true"
 
-
         android:layout_marginTop="40dp"
         android:background="@color/colorAccent"
         android:ems="10"
