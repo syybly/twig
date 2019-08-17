@@ -14,7 +14,7 @@
 
     <string name="SignUp">Sign Up</string>
     <string name="Fgtpswd">Forget your password?</string>
-    <string name="Login">Log In</string>
+    <string name="Login">Sign In</string>
 
     <string name="Submit">Submit</string>
     <string name="title_activity_homepage">Homepage</string>

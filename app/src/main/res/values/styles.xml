@@ -11,6 +11,7 @@
     <style name="TabStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textSize">23dp</item>
     </style>
 
     <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
