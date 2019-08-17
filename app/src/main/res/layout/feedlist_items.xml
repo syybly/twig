@@ -67,23 +67,29 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/eventbuttons"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/post_action"
+        android:visibility="invisible"
+        android:layout_marginLeft="20dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/going"
-            android:layout_width="26mm"
-            android:layout_height="7mm"
+            android:layout_width="23mm"
+            android:layout_height="5mm"
+            android:background="@drawable/radium"
             android:text="I'm Going"
             android:textSize="10dp" />
 
         <Button
             android:id="@+id/decidelater"
-            android:layout_width="26mm"
-            android:layout_height="7mm"
-            android:textSize="10dp"
-            android:text="Decide Later" />
+            android:layout_width="23mm"
+            android:layout_height="5mm"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/radium"
+            android:text="Decide Later"
+            android:textSize="10dp" />
     </LinearLayout>
 </RelativeLayout>

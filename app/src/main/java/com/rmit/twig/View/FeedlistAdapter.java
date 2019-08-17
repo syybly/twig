@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rmit.twig.Model.EventPost;
 import com.rmit.twig.Model.Post;
 import com.rmit.twig.R;
 
@@ -20,6 +22,7 @@ public class FeedlistAdapter extends ArrayAdapter<Post> {
     private TextView name;
     private TextView date;
     private TextView content;
+    private LinearLayout eventbuttons;
 
 
     public FeedlistAdapter(Context context, Post[] posts) {
@@ -43,6 +46,10 @@ public class FeedlistAdapter extends ArrayAdapter<Post> {
         date.setText(feed.getDate());
         content=convertView.findViewById(R.id.feed_content);
         content.setText(feed.getContent());
+        eventbuttons=convertView.findViewById(R.id.eventbuttons);
+        if (feed instanceof EventPost){
+            eventbuttons.setVisibility(View.VISIBLE);
+        }
         return convertView;
     }
 }

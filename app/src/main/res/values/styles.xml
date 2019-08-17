@@ -8,4 +8,13 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TabStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <!-- Customize your theme here. -->
+        <item name="android:fontFamily">@font/open_sans</item>
+    </style>
+
+    <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlActivated">@color/colorAccent</item>
+    </style>
+
 </resources>
