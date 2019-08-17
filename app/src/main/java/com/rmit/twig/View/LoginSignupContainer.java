@@ -2,6 +2,7 @@ package com.rmit.twig.View;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -25,5 +26,10 @@ public class LoginSignupContainer extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+    }
+
+    public void switchToHomepahe() {
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.homepage_container, new Fragment_Homepage()).commit();
     }
 }

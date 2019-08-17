@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.rmit.twig.R;
 import com.rmit.twig.View.AdminWelcomeActivity;
+import com.rmit.twig.View.Homepage;
 import com.rmit.twig.View.MentorWelcomeActivity;
 import com.rmit.twig.View.StudentWelcomeActivity;
 
@@ -31,7 +32,7 @@ public class SignInController implements View.OnClickListener {
         this.password=Password.getText().toString();
         if(validation()) {
             if (type.equals("Student")) {
-                Intent student = new Intent(activity, StudentWelcomeActivity.class);
+                Intent student = new Intent(activity, Homepage.class);
                 student.putExtra("name",name);
                 student.putExtra("type",type);
                 activity.startActivity(student);
