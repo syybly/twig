@@ -8,14 +8,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.rmit.twig.Controller.SendToEmailController;
+import com.rmit.twig.Controller.DataHolder;
 import com.rmit.twig.R;
 
 public class ForgetPasswordActivity extends AppCompatActivity {
 
-    private EditText email;
+    private String email;
     private Button Submit;
+    private Context context;
+    private TextView warning;
+
 
     private Activity activity;
 
@@ -23,10 +27,23 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fgtpswdpage);
 
-        EditText Email = findViewById(R.id.email);
+        final EditText Email = findViewById(R.id.email);
         Submit = findViewById(R.id.Submit);
-        Submit.setOnClickListener(new SendToEmailController(this));
+        warning = findViewById(R.id.warning);
+        Submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                email=Email.getText().toString();
+                if(DataHolder.users.containsKey(email)) {
+                Intent intent = new Intent(context, SentEmailActivity.class);
+                intent.putExtra("email", email);
+                activity.startActivity(intent);
+                }else {
+                     warning.setText("Invalid Email Address");
+                 }
+            }
 
 
-    }
+         });
+}
 }

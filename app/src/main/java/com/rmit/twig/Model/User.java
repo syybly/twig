@@ -6,12 +6,22 @@ public class User {
     private String fullname;
     private String des;
     private String type;
+    private String preference;
 
     public User(String email, String password, String fullname, String type) {
         this.email = email;
         this.password = password;
         this.fullname = fullname;
         this.type=type;
+        preference=null;
+    }
+
+    public User(String email, String password, String fullname, String type, String preference) {
+        this.email = email;
+        this.password = password;
+        this.fullname = fullname;
+        this.type=type;
+        this.preference=preference;
     }
 
     public String getEmail() {
@@ -52,5 +62,9 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void addPreference(String newPreference){
+        preference=preference+","+ newPreference;
     }
 }

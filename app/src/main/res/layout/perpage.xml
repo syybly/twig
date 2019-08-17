@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/select"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select" />
+
+    <CheckBox
+        android:id="@+id/reading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/reading" />
+
+    <CheckBox
+        android:id="@+id/music"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/music" />
+
+    <CheckBox
+        android:id="@+id/socialmedia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/socialmedia"/>
+
+    <CheckBox
+        android:id="@+id/animal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/animal" />
+
+    <CheckBox
+        android:id="@+id/beauty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/beauty" />
+
+    <CheckBox
+        android:id="@+id/travel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/travel" />
+
+    <CheckBox
+        android:id="@+id/NBA"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/NBA" />
+
+    <CheckBox
+        android:id="@+id/shopping"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/shopping" />
+
+    <CheckBox
+        android:id="@+id/food"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/food" />
+
+    <CheckBox
+        android:id="@+id/sporting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sport" />
+
+    <CheckBox
+        android:id="@+id/programming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/programming" />
+
+    <CheckBox
+        android:id="@+id/architecture"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/architecture" />
+
+    <CheckBox
+        android:id="@+id/design"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/design" />
+
+    <CheckBox
+        android:id="@+id/commerce"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/commerce" />
+
+    <CheckBox
+        android:id="@+id/engineering"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/engineering" />
+
+    <CheckBox
+        android:id="@+id/education"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/education" />
+
+    <CheckBox
+        android:id="@+id/nursing"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nursing" />
+
+    <CheckBox
+        android:id="@+id/gaming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gaming" />
+
+    <CheckBox
+        android:id="@+id/volunteer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/volunteer" />
+
+    <CheckBox
+        android:id="@+id/gymming"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/gyming" />
+
+    <Button
+        android:id="@+id/preference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

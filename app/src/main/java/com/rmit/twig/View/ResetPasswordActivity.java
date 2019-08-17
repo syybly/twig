@@ -5,10 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.rmit.twig.Controller.ResetPasswordController;
-import com.rmit.twig.Controller.SendToEmailController;
 import com.rmit.twig.R;
 
 public class ResetPasswordActivity extends AppCompatActivity {
@@ -26,6 +24,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         ConfirmPassword=findViewById(R.id.ConfirmPassword);
         ResetPassword=findViewById(R.id.ResetPassword);
         ResetPassword.setOnClickListener(new ResetPasswordController());
+
 
 
     }

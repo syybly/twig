@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.rmit.twig.View.MentorWelcomeActivity;
-import com.rmit.twig.View.SentEmailActivity;
 import com.rmit.twig.View.LoginActivity;
 
 public class ResetPasswordController implements View.OnClickListener{
