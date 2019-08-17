@@ -36,15 +36,13 @@
 
     <Button
         android:id="@+id/Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_below="@id/Password"
         android:layout_centerHorizontal="true"
-
-
+        android:textColor="#FFFFFF"
         android:layout_marginTop="40dp"
-        android:background="@color/colorAccent"
-        android:ems="10"
+        android:theme="@style/LogInButtonStyle"
         android:text="@string/Login" />
 
 

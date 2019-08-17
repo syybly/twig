@@ -51,13 +51,14 @@
 
     <Button
         android:id="@+id/SignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="60dp"
         android:layout_below="@id/ConfirmPassword"
-        android:background="@color/colorAccent"
         android:layout_centerHorizontal="true"
         android:text="@string/SignUp"
+        android:textColor="#FFFFFF"
         android:layout_marginTop="20dp"
+        android:theme="@style/LogInButtonStyle"
         android:ems="12"/>
 
 
