@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.rmit.twig.R;
 
-public class Homepage extends AppCompatActivity {
+public class HomepageActivity extends AppCompatActivity {
     private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

@@ -2,13 +2,13 @@ package com.rmit.twig.Model;
 
 public class Post {
     private String postID;
-    private String userID;
+    private User user;
     private String content;
     private String date;
 
-    public Post(String postID, String userID, String content, String date) {
+    public Post(String postID, User user, String content, String date) {
         this.postID = postID;
-        this.userID = userID;
+        this.user = user;
         this.content = content;
         this.date = date;
     }
@@ -21,12 +21,12 @@ public class Post {
         this.postID = postID;
     }
 
-    public String getUserID() {
-        return userID;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getContent() {

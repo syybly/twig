@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".View.Homepage"
+            android:name=".View.HomepageActivity"
             android:label="@string/title_activity_homepage"></activity>
         <activity android:name=".View.AdminWelcomeActivity" />
         <activity android:name=".View.MentorWelcomeActivity" />
