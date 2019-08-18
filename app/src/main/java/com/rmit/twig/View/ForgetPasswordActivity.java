@@ -30,20 +30,20 @@ public class ForgetPasswordActivity extends AppCompatActivity {
         final EditText Email = findViewById(R.id.email);
         Submit = findViewById(R.id.Submit);
         warning = findViewById(R.id.warning);
-        Submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                email=Email.getText().toString();
-                if(DataHolder.users.containsKey(email)) {
-                Intent intent = new Intent(context, SentEmailActivity.class);
-                intent.putExtra("email", email);
-                activity.startActivity(intent);
-                }else {
-                     warning.setText("Invalid Email Address");
-                 }
-            }
-
-
-         });
+//        Submit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                email=Email.getText().toString();
+//                if(DataHolder.users.containsKey(email)) {
+//                Intent intent = new Intent(context, SentEmailActivity.class);
+//                intent.putExtra("email", email);
+//                activity.startActivity(intent);
+//                }else {
+//                     warning.setText("Invalid Email Address");
+//                 }
+//            }
+//
+//
+//         });
 }
 }

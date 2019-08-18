@@ -15,6 +15,7 @@
         <activity android:name=".View.AdminWelcomeActivity" />
         <activity android:name=".View.MentorWelcomeActivity" />
         <activity android:name=".View.StudentWelcomeActivity" />
+        <activity android:name=".View.ForgetPasswordActivity" />
         <activity android:name=".View.LoginSignupContainer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

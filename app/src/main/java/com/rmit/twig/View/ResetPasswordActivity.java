@@ -18,11 +18,11 @@ public class ResetPasswordActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.resetpassword);
+        setContentView(R.layout.fgtpswdpage);
 
         Password=findViewById(R.id.Password);
         ConfirmPassword=findViewById(R.id.ConfirmPassword);
-        ResetPassword=findViewById(R.id.ResetPassword);
+//        ResetPassword=findViewById(R.id.ResetPassword);
         ResetPassword.setOnClickListener(new ResetPasswordController());
 
 
