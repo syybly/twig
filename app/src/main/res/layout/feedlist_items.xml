@@ -60,10 +60,25 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/imageButton3"
+            android:id="@+id/feed_comment"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
+            android:background="#ffffff"
             app:srcCompat="@drawable/comment" />
+
+        <ImageButton
+            android:id="@+id/feed_share"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            app:srcCompat="@android:drawable/ic_menu_share" />
+
+        <ImageButton
+            android:id="@+id/feed_save"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            app:srcCompat="@android:drawable/ic_menu_save" />
     </LinearLayout>
 
     <LinearLayout
