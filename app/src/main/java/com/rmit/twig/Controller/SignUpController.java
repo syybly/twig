@@ -1,6 +1,7 @@
 package com.rmit.twig.Controller;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -9,6 +10,7 @@ import com.rmit.twig.Model.Mentor;
 import com.rmit.twig.Model.Student;
 import com.rmit.twig.Model.User;
 import com.rmit.twig.R;
+import com.rmit.twig.View.PreferenceAcitivity;
 
 public class SignUpController{
 
@@ -43,5 +45,7 @@ public class SignUpController{
         else if(Type.equals("Admin")){
             DataHolder.users.put(email.getText().toString(),new Admin(Email,Password,fullname));
         }
+        Intent intent=new Intent(activity, PreferenceAcitivity.class);
+        activity.startActivity(intent);
     }
 }

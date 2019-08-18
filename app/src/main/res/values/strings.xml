@@ -15,6 +15,7 @@
     <string name="SignUp">Sign Up</string>
     <string name="Fgtpswd">Forget your password?</string>
     <string name="Login">Sign In</string>
+    <string name="ResetPassword">Reset Password</string>
 
     <string name="Submit">Submit</string>
     <string name="title_activity_homepage">Homepage</string>
@@ -45,5 +46,6 @@
     <string name="nursing">Nursing</string>
     <string name="volunteer">Volunteer</string>
     <string name="gyming">Gyming</string>
-
+    <string name="title_activity_sent_email">SentEmailActivity</string>
+    <string name="title_activity_preference_acitivity">PreferenceAcitivity</string>
 </resources>
