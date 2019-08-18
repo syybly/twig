@@ -49,8 +49,8 @@ public class SignupFragment extends Fragment {
                 else{
                     SignUpController signUpController=new SignUpController(activity);
                     signUpController.run();
-                    Toast succeed=Toast.makeText(context, "Sign up successful, please log in", Toast.LENGTH_SHORT);
-                    succeed.show();
+//                    Toast succeed=Toast.makeText(context, "Sign up successful, please log in", Toast.LENGTH_SHORT);
+//                    succeed.show();
                     Email.getText().clear();
                     password.getText().clear();
                     comfirmpass.getText().clear();
