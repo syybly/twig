@@ -24,6 +24,26 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string name="select">Please select your interesting</string>
+    <string name="reading">Reading</string>
+    <string name="music">Music</string>
+    <string name="socialmedia">Social Media</string>
+    <string name="animal">Animal</string>
+    <string name="beauty">Beauty</string>
+    <string name="travel">Travel</string>
+    <string name="NBA">NBA</string>
+    <string name="shopping">Shopping</string>
+    <string name="food">Food</string>
+    <string name="sport">Sport</string>
+    <string name="programming">Programming</string>
+    <string name="architecture">Architecture</string>
+    <string name="design">Design</string>
+    <string name="commerce">Commerce</string>
+    <string name="engineering">Engineering</string>
+    <string name="education">Education</string>
+    <string name="gaming">Gaming</string>
+    <string name="nursing">Nursing</string>
+    <string name="volunteer">Volunteer</string>
+    <string name="gyming">Gyming</string>
 
 </resources>
