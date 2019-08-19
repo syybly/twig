@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.rmit.twig.Model.Post;
 import com.rmit.twig.R;
 
 public class HomepageActivity extends AppCompatActivity {

@@ -35,16 +35,16 @@ public class SignUpController{
         String Email=email.getText().toString();
         String Password=password.getText().toString();
         String fullname=name.getText().toString();
-        User user=new User(email.getText().toString(),password.getText().toString(),name.getText().toString(),Type);
-        if(Type.equals("Student")){
-            DataHolder.users.put(email.getText().toString(),new Student(Email,Password,fullname));
-        }
-        else if(Type.equals("Mentor")){
-            DataHolder.users.put(email.getText().toString(),new Mentor(Email,Password,fullname));
-        }
-        else if(Type.equals("Admin")){
-            DataHolder.users.put(email.getText().toString(),new Admin(Email,Password,fullname));
-        }
+//        User user=new User(email.getText().toString(),password.getText().toString(),name.getText().toString(),Type);
+//        if(Type.equals("Student")){
+//            DataHolder.users.put(email.getText().toString(),new Student(Email,Password,fullname));
+//        }
+//        else if(Type.equals("Mentor")){
+//            DataHolder.users.put(email.getText().toString(),new Mentor(Email,Password,fullname));
+//        }
+//        else if(Type.equals("Admin")){
+//            DataHolder.users.put(email.getText().toString(),new Admin(Email,Password,fullname));
+//        }
         Intent intent=new Intent(activity, PreferenceAcitivity.class);
         activity.startActivity(intent);
     }

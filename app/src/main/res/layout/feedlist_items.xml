@@ -13,8 +13,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="20dp"
-            app:srcCompat="@drawable/student" />
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/feed_name"
@@ -86,7 +85,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/post_action"
-        android:visibility="invisible"
         android:layout_marginLeft="20dp"
         android:orientation="horizontal">
 

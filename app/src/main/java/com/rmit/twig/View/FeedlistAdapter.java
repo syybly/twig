@@ -38,7 +38,7 @@ public class FeedlistAdapter extends ArrayAdapter<Post> {
             convertView = LayoutInflater.from(context).inflate(R.layout.feedlist_items, parent, false);
         }
         image=convertView.findViewById(R.id.feed_userphoto);
-        int imageres=convertView.getResources().getIdentifier(feed.getUser().getEmail(),"drawable",convertView.getContext().getPackageName());
+        int imageres=convertView.getResources().getIdentifier("image_"+feed.getUser().getId(),"drawable",convertView.getContext().getPackageName());
         image.setImageResource(imageres);
         name=convertView.findViewById(R.id.feed_name);
         name.setText(feed.getUser().getFullname());
@@ -47,6 +47,7 @@ public class FeedlistAdapter extends ArrayAdapter<Post> {
         content=convertView.findViewById(R.id.feed_content);
         content.setText(feed.getContent());
         eventbuttons=convertView.findViewById(R.id.eventbuttons);
+        eventbuttons.setVisibility(View.INVISIBLE);
         if (feed instanceof EventPost){
             eventbuttons.setVisibility(View.VISIBLE);
         }
