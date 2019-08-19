@@ -35,29 +35,28 @@ public class SignupFragment extends Fragment {
         fullname=view.findViewById(R.id.FullName);
 //        typespin=findViewById(R.id.Spinner);
         Button signup=view.findViewById(R.id.SignUp);
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(!password.getText().toString().equals(comfirmpass.getText().toString())){
-                    Toast nomatch=Toast.makeText(context, "Password doesn't match", Toast.LENGTH_SHORT);
-                    nomatch.show();
-                }
-                else if(Email.getText().length()==0&&password.getText().length()==0&&fullname.getText().length()==0){
-                    Toast nodetail=Toast.makeText(context, "Please fill out all details", Toast.LENGTH_SHORT);
-                    nodetail.show();
-                }
-                else{
-                    SignUpController signUpController=new SignUpController(activity);
-                    signUpController.run();
-//                    Toast succeed=Toast.makeText(context, "Sign up successful, please log in", Toast.LENGTH_SHORT);
-//                    succeed.show();
-                    Email.getText().clear();
-                    password.getText().clear();
-                    comfirmpass.getText().clear();
-                    fullname.getText().clear();
-                }
-            }
-        });
+        signup.setOnClickListener(new SignUpController(activity));
+//        signup.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(!password.getText().toString().equals(comfirmpass.getText().toString())){
+//                    Toast nomatch=Toast.makeText(context, "Password doesn't match", Toast.LENGTH_SHORT);
+//                    nomatch.show();
+//                }
+//                else if(Email.getText().length()==0&&password.getText().length()==0&&fullname.getText().length()==0){
+//                    Toast nodetail=Toast.makeText(context, "Please fill out all details", Toast.LENGTH_SHORT);
+//                    nodetail.show();
+//                }
+//                else{
+//                    SignUpController signUpController=new SignUpController(activity);
+//                    signUpController.run();
+//                    Email.getText().clear();
+//                    password.getText().clear();
+//                    comfirmpass.getText().clear();
+//                    fullname.getText().clear();
+//                }
+//            }
+//        });
         return view;
     }
 }
