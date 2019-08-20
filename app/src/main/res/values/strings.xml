@@ -23,7 +23,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select">Please select your interesting</string>
     <string name="Innovation">Innovation</string>
@@ -48,4 +47,12 @@
     <string name="SelfDevelopment">Self-Development</string>
     <string name="title_activity_sent_email">SentEmailActivity</string>
     <string name="title_activity_preference_acitivity">PreferenceAcitivity</string>
+    <string name="explore">Explore</string>
+    <string name="title_explore">Explore</string>
+    <string name="title_add_new">Add New</string>
+    <string name="title_chats">Chats</string>
+    <string name="title_profile">Profile</string>
+    <string name="chats">Chats</string>
+    <string name="addnew">Add New</string>
+
 </resources>
