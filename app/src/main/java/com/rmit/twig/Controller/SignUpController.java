@@ -33,7 +33,11 @@ public class SignUpController implements View.OnClickListener {
         String Password=password.getText().toString();
         String fullname=name.getText().toString();
         String Comfirmpass=comfirmpass.getText().toString();
-        if(!Password.equals(Comfirmpass)){
+        if(Password.length()<6){
+            Toast shortpass=Toast.makeText(activity, "Password must contains at lease 6 letters", Toast.LENGTH_SHORT);
+            shortpass.show();
+        }
+        else if(!Password.equals(Comfirmpass)){
             Toast nomatch=Toast.makeText(activity, "Password doesn't match", Toast.LENGTH_SHORT);
             nomatch.show();
         }

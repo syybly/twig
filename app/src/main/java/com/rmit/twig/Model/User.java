@@ -81,4 +81,12 @@ public class User {
     public void setPreference(ArrayList<String> preference) {
         this.preference = preference;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
