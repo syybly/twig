@@ -116,7 +116,7 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
 
             }
         else {
-            Toast nomatch = Toast.makeText(context, "Invalid Credentials!", Toast.LENGTH_SHORT);
+            Toast nomatch = Toast.makeText(context, "Something went wrong, please try again.", Toast.LENGTH_SHORT);
             nomatch.show();
         }
     }
