@@ -4,12 +4,21 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.Toast;
 
 import com.rmit.twig.R;
 import com.rmit.twig.View.AdminWelcomeActivity;
 import com.rmit.twig.View.MentorWelcomeActivity;
 import com.rmit.twig.View.StudentWelcomeActivity;
 import com.rmit.twig.Model.User;
+import com.rmit.twig.com.SignInAsyncTask;
+import com.rmit.twig.com.SignUpAsyncTask;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class PreferenceController implements View.OnClickListener{
 
@@ -25,108 +34,125 @@ public class PreferenceController implements View.OnClickListener{
     }
 
     public void onClick(View view) {
-        box1 = activity.findViewById(R.id.reading);
-        box2 = activity.findViewById(R.id.music);
-        box3 = activity.findViewById(R.id.socialmedia);
-        box4 = activity.findViewById(R.id.animal);
-        box5 = activity.findViewById(R.id.beauty);
-        box6 = activity.findViewById(R.id.travel);
-        box7 = activity.findViewById(R.id.NBA);
-        box8 = activity.findViewById(R.id.shopping);
-        box9 = activity.findViewById(R.id.food);
-        box10 = activity.findViewById(R.id.sporting);
-        box11 = activity.findViewById(R.id.programming);
-        box12 = activity.findViewById(R.id.architecture);
-        box13 = activity. findViewById(R.id.design);
-        box14 = activity.findViewById(R.id.commerce);
-        box15 = activity.findViewById(R.id.engineering);
-        box16 = activity.findViewById(R.id.education);
-        box17 = activity.findViewById(R.id.nursing);
-        box18 = activity.findViewById(R.id.gaming);
-        box19 = activity.findViewById(R.id.volunteer);
-        box20 = activity.findViewById(R.id.gymming);
-//        if(box1.isChecked()){
-//            DataHolder.user.addPreference("reading");
-//        }
-//        if(box2.isChecked()){
-//            user.addPreference("music");
-//        }
-//        if(box3.isChecked()){
-//            user.addPreference("socialmedia");
-//        }
-//        if(box4.isChecked()){
-//            user.addPreference("animal");
-//        }
-//        if(box5.isChecked()){
-//            user.addPreference("beauty");
-//        }
-//        if(box6.isChecked()){
-//            user.addPreference("travel");
-//        }
-//        if(box7.isChecked()){
-//            user.addPreference("NBA");
-//        }
-//        if(box8.isChecked()){
-//            user.addPreference("shopping");
-//        }
-//        if(box9.isChecked()){
-//            user.addPreference("food");
-//        }
-//        if(box10.isChecked()){
-//            user.addPreference("sporting");
-//        }
-//        if(box11.isChecked()){
-//            user.addPreference("programming");
-//        }
-//        if(box12.isChecked()){
-//            user.addPreference("architecture");
-//        }
-//        if(box13.isChecked()){
-//            user.addPreference("design");
-//        }
-//        if(box14.isChecked()){
-//            user.addPreference("commerce");
-//        }
-//        if(box15.isChecked()){
-//            user.addPreference("engieneering");
-//        }
-//        if(box16.isChecked()){
-//            user.addPreference("education");
-//        }
-//        if(box17.isChecked()){
-//            user.addPreference("nursing");
-//        }
-//        if(box18.isChecked()){
-//            user.addPreference("gaming");
-//        }
-//        if(box19.isChecked()){
-//            user.addPreference("volunteer");
-//        }
-//        if(box20.isChecked()){
-//            user.addPreference("gymming");
-//        }
+        box1 = activity.findViewById(R.id.Innovation);
+        box2 = activity.findViewById(R.id.Conservation);
+        box3 = activity.findViewById(R.id.SocialImpact);
+        box4 = activity.findViewById(R.id.Environmentalimpact);
+        box5 = activity.findViewById(R.id.Cities);
+        box6 = activity.findViewById(R.id.Biodiversity);
+        box7 = activity.findViewById(R.id.Wildlife);
+        box8 = activity.findViewById(R.id.SustainableCities);
+        box9 = activity.findViewById(R.id.Urbanisation);
+        box10 = activity.findViewById(R.id.FutureDesign);
+        box11 = activity.findViewById(R.id.Industry);
+        box12 = activity.findViewById(R.id.Infrastructure);
+        box13 = activity. findViewById(R.id.EconomicGrowth);
+        box14 = activity.findViewById(R.id.Technology);
+        box15 = activity.findViewById(R.id.Consumption);
+        box16 = activity.findViewById(R.id.Entrepreneurship);
+        box17 = activity.findViewById(R.id.Leadership);
+        box18 = activity.findViewById(R.id.Financialwellbeing);
+        box19 = activity.findViewById(R.id.EntrepreneurialMindset);
+        box20 = activity.findViewById(R.id.SelfDevelopment);
+        ArrayList<String> pre=new ArrayList<>();
+        if(box1.isChecked()){
+            pre.add("Innovation");
+        }
+        if(box2.isChecked()){
+            pre.add("Conservation");
+        }
+        if(box3.isChecked()){
+            pre.add("Social Impact");
+        }
+        if(box4.isChecked()){
+            pre.add("Environmental Impact");
+        }
+        if(box5.isChecked()){
+            pre.add("Cities");
+        }
+        if(box6.isChecked()){
+            pre.add("Biodiversity");
+        }
+        if(box7.isChecked()){
+            pre.add("Wildlife / animals");
+        }
+        if(box8.isChecked()){
+            pre.add("Sustainable Cities");
+        }
+        if(box9.isChecked()){
+            pre.add("Urbanisation");
+        }
+        if(box10.isChecked()){
+            pre.add("Future Design");
+        }
+        if(box11.isChecked()){
+            pre.add("Industry");
+        }
+        if(box12.isChecked()){
+            pre.add("Infrastructure");
+        }
+        if(box13.isChecked()){
+            pre.add("Economic Growth");
+        }
+        if(box14.isChecked()){
+            pre.add("Technology");
+        }
+        if(box15.isChecked()){
+            pre.add("Consumption");
+        }
+        if(box16.isChecked()){
+            pre.add("Entrepreneurship");
+        }
+        if(box17.isChecked()){
+            pre.add("Leadership");
+        }
+        if(box18.isChecked()){
+            pre.add("Financial wellbeing");
+        }
+        if(box19.isChecked()){
+            pre.add("Entrepreneurial Mindset");
+        }
+        if(box20.isChecked()){
+            pre.add("Self-Development");
+        }
+        if(pre.size()<3){
+            Toast lespre = Toast.makeText(activity, "Please choose at least three interests", Toast.LENGTH_SHORT);
+            lespre.show();
+        }
+        DataHolder.user.setPreference(pre);
+        JSONObject signindata = new JSONObject();
+        String url ="https://twig-api-v2.herokuapp.com/users/signup";
+        try {
+            signindata.put("email", DataHolder.user.getEmail());
+            signindata.put("password", DataHolder.user.getPassword());
+            signindata.put("name", DataHolder.user.getFullname());
+            signindata.put("interests", new JSONArray(DataHolder.user.getPreference()));
+            new SignUpAsyncTask(activity).execute(url,signindata.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
-        if (type.equals("Student")) {
-            Intent student = new Intent(activity, StudentWelcomeActivity.class);
-            student.putExtra("name",name);
-            student.putExtra("type",type);
-            activity.startActivity(student);
-            activity.finish();
-        }
-        if (type.equals("Mentor")) {
-            Intent intent = new Intent(activity, MentorWelcomeActivity.class);
-            intent.putExtra("name",name);
-            intent.putExtra("type",type);
-            activity.startActivity(intent);
-            activity.finish();
-        }
-        if (type.equals("Admin")) {
-            Intent intent = new Intent(activity, AdminWelcomeActivity.class);
-            intent.putExtra("name",name);
-            intent.putExtra("type",type);
-            activity.startActivity(intent);
-            activity.finish();
-        }
+//        if (type.equals("Student")) {
+//            Intent student = new Intent(activity, StudentWelcomeActivity.class);
+//            student.putExtra("name",name);
+//            student.putExtra("type",type);
+//            activity.startActivity(student);
+//            activity.finish();
+//        }
+//        if (type.equals("Mentor")) {
+//            Intent intent = new Intent(activity, MentorWelcomeActivity.class);
+//            intent.putExtra("name",name);
+//            intent.putExtra("type",type);
+//            activity.startActivity(intent);
+//            activity.finish();
+//        }
+//        if (type.equals("Admin")) {
+//            Intent intent = new Intent(activity, AdminWelcomeActivity.class);
+//            intent.putExtra("name",name);
+//            intent.putExtra("type",type);
+//            activity.startActivity(intent);
+//            activity.finish();
+//        }
 
 
     }

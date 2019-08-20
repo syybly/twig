@@ -8,6 +8,7 @@ public class User {
     private String fullname;
     private String des;
     private String type;
+    private String password;
     private ArrayList<String> preference;
 
     public User(String id,String email, String fullname, String type,ArrayList<String> preference) {
@@ -24,6 +25,13 @@ public class User {
         this.fullname = fullname;
         this.type="student";
         this.preference=preference;
+    }
+
+    public User(String email, String password, String fullname) {
+        this.email = email;
+        this.password=password;
+        this.fullname = fullname;
+        this.type="student";
     }
 
     public String getEmail() {
@@ -72,5 +80,13 @@ public class User {
 
     public void setPreference(ArrayList<String> preference) {
         this.preference = preference;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

@@ -17,7 +17,7 @@
         android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/Password"
+        android:id="@+id/PasswordSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/EmailAdd"
@@ -32,7 +32,7 @@
         android:id="@+id/ConfirmPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Password"
+        android:layout_below="@id/PasswordSignup"
         android:layout_centerHorizontal="true"
         android:dividerPadding="13dp"
         android:theme="@style/EditTextTheme"

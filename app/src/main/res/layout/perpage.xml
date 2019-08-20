@@ -15,124 +15,124 @@
         android:text="@string/select" />
 
     <CheckBox
-        android:id="@+id/reading"
+        android:id="@+id/Innovation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/reading" />
+        android:text="@string/Innovation" />
 
     <CheckBox
-        android:id="@+id/music"
+        android:id="@+id/Conservation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/music" />
+        android:text="@string/Conservation" />
 
     <CheckBox
-        android:id="@+id/socialmedia"
+        android:id="@+id/SocialImpact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/socialmedia"/>
+        android:text="@string/SocialImpact"/>
 
     <CheckBox
-        android:id="@+id/animal"
+        android:id="@+id/Environmentalimpact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/animal" />
+        android:text="@string/Environmentalimpact" />
 
     <CheckBox
-        android:id="@+id/beauty"
+        android:id="@+id/Cities"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/beauty" />
+        android:text="@string/Cities" />
 
     <CheckBox
-        android:id="@+id/travel"
+        android:id="@+id/Biodiversity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/travel" />
+        android:text="@string/Biodiversity" />
 
     <CheckBox
-        android:id="@+id/NBA"
+        android:id="@+id/Wildlife"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/NBA" />
+        android:text="@string/Wildlife" />
 
     <CheckBox
-        android:id="@+id/shopping"
+        android:id="@+id/SustainableCities"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/shopping" />
+        android:text="@string/SustainableCities" />
 
     <CheckBox
-        android:id="@+id/food"
+        android:id="@+id/Urbanisation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/food" />
+        android:text="@string/Urbanisation" />
 
     <CheckBox
-        android:id="@+id/sporting"
+        android:id="@+id/FutureDesign"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/sport" />
+        android:text="@string/FutureDesign" />
 
     <CheckBox
-        android:id="@+id/programming"
+        android:id="@+id/Industry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/programming" />
+        android:text="@string/Industry" />
 
     <CheckBox
-        android:id="@+id/architecture"
+        android:id="@+id/Infrastructure"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/architecture" />
+        android:text="@string/Infrastructure" />
 
     <CheckBox
-        android:id="@+id/design"
+        android:id="@+id/EconomicGrowth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/design" />
+        android:text="@string/EconomicGrowth" />
 
     <CheckBox
-        android:id="@+id/commerce"
+        android:id="@+id/Technology"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/commerce" />
+        android:text="@string/Technology" />
 
     <CheckBox
-        android:id="@+id/engineering"
+        android:id="@+id/Consumption"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/engineering" />
+        android:text="@string/Consumption" />
 
     <CheckBox
-        android:id="@+id/education"
+        android:id="@+id/Entrepreneurship"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/education" />
+        android:text="@string/Entrepreneurship" />
 
     <CheckBox
-        android:id="@+id/nursing"
+        android:id="@+id/Leadership"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/nursing" />
+        android:text="@string/Leadership" />
 
     <CheckBox
-        android:id="@+id/gaming"
+        android:id="@+id/Financialwellbeing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/gaming" />
+        android:text="@string/Financialwellbeing" />
 
     <CheckBox
-        android:id="@+id/volunteer"
+        android:id="@+id/EntrepreneurialMindset"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/volunteer" />
+        android:text="@string/EntrepreneurialMindset" />
 
     <CheckBox
-        android:id="@+id/gymming"
+        android:id="@+id/SelfDevelopment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/gyming" />
+        android:text="@string/SelfDevelopment" />
 
     <Button
         android:id="@+id/preference"
