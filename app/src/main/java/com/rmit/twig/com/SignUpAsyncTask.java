@@ -1,5 +1,6 @@
 package com.rmit.twig.com;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -112,6 +113,7 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
                 DataHolder.user=newuser;
                 Intent intent = new Intent(context, HomepageActivity.class);
                 context.startActivity(intent);
+                ((Activity)context).finish();
             } catch (JSONException e) {
 
             }
