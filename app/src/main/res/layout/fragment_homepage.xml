@@ -3,10 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:layout_marginTop="10dp"
     tools:context=".View.Fragment_Homepage">
 
     <ListView
         android:id="@+id/feedlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:divider="#FFFFFF"
+        android:dividerHeight="20dp"/>
 </FrameLayout>

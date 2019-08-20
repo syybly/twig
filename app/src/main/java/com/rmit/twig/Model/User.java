@@ -10,6 +10,7 @@ public class User {
     private String type;
     private String password;
     private ArrayList<String> preference;
+    private String photourl;
 
     public User(String id,String email, String fullname, String type,ArrayList<String> preference) {
         this.id=id;
@@ -17,6 +18,7 @@ public class User {
         this.fullname = fullname;
         this.type=type;
         this.preference=preference;
+        this.photourl="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png";
     }
 
     public User(String id,String email, String fullname, ArrayList<String> preference) {
@@ -25,6 +27,7 @@ public class User {
         this.fullname = fullname;
         this.type="student";
         this.preference=preference;
+        this.photourl="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png";
     }
 
     public User(String email, String password, String fullname) {
@@ -32,6 +35,7 @@ public class User {
         this.password=password;
         this.fullname = fullname;
         this.type="student";
+        this.photourl="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png";
     }
 
     public String getEmail() {
@@ -88,5 +92,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPhotourl() {
+        return photourl;
+    }
+
+    public void setPhotourl(String photourl) {
+        this.photourl = photourl;
     }
 }

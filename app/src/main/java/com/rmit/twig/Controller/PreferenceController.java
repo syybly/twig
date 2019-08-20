@@ -1,17 +1,12 @@
 package com.rmit.twig.Controller;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
 import com.rmit.twig.R;
-import com.rmit.twig.View.AdminWelcomeActivity;
-import com.rmit.twig.View.MentorWelcomeActivity;
-import com.rmit.twig.View.StudentWelcomeActivity;
 import com.rmit.twig.Model.User;
-import com.rmit.twig.com.SignInAsyncTask;
 import com.rmit.twig.com.SignUpAsyncTask;
 
 import org.json.JSONArray;
