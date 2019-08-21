@@ -6,6 +6,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -16,11 +17,6 @@ import com.rmit.twig.Model.Post;
 import com.rmit.twig.R;
 
 public class HomepageActivity extends AppCompatActivity {
-    private TextView mTextMessage;
-    private ImageView imageView;
-    private TextView textview;
-    private Context context;
-    private Menu Menu;
     private BottomNavigationView navView;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -66,8 +62,8 @@ public class HomepageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
         navView = findViewById(R.id.nav_view);
-
-        mTextMessage = findViewById(R.id.message);
+        Toolbar myToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         navView.setItemIconTintList(null);
         FragmentManager manager = getSupportFragmentManager();

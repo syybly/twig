@@ -12,51 +12,54 @@
             android:id="@+id/feed_userphoto"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp" />
 
         <TextView
             android:id="@+id/feed_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignTop="@id/feed_userphoto"
             android:layout_toRightOf="@id/feed_userphoto"
-            android:layout_weight="1"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_weight="600"
             android:text="Jess J"
-            android:textSize="30dp"
-            android:textColor="#FF5722"/>
+            android:textSize="17dp"
+            android:textColor="#393939"/>
 
         <TextView
             android:id="@+id/feed_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/feed_name"
-            android:text="tttttttt"
             android:layout_alignLeft="@id/feed_name"
-             />
+            android:fontFamily="@font/open_sans_light"
+            android:text="Melbourne, Australia"
+            android:textColor="#393939"
+            android:textFontWeight="300"
+            android:textSize="15dp" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/feed_content"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/feed_image"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/feed_head"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="10dp"
-        android:textColor="#000000"
-        android:text="rtttttttt"
-        android:textSize="15dp"
-></TextView>
+        android:layout_marginTop="12dp"
+        android:adjustViewBounds="true"
+        android:maxWidth="250dp"
+        android:maxHeight="300dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/noimage"></android.support.v7.widget.AppCompatImageView>
 
     <LinearLayout
         android:id="@+id/post_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/feed_content"
-        android:layout_marginRight="50dp"
-        android:layout_marginTop="15dp"
+        android:layout_below="@id/feed_image"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <ImageButton
@@ -70,41 +73,72 @@
             android:id="@+id/feed_share"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
             android:background="#ffffff"
-            app:srcCompat="@android:drawable/ic_menu_share" />
+            app:srcCompat="@drawable/share" />
 
         <ImageButton
             android:id="@+id/feed_save"
             android:layout_width="30dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
             android:background="#ffffff"
-            app:srcCompat="@android:drawable/ic_menu_save" />
+            app:srcCompat="@drawable/save" />
+
+        <TextView
+            android:id="@+id/hourago"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="18dp"
+            android:layout_weight="300"
+            android:fontFamily="@font/open_sans"
+            android:text="xx hours ago"
+            android:textAlignment="viewEnd" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/feed_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/post_action"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Type something to describe about the event and this is a paragraph about dummy text to show content fun event!"
+        android:textColor="#393939"
+        android:textFontWeight="382"
+        android:textSize="16dp" />
 
     <LinearLayout
         android:id="@+id/eventbuttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/post_action"
+        android:layout_below="@id/feed_content"
         android:layout_marginTop="15dp"
-        android:layout_marginLeft="20dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/going"
-            android:layout_width="23mm"
-            android:layout_height="5mm"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
             android:background="@drawable/radium"
+            android:fontFamily="@font/open_sans_semibold"
             android:text="I'm Going"
-            android:textSize="10dp" />
+            android:layout_marginLeft="30dp"
+            android:textFontWeight="600"
+            android:textSize="14dp" />
 
         <Button
             android:id="@+id/decidelater"
-            android:layout_width="23mm"
-            android:layout_height="5mm"
-            android:layout_marginLeft="40dp"
+            android:layout_width="150dp"
+            android:layout_height="38dp"
             android:background="@drawable/radium"
+            android:fontFamily="@font/open_sans_semibold"
+            android:layout_marginLeft="42dp"
             android:text="Decide Later"
-            android:textSize="10dp" />
+            android:textFontWeight="600"
+            android:textSize="14dp" />
     </LinearLayout>
 </RelativeLayout>
