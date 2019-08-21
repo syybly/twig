@@ -23,29 +23,36 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="select">Please select your interesting</string>
-    <string name="reading">Reading</string>
-    <string name="music">Music</string>
-    <string name="socialmedia">Social Media</string>
-    <string name="animal">Animal</string>
-    <string name="beauty">Beauty</string>
-    <string name="travel">Travel</string>
-    <string name="NBA">NBA</string>
-    <string name="shopping">Shopping</string>
-    <string name="food">Food</string>
-    <string name="sport">Sport</string>
-    <string name="programming">Programming</string>
-    <string name="architecture">Architecture</string>
-    <string name="design">Design</string>
-    <string name="commerce">Commerce</string>
-    <string name="engineering">Engineering</string>
-    <string name="education">Education</string>
-    <string name="gaming">Gaming</string>
-    <string name="nursing">Nursing</string>
-    <string name="volunteer">Volunteer</string>
-    <string name="gyming">Gyming</string>
+    <string name="Innovation">Innovation</string>
+    <string name="Conservation">Conservation</string>
+    <string name="SocialImpact">Social Impact</string>
+    <string name="Environmentalimpact">Environmental Impact</string>
+    <string name="Cities">Cities</string>
+    <string name="Biodiversity">Biodiversity</string>
+    <string name="Wildlife">Wildlife / animals</string>
+    <string name="SustainableCities">Sustainable Cities</string>
+    <string name="Urbanisation">Urbanisation</string>
+    <string name="FutureDesign">Future Design</string>
+    <string name="Industry">Industry</string>
+    <string name="Infrastructure">Infrastructure</string>
+    <string name="EconomicGrowth">Economic Growth</string>
+    <string name="Technology">Technology</string>
+    <string name="Consumption">Consumption</string>
+    <string name="Entrepreneurship">Entrepreneurship</string>
+    <string name="Leadership">Leadership</string>
+    <string name="Financialwellbeing">Financial wellbeing</string>
+    <string name="EntrepreneurialMindset">Entrepreneurial Mindset</string>
+    <string name="SelfDevelopment">Self-Development</string>
     <string name="title_activity_sent_email">SentEmailActivity</string>
     <string name="title_activity_preference_acitivity">PreferenceAcitivity</string>
+    <string name="explore">Explore</string>
+    <string name="title_explore">Explore</string>
+    <string name="title_add_new">Add New</string>
+    <string name="title_chats">Chats</string>
+    <string name="title_profile">Profile</string>
+    <string name="chats">Chats</string>
+    <string name="addnew">Add New</string>
+
 </resources>

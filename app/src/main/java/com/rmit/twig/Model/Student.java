@@ -1,7 +1,10 @@
 package com.rmit.twig.Model;
 
+import java.util.ArrayList;
+
 public class Student extends User {
-    public Student(String email, String password, String fullname) {
-        super(email, password, fullname,"Student");
+
+    public Student(String id, String email, String fullname, ArrayList<String> preference) {
+        super(id, email, fullname, preference);
     }
 }

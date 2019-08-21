@@ -5,12 +5,21 @@ public class Post {
     private User user;
     private String content;
     private String date;
+    private String location;
 
-    public Post(String postID, User user, String content, String date) {
+    public Post(String postID, User user, String content, String date, String location) {
         this.postID = postID;
         this.user = user;
         this.content = content;
         this.date = date;
+        this.location=location;
+    }
+
+    public Post(String postID, User user, String content, String location) {
+        this.postID = postID;
+        this.user = user;
+        this.content = content;
+        this.location=location;
     }
 
     public String getPostID() {
@@ -43,5 +52,13 @@ public class Post {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

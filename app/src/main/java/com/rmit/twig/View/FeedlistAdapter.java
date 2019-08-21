@@ -12,15 +12,14 @@ import android.widget.TextView;
 import com.rmit.twig.Model.EventPost;
 import com.rmit.twig.Model.Post;
 import com.rmit.twig.R;
-
-import java.util.ArrayList;
+import com.squareup.picasso.Picasso;
 
 public class FeedlistAdapter extends ArrayAdapter<Post> {
     private Context context;
     private Post[] posts;
     private ImageView image;
     private TextView name;
-    private TextView date;
+    private TextView location;
     private TextView content;
     private LinearLayout eventbuttons;
 
@@ -38,15 +37,19 @@ public class FeedlistAdapter extends ArrayAdapter<Post> {
             convertView = LayoutInflater.from(context).inflate(R.layout.feedlist_items, parent, false);
         }
         image=convertView.findViewById(R.id.feed_userphoto);
-        int imageres=convertView.getResources().getIdentifier(feed.getUser().getEmail(),"drawable",convertView.getContext().getPackageName());
-        image.setImageResource(imageres);
+        Picasso.with(context)
+                .load(feed.getUser().getPhotourl())
+                .placeholder(R.drawable.nophoto)
+                .error(R.drawable.nophoto)
+                .into(image);
         name=convertView.findViewById(R.id.feed_name);
         name.setText(feed.getUser().getFullname());
-        date=convertView.findViewById(R.id.feed_time);
-        date.setText(feed.getDate());
+        location=convertView.findViewById(R.id.feed_location);
+        location.setText(feed.getLocation());
         content=convertView.findViewById(R.id.feed_content);
         content.setText(feed.getContent());
         eventbuttons=convertView.findViewById(R.id.eventbuttons);
+        eventbuttons.setVisibility(View.INVISIBLE);
         if (feed instanceof EventPost){
             eventbuttons.setVisibility(View.VISIBLE);
         }

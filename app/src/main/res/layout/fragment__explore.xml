@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:layout_marginTop="10dp"
-    tools:context=".View.Fragment_Homepage">
+    tools:context=".View.Fragment_Explore">
 
-    <ListView
-        android:id="@+id/feedlist"
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="#FFFFFF"
-        android:dividerHeight="20dp"/>
+        android:text="@string/explore" />
+
 </FrameLayout>
