@@ -47,9 +47,22 @@
     <string name="chats">Chats</string>
     <string name="addnew">Add New</string>
     <string name="twig">twig</string>
-    <string name="createnew">New Post</string>
+    <string name="newpost">New Post</string>
     <string name="newevent">New Event</string>
     <string name="newoppo">New Opportunity</string>
+    <string name="createevent">create event</string>
+    <string name="createpost">create post</string>
+    <string name="cancel">cancel</string>
+    <string name="post">post</string>
+    <string name="addlocation">add location</string>
+    <string name="writesomething">write something...</string>
+    <string name="addcategory">add category</string>
+    <string name="tagsomeone">tag someone</string>
+    <string name="addtimedate">add time &amp; date</string>
+    <string name="addcoorg">add co-organiser</string>
+    <string name="sharepublic">share it with public</string>
+    <string name="signupticket">sign up or ticket</string>
+    <string name="createoppo">create opportunity</string>
     <string-array name="spinnerItems">
         <item>Student</item>
         <item>Mentor</item>

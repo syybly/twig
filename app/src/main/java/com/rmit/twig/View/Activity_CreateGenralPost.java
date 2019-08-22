@@ -10,6 +10,6 @@ public class Activity_CreateGenralPost extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__create_genral_post);
+        setContentView(R.layout.activity_create_genral_post);
     }
 }

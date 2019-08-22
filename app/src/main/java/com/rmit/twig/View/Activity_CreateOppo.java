@@ -10,6 +10,6 @@ public class Activity_CreateOppo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__create_oppo);
+        setContentView(R.layout.activity_create_oppo);
     }
 }

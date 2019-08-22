@@ -21,7 +21,7 @@ import android.view.Menu;
 import com.rmit.twig.Model.Post;
 import com.rmit.twig.R;
 
-public class HomepageActivity extends AppCompatActivity {
+public class Activity_Homepage extends AppCompatActivity {
     private BottomNavigationView navView;
     private Context context;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.rmit.twig.Controller.DataHolder;
 import com.rmit.twig.Model.User;
-import com.rmit.twig.View.HomepageActivity;
+import com.rmit.twig.View.Activity_Homepage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +20,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -113,7 +112,7 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
                 }
                 User newuser=new User(id,email,name,interests);
                 DataHolder.user=newuser;
-                Intent intent = new Intent(context, HomepageActivity.class);
+                Intent intent = new Intent(context, Activity_Homepage.class);
                 context.startActivity(intent);
                 ((Activity)context).finish();
             } catch (JSONException e) {

@@ -14,7 +14,7 @@ import com.rmit.twig.Model.Post;
 import com.rmit.twig.R;
 import com.squareup.picasso.Picasso;
 
-public class FeedlistAdapter extends ArrayAdapter<Post> {
+public class Adapter_Feedlist extends ArrayAdapter<Post> {
     private Context context;
     private Post[] posts;
     private ImageView image;
@@ -24,7 +24,7 @@ public class FeedlistAdapter extends ArrayAdapter<Post> {
     private LinearLayout eventbuttons;
 
 
-    public FeedlistAdapter(Context context, Post[] posts) {
+    public Adapter_Feedlist(Context context, Post[] posts) {
         super(context, 0,posts);
         this.context=context;
         this.posts=posts;

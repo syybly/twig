@@ -1,15 +1,10 @@
 package com.rmit.twig.Controller;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.rmit.twig.R;
-import com.rmit.twig.View.AdminWelcomeActivity;
-import com.rmit.twig.View.HomepageActivity;
-import com.rmit.twig.View.MentorWelcomeActivity;
 import com.rmit.twig.com.SignInAsyncTask;
 
 import org.json.JSONException;

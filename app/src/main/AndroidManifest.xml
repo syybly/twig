@@ -12,7 +12,7 @@
         <activity android:name=".View.Activity_CreateOppo"></activity>
         <activity android:name=".View.Activity_CreateEvent" />
         <activity android:name=".View.Activity_CreateGenralPost" />
-        <activity android:name=".View.HomepageActivity" />
+        <activity android:name=".View.Activity_Homepage" />
         <activity android:name=".View.AdminWelcomeActivity" />
         <activity android:name=".View.MentorWelcomeActivity" />
         <activity android:name=".View.StudentWelcomeActivity" />

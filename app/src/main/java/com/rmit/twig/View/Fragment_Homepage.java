@@ -33,7 +33,7 @@ public class Fragment_Homepage extends Fragment {
         view=inflater.inflate(R.layout.fragment_homepage, container, false);
         context=view.getContext();
         feedlist=view.findViewById(R.id.feedlist);
-        feedlist.setAdapter(new FeedlistAdapter(context,posts));
+        feedlist.setAdapter(new Adapter_Feedlist(context,posts));
         return  view;
     }
 }

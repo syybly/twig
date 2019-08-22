@@ -10,6 +10,6 @@ public class Activity_CreateEvent extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity__create_event);
+        setContentView(R.layout.activity_create_event);
     }
 }
