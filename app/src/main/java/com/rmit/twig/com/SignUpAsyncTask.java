@@ -25,6 +25,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.net.ssl.HttpsURLConnection;
+
 public class SignUpAsyncTask extends AsyncTask<String, String, String> {
     private Context context;
     private ProgressDialog pd;
@@ -42,12 +44,12 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
     }
 
     protected String doInBackground(String... params) {
-        HttpURLConnection connection = null;
+        HttpsURLConnection connection = null;
         BufferedReader reader = null;
 
         try {
             URL url = new URL(params[0]);
-            connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept","application/json");

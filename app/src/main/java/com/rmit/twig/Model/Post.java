@@ -4,19 +4,22 @@ public class Post {
     private String postID;
     private User user;
     private String content;
-    private String date;
     private String location;
-
-    public Post(String postID, User user, String content, String date, String location) {
-        this.postID = postID;
-        this.user = user;
-        this.content = content;
-        this.date = date;
-        this.location=location;
-    }
+    private String date;
 
     public Post(String postID, User user, String content, String location) {
         this.postID = postID;
+        this.user = user;
+        this.content = content;
+        this.location=location;
+    }
+
+    public Post(User user, String content) {
+        this.user = user;
+        this.content = content;
+    }
+
+    public Post(User user, String content, String location) {
         this.user = user;
         this.content = content;
         this.location=location;

@@ -1,13 +1,18 @@
 package com.rmit.twig.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +23,7 @@ import com.rmit.twig.R;
 
 public class HomepageActivity extends AppCompatActivity {
     private BottomNavigationView navView;
+    private Context context;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -25,7 +31,6 @@ public class HomepageActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-
                     SwitchToHomepage();
 
                     return true;
@@ -35,9 +40,33 @@ public class HomepageActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_addnew:
-
-
-                    SwitchToAddNew();
+                    View v = findViewById(R.id.navigation_addnew);
+                    PopupMenu pm = new PopupMenu(context, v);
+                    pm.getMenuInflater().inflate(R.menu.create_menu, pm.getMenu());
+                    pm.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId())   {
+                                case R.id.createpost:
+                                    Intent genralpost=new Intent(context,Activity_CreateGenralPost.class);
+                                    startActivity(genralpost);
+                                    break;
+                                case R.id.createevent:
+                                    Intent event=new Intent(context,Activity_CreateEvent.class);
+                                    startActivity(event);
+                                    break;
+                                case R.id.createactivity:
+                                    Intent oppo=new Intent(context,Activity_CreateOppo.class);
+                                    startActivity(oppo);
+                                    break;
+                                default:
+                                    break;
+                            }
+                            return true;
+                        }
+                    });
+                    pm.show();
+//                    SwitchToAddNew();
 
                     return true;
                 case R.id.navigation_chats:
@@ -61,6 +90,7 @@ public class HomepageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+        context=this;
         navView = findViewById(R.id.nav_view);
         Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);

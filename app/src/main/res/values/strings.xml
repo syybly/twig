@@ -6,23 +6,16 @@
     <string name="FullName">Full Name</string>
     <string name="Spinner">Select your account roll?</string>
 
-    <string-array name="spinnerItems">
-        <item>Student</item>
-        <item>Mentor</item>
-        <item>Admin</item>
-    </string-array>
-
     <string name="SignUp">Sign Up</string>
+
     <string name="Fgtpswd">Forget your password?</string>
     <string name="Login">Sign In</string>
     <string name="ResetPassword">Reset Password</string>
-
     <string name="Submit">Submit</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
+    <string name="title_home">Home</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="select">Please select your interesting</string>
     <string name="Innovation">Innovation</string>
     <string name="Conservation">Conservation</string>
@@ -54,5 +47,12 @@
     <string name="chats">Chats</string>
     <string name="addnew">Add New</string>
     <string name="twig">twig</string>
-
+    <string name="createnew">New Post</string>
+    <string name="newevent">New Event</string>
+    <string name="newoppo">New Opportunity</string>
+    <string-array name="spinnerItems">
+        <item>Student</item>
+        <item>Mentor</item>
+        <item>Admin</item>
+    </string-array>
 </resources>

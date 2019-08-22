@@ -71,6 +71,7 @@
         android:background="?android:attr/windowBackground"
         android:layout_gravity="bottom"
         android:fitsSystemWindows="true"
+        app:itemTextColor="#FA7617"
         app:menu="@menu/bottom_nav_menu" />
         </android.support.design.widget.AppBarLayout>
 

@@ -26,10 +26,10 @@ public class Fragment_Homepage extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        posts[0]=new GeneralPost("1",DataHolder.user,"First General Post","17/08/2019 12:00:00 pm","Melbourne");
-        posts[1]=new EventPost("2",DataHolder.user,"Second Event Post","17/08/2019 12:00:00 pm","Sydney");
-        posts[2]=new GeneralPost("3",DataHolder.user,"Third General Post","17/08/2019 12:00:00 pm","Melbourne");
-        posts[3]=new OppotunityPost("4",DataHolder.user,"Forth Opportunity Post","17/08/2019 12:00:00 pm","Sydney");
+        posts[0]=new GeneralPost(DataHolder.user,"First General Post","Melbourne");
+        posts[1]=new EventPost(DataHolder.user,"Second Event Post","Sydney");
+        posts[2]=new GeneralPost(DataHolder.user,"Third General Post","Melbourne");
+        posts[3]=new OppotunityPost(DataHolder.user,"Forth Opportunity Post","Sydney");
         view=inflater.inflate(R.layout.fragment_homepage, container, false);
         context=view.getContext();
         feedlist=view.findViewById(R.id.feedlist);
