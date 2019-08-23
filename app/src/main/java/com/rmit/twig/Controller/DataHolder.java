@@ -17,8 +17,17 @@ public class DataHolder {
    public static Map<String,User> users=new HashMap<>();
 
    public static User user;
+   public static ArrayList<Post> posts;
    public DataHolder(){
+      if(posts==null)
+      posts=new ArrayList<Post>();
+   }
 
+   public static void initposts(){
+      posts.add(new GeneralPost(DataHolder.user,"First General Post","Melbourne"));
+      posts.add(new EventPost(DataHolder.user,"Second Event Post","Sydney"));
+      posts.add(new GeneralPost(DataHolder.user,"Third General Post","Melbourne"));
+      posts.add(new OppotunityPost(DataHolder.user,"Forth Opportunity Post","Sydney"));
    }
 
 }

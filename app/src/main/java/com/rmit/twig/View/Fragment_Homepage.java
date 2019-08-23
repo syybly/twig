@@ -21,19 +21,23 @@ public class Fragment_Homepage extends Fragment {
     private View view;
     private Activity activity;
     private Context context;
-    public static Post[] posts=new Post[4];
+    public static Post[] posts;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        posts[0]=new GeneralPost(DataHolder.user,"First General Post","Melbourne");
-        posts[1]=new EventPost(DataHolder.user,"Second Event Post","Sydney");
-        posts[2]=new GeneralPost(DataHolder.user,"Third General Post","Melbourne");
-        posts[3]=new OppotunityPost(DataHolder.user,"Forth Opportunity Post","Sydney");
         view=inflater.inflate(R.layout.fragment_homepage, container, false);
         context=view.getContext();
         feedlist=view.findViewById(R.id.feedlist);
-        feedlist.setAdapter(new Adapter_Feedlist(context,posts));
+        Adapter_Feedlist adapter=new Adapter_Feedlist(context,DataHolder.posts);
+        feedlist.setAdapter(adapter);
         return  view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Adapter_Feedlist adapter2=new Adapter_Feedlist(context,DataHolder.posts);
+        feedlist.setAdapter(adapter2);
     }
 }

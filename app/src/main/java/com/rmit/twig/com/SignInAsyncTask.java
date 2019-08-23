@@ -111,6 +111,7 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             }
             User newuser=new User(id,email,name,interests);
             DataHolder.user=newuser;
+            DataHolder.initposts();
             Intent intent = new Intent(context, Activity_Homepage.class);
             context.startActivity(intent);
         } catch (JSONException e) {

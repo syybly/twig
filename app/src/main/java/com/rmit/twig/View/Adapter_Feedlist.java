@@ -14,9 +14,11 @@ import com.rmit.twig.Model.Post;
 import com.rmit.twig.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class Adapter_Feedlist extends ArrayAdapter<Post> {
     private Context context;
-    private Post[] posts;
+    private ArrayList<Post> posts;
     private ImageView image;
     private TextView name;
     private TextView location;
@@ -24,7 +26,7 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
     private LinearLayout eventbuttons;
 
 
-    public Adapter_Feedlist(Context context, Post[] posts) {
+    public Adapter_Feedlist(Context context, ArrayList<Post> posts) {
         super(context, 0,posts);
         this.context=context;
         this.posts=posts;
@@ -32,7 +34,7 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Post feed=posts[position];
+        Post feed=posts.get(position);
         if(convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.feedlist_items, parent, false);
         }
@@ -45,7 +47,9 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
         name=convertView.findViewById(R.id.feed_name);
         name.setText(feed.getUser().getFullname());
         location=convertView.findViewById(R.id.feed_location);
-        location.setText(feed.getLocation());
+        if(feed.getLocation()!=null) {
+            location.setText(feed.getLocation());
+        }
         content=convertView.findViewById(R.id.feed_content);
         content.setText(feed.getContent());
         eventbuttons=convertView.findViewById(R.id.eventbuttons);

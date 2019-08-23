@@ -66,7 +66,6 @@ public class Activity_Homepage extends AppCompatActivity {
                         }
                     });
                     pm.show();
-//                    SwitchToAddNew();
 
                     return true;
                 case R.id.navigation_chats:
@@ -81,8 +80,11 @@ public class Activity_Homepage extends AppCompatActivity {
 
                     return true;
 
+                    default:
+                        SwitchToHomepage();
+                        return true;
+
             }
-            return false;
         }
     };
 
@@ -114,13 +116,6 @@ public class Activity_Homepage extends AppCompatActivity {
         manager.beginTransaction().replace(R.id.homepage_container, new Fragment_Explore()).commit();
     }
 
-    public void SwitchToAddNew(){
-
-        FragmentManager manager = getSupportFragmentManager();
-
-        manager.beginTransaction().replace(R.id.homepage_container, new Fragment_AddNew()).commit();
-    }
-
     public void SwitchToChats(){
 
         FragmentManager manager = getSupportFragmentManager();
@@ -133,7 +128,8 @@ public class Activity_Homepage extends AppCompatActivity {
         manager.beginTransaction().replace(R.id.homepage_container, new Fragment_Profile()).commit();
     }
 
-
-
-
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 }
