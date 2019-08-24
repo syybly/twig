@@ -65,7 +65,9 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:maxWidth="60dp"
+            android:maxHeight="60dp" />
 
         <TextView
             android:id="@+id/feed_name"

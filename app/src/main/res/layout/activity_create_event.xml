@@ -54,18 +54,28 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/app_bar">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+
     <RelativeLayout
         android:id="@+id/feed_head"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/app_bar">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/feed_userphoto"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:maxWidth="60dp"
+            android:maxHeight="60dp" />
 
         <TextView
             android:id="@+id/feed_name"
@@ -299,5 +309,7 @@
 
     </RelativeLayout>
 
+        </RelativeLayout>
 
+    </ScrollView>
 </RelativeLayout>

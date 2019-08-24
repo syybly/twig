@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.rmit.twig.View.PreferenceAcitivity;
+import com.rmit.twig.View.Activity_Preference;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -84,7 +84,7 @@ public class CheckEmail extends AsyncTask<String, String, String> {
                 JSONObject emailcheck=new JSONObject(result);
                 boolean exists=emailcheck.getBoolean("emailExisted");
                 if(!exists){
-                    Intent intent=new Intent(context, PreferenceAcitivity.class);
+                    Intent intent=new Intent(context, Activity_Preference.class);
                     context.startActivity(intent);
                 }
                 else{

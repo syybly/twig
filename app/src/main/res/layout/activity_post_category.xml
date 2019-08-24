@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Activity_PostCategory">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/select"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/selectcategory" />
+
+        <CheckBox
+            android:id="@+id/Innovation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Innovation" />
+
+        <CheckBox
+            android:id="@+id/Conservation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Conservation" />
+
+        <CheckBox
+            android:id="@+id/SocialImpact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/SocialImpact"/>
+
+        <CheckBox
+            android:id="@+id/Environmentalimpact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Environmentalimpact" />
+
+        <CheckBox
+            android:id="@+id/Cities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Cities" />
+
+        <CheckBox
+            android:id="@+id/Biodiversity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Biodiversity" />
+
+        <CheckBox
+            android:id="@+id/Wildlife"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Wildlife" />
+
+        <CheckBox
+            android:id="@+id/SustainableCities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/SustainableCities" />
+
+        <CheckBox
+            android:id="@+id/Urbanisation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Urbanisation" />
+
+        <CheckBox
+            android:id="@+id/FutureDesign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/FutureDesign" />
+
+        <CheckBox
+            android:id="@+id/Industry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Industry" />
+
+        <CheckBox
+            android:id="@+id/Infrastructure"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Infrastructure" />
+
+        <CheckBox
+            android:id="@+id/EconomicGrowth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/EconomicGrowth" />
+
+        <CheckBox
+            android:id="@+id/Technology"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Technology" />
+
+        <CheckBox
+            android:id="@+id/Consumption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Consumption" />
+
+        <CheckBox
+            android:id="@+id/Entrepreneurship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Entrepreneurship" />
+
+        <CheckBox
+            android:id="@+id/Leadership"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Leadership" />
+
+        <CheckBox
+            android:id="@+id/Financialwellbeing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/Financialwellbeing" />
+
+        <CheckBox
+            android:id="@+id/EntrepreneurialMindset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/EntrepreneurialMindset" />
+
+        <CheckBox
+            android:id="@+id/SelfDevelopment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/SelfDevelopment" />
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Submit"/>
+
+    </LinearLayout>
+
+</ScrollView>

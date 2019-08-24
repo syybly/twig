@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class PreferenceController implements View.OnClickListener{
+public class Controller_Preference implements View.OnClickListener{
 
     private String type;
     private Activity activity;
@@ -24,7 +24,7 @@ public class PreferenceController implements View.OnClickListener{
             box11, box12, box13, box14, box15, box16, box17, box18, box19, box20;
     private User user;
 
-    public PreferenceController(Activity activity) {
+    public Controller_Preference(Activity activity) {
         this.activity=activity;
     }
 
@@ -110,21 +110,23 @@ public class PreferenceController implements View.OnClickListener{
         if(box20.isChecked()){
             pre.add("Self-Development");
         }
-        if(pre.size()<3){
-            Toast lespre = Toast.makeText(activity, "Please choose at least three interests", Toast.LENGTH_SHORT);
+        if(pre.size()<5){
+            Toast lespre = Toast.makeText(activity, "Please choose at least five interests", Toast.LENGTH_SHORT);
             lespre.show();
         }
-        DataHolder.user.setPreference(pre);
-        JSONObject signindata = new JSONObject();
-        String url ="https://twig-api-v2.herokuapp.com/users/signup";
-        try {
-            signindata.put("email", DataHolder.user.getEmail());
-            signindata.put("password", DataHolder.user.getPassword());
-            signindata.put("name", DataHolder.user.getFullname());
-            signindata.put("interests", new JSONArray(DataHolder.user.getPreference()));
-            new SignUpAsyncTask(activity).execute(url,signindata.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
+        if(pre.size()>=5) {
+            DataHolder.user.setPreference(pre);
+            JSONObject signindata = new JSONObject();
+            String url = "https://twig-api-v2.herokuapp.com/users/signup";
+            try {
+                signindata.put("email", DataHolder.user.getEmail());
+                signindata.put("password", DataHolder.user.getPassword());
+                signindata.put("name", DataHolder.user.getFullname());
+                signindata.put("interests", new JSONArray(DataHolder.user.getPreference()));
+                new SignUpAsyncTask(activity).execute(url, signindata.toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
 
 //        if (type.equals("Student")) {

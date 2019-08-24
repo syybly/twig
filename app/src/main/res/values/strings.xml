@@ -63,6 +63,7 @@
     <string name="sharepublic">share it with public</string>
     <string name="signupticket">sign up or ticket</string>
     <string name="createoppo">create opportunity</string>
+    <string name="selectcategory">Please select category for your post: </string>
     <string-array name="spinnerItems">
         <item>Student</item>
         <item>Mentor</item>
