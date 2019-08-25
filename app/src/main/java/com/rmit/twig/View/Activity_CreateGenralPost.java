@@ -4,15 +4,15 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
-import android.os.Handler;
-import android.os.ResultReceiver;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -33,6 +33,8 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     private ImageView userphoto;
     private TextView name;
     public static TextView location;
+    private ImageButton addimage;
+    private ImageView postaddimage1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,17 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
             }
         });
         post.setOnClickListener(new ClickListener_Post(activity,"GeneralPost"));
+        addimage=findViewById(R.id.addimage);
+        postaddimage1=findViewById(R.id.addpostimage1);
+        addimage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setType("image/*");
+                intent.setAction(Intent.ACTION_GET_CONTENT);
+                startActivityForResult(Intent.createChooser(intent, "Complete action using"), 1);
+            }
+        });
     }
 
     @Override
@@ -107,5 +120,20 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     @Override
     public void onProviderDisabled(String provider) {
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                postaddimage1.setImageURI(data.getData());
+                postaddimage1.setVisibility(View.VISIBLE);
+                BitmapFactory.Options o = new BitmapFactory.Options();
+                o.inJustDecodeBounds = true;
+                o.inSampleSize = 6;
+            }
+        }
     }
 }
