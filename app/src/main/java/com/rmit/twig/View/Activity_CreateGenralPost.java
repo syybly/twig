@@ -4,11 +4,12 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationListener;
+import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -26,6 +27,7 @@ import com.rmit.twig.Service.Service_Location;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Activity_CreateGenralPost extends AppCompatActivity implements LocationListener {
@@ -38,6 +40,7 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     public static TextView location;
     private ImageButton addimage;
     private ImageView postaddimage1;
+    public static ArrayList<File> imagefiles=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,11 +87,18 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
         addimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent, "Complete action using"), 1);
+                String[] PERMISSIONS ={  Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE };
+                if ( ContextCompat.checkSelfPermission( activity, Manifest.permission.READ_EXTERNAL_STORAGE ) != PackageManager.PERMISSION_GRANTED ) {
+                    ActivityCompat.requestPermissions( activity, PERMISSIONS ,113);
+                }
+                else {
+                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+//                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(intent, "Complete action using"), 1);
+                }
             }
+
         });
     }
 
@@ -127,20 +137,49 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         // Check which request we're responding to
         if (requestCode == 1) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 postaddimage1.setImageURI(data.getData());
                 postaddimage1.setVisibility(View.VISIBLE);
-                BitmapFactory.Options o = new BitmapFactory.Options();
-                o.inJustDecodeBounds = true;
-                o.inSampleSize = 6;
-//                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver() , data.getData());
-                File f = new File(Environment.getExternalStorageDirectory().toString());
-                Bitmap bitmap=BitmapFactory.decodeFile(f.getPath(), o);
+                Uri imageUri = data.getData();
+                String imagepath=imageUri.getPath();
+//                try {
+//                    InputStream inputStream = activity.getContentResolver().openInputStream(data.getData());
+//                } catch (FileNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//                System.out.println(imageUri.toString());
+//                if(Build.VERSION.SDK_INT==28){
+//                    String[] pa=imagepath.split(":");
+//                    imagepath=pa[1];
+//                }
+//                else{
+                    String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+                    Cursor cursor = getContentResolver().query(imageUri,
+                            filePathColumn, null, null, null);
+                    cursor.moveToFirst();
+
+                    int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                    imagepath= cursor.getString(columnIndex);
+                    cursor.close();
+//                }
+                System.out.println(imagepath);
+                System.out.println(Environment.getExternalStorageDirectory());
+                File imagefile=new File(imagepath);
+                imagefiles.add(imagefile);
+//                try {
+//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
+//                    imagefiles.add(bitmap);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
 
             }
         }
     }
+
 }

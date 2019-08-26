@@ -18,9 +18,11 @@ public class DataHolder {
 
    public static User user;
    public static ArrayList<Post> posts;
+   public static ArrayList<String> postimagefiles;
    public DataHolder(){
       if(posts==null)
       posts=new ArrayList<Post>();
+      postimagefiles=new ArrayList<>();
    }
 
    public static void initposts(){
