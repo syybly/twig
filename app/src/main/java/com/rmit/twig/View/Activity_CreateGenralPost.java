@@ -4,9 +4,11 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
+import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +25,7 @@ import com.rmit.twig.R;
 import com.rmit.twig.Service.Service_Location;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.HashSet;
 
 public class Activity_CreateGenralPost extends AppCompatActivity implements LocationListener {
@@ -133,6 +136,10 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
                 BitmapFactory.Options o = new BitmapFactory.Options();
                 o.inJustDecodeBounds = true;
                 o.inSampleSize = 6;
+//                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver() , data.getData());
+                File f = new File(Environment.getExternalStorageDirectory().toString());
+                Bitmap bitmap=BitmapFactory.decodeFile(f.getPath(), o);
+
             }
         }
     }

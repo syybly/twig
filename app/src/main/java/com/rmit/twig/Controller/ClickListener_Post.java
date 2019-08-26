@@ -12,6 +12,9 @@ import com.rmit.twig.R;
 import com.rmit.twig.View.Activity_CreateEvent;
 import com.rmit.twig.View.Activity_CreateGenralPost;
 import com.rmit.twig.View.Activity_CreateOppo;
+import com.rmit.twig.com.AsyncTask_Post;
+
+import java.util.HashSet;
 
 public class ClickListener_Post implements View.OnClickListener {
     private String type;
@@ -52,6 +55,11 @@ public class ClickListener_Post implements View.OnClickListener {
             }
         }
         DataHolder.posts.add(gp);
+        HashSet<String> categories=new HashSet<String>();
+        categories.add("Technology");
+        gp.setCategories(categories);
+        AsyncTask_Post asyncTask_post=new AsyncTask_Post();
+        asyncTask_post.execute(gp);
         activity.finish();
     }
 }

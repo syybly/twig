@@ -1,11 +1,14 @@
 package com.rmit.twig.Model;
 
+import java.util.HashSet;
+
 public class Post {
     private String postID;
     private User user;
     private String content;
     private String location;
     private String date;
+    private HashSet<String> categories;
 
     public Post(String postID, User user, String content, String location) {
         this.postID = postID;
@@ -63,5 +66,13 @@ public class Post {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public HashSet<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(HashSet<String> categories) {
+        this.categories = categories;
     }
 }
