@@ -11,6 +11,7 @@ public class User {
     private String password;
     private ArrayList<String> preference;
     private String photourl;
+    private String token;
 
     public User(String id,String email, String fullname, String type,ArrayList<String> preference) {
         this.id=id;
@@ -100,5 +101,13 @@ public class User {
 
     public void setPhotourl(String photourl) {
         this.photourl = photourl;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

@@ -102,6 +102,7 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
         try {
             JSONObject user=new JSONObject(result);
             JSONArray jsonArray=user.getJSONArray("interests");
+            JSONArray tokens=user.getJSONArray("tokens");
             String id=user.getString("_id");
             String name=user.getString("name");
             String email=user.getString("email");
@@ -109,8 +110,12 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             for (int i=0;i<jsonArray.length();i++) {
                 interests.add(jsonArray.get(i).toString());
             }
+            JSONObject token=(JSONObject)tokens.get(tokens.length()-1);
+            String tokenstring=token.getString("token");
+            System.out.println(token);
             User newuser=new User(id,email,name,interests);
             DataHolder.user=newuser;
+            DataHolder.user.setToken(tokenstring);
             DataHolder.initposts();
             Intent intent = new Intent(context, Activity_Homepage.class);
             context.startActivity(intent);
