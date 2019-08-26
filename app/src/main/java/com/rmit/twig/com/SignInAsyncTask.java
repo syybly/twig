@@ -10,6 +10,7 @@ import com.rmit.twig.Controller.DataHolder;
 import com.rmit.twig.Model.User;
 import com.rmit.twig.View.Activity_Homepage;
 
+import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -22,12 +23,15 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class SignInAsyncTask extends AsyncTask<String, String, String> {
     private Context context;
     private ProgressDialog pd;
+    private Map<String, List<String>> headers;
 
     public SignInAsyncTask(Context context) {
         this.context = context;
@@ -58,6 +62,7 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             wr.writeBytes(params[1]);
 
             int status=connection.getResponseCode();
+            headers = connection.getHeaderFields();
 
             if (status==400) {
                 return null;
@@ -102,7 +107,6 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
         try {
             JSONObject user=new JSONObject(result);
             JSONArray jsonArray=user.getJSONArray("interests");
-            JSONArray tokens=user.getJSONArray("tokens");
             String id=user.getString("_id");
             String name=user.getString("name");
             String email=user.getString("email");
@@ -110,15 +114,13 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             for (int i=0;i<jsonArray.length();i++) {
                 interests.add(jsonArray.get(i).toString());
             }
-            JSONObject token=(JSONObject)tokens.get(tokens.length()-1);
-            String tokenstring=token.getString("token");
-            System.out.println(token);
+            String token=headers.get("x-auth").get(0);
             User newuser=new User(id,email,name,interests);
             DataHolder.user=newuser;
-            DataHolder.user.setToken(tokenstring);
-            DataHolder.initposts();
-            Intent intent = new Intent(context, Activity_Homepage.class);
-            context.startActivity(intent);
+            DataHolder.user.setToken(token);
+            GetPostListAsyncTask getPostListAsyncTask=new GetPostListAsyncTask(context);
+            getPostListAsyncTask.execute();
+
         } catch (JSONException e) {
 
         }

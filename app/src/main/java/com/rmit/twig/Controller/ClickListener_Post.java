@@ -3,6 +3,7 @@ package com.rmit.twig.Controller;
 import android.app.Activity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.rmit.twig.Model.EventPost;
 import com.rmit.twig.Model.GeneralPost;
@@ -54,12 +55,17 @@ public class ClickListener_Post implements View.OnClickListener {
                 gp=new EventPost(DataHolder.user, postcontent.getText().toString(),Activity_CreateEvent.location.getText().toString());
             }
         }
-        DataHolder.posts.add(gp);
-        HashSet<String> categories=new HashSet<String>();
-        categories.add("Technology");
-        gp.setCategories(categories);
-        AsyncTask_Post asyncTask_post=new AsyncTask_Post();
-        asyncTask_post.execute(gp);
-        activity.finish();
+        DataHolder.newpost=gp;
+        if (DataHolder.postcategories.size() < 1) {
+            Toast less = Toast.makeText(activity, "Please choose at least one category", Toast.LENGTH_SHORT);
+            less.show();
+        }
+        else {
+            DataHolder.newpost.setCategories(DataHolder.postcategories);
+            gp.setCategories(DataHolder.postcategories);
+            AsyncTask_Post asyncTask_post = new AsyncTask_Post(activity);
+            asyncTask_post.execute(gp);
+
+        }
     }
 }

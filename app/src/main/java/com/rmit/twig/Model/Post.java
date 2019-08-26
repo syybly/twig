@@ -9,6 +9,7 @@ public class Post {
     private String location;
     private String date;
     private HashSet<String> categories;
+    private String imageurl;
 
     public Post(String postID, User user, String content, String location) {
         this.postID = postID;
@@ -74,5 +75,13 @@ public class Post {
 
     public void setCategories(HashSet<String> categories) {
         this.categories = categories;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 }

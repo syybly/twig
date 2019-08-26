@@ -1,6 +1,8 @@
 package com.rmit.twig.com;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -23,11 +25,6 @@ import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.concurrent.ThreadLocalRandom;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -38,6 +35,12 @@ import okhttp3.Response;
 
 public class AsyncTask_Post extends AsyncTask <Object, String, String> {
     private ProgressBar progressBar;
+    private ProgressDialog pd;
+    private Activity activity;
+
+    public AsyncTask_Post(Activity activity) {
+        this.activity = activity;
+    }
 
 //    @Override
 //    protected void onPreExecute() {
@@ -45,6 +48,14 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
 //        // setting progress bar to zero
 //        progressBar.setProgress(0);
 //    }
+
+    protected void onPreExecute() {
+        super.onPreExecute();
+        pd = new ProgressDialog(activity);
+        pd.setMessage("Please wait");
+        pd.setCancelable(false);
+        pd.show();
+    }
 
 //    @Override
 //    protected void onProgressUpdate(Integer... progress) {
@@ -65,10 +76,17 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
         Post post=(Post)objects[0];
             MultipartBody.Builder mutipartbuilder=new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
-                    .addFormDataPart("content",post.getContent())
-                    .addFormDataPart("categories[]","Technology");
+                    .addFormDataPart("content",post.getContent());
+            if(post.getLocation()!=null){
+                mutipartbuilder.addFormDataPart("location",post.getLocation());
+            }
+            for(String cat:DataHolder.postcategories){
+                mutipartbuilder.addFormDataPart("categories[]",cat);
+            }
         if(Activity_CreateGenralPost.imagefiles.size()>0){
-            for(File f:Activity_CreateGenralPost.imagefiles){
+            for(int i=0;i<Activity_CreateGenralPost.imagefiles.size();i++){
+                File f=Activity_CreateGenralPost.imagefiles.get(i);
+//            for(File f:Activity_CreateGenralPost.imagefiles){
 //                BitmapFactory.Options o = new BitmapFactory.Options();
 ////                o.inJustDecodeBounds = true;
 ////                o.inSampleSize = 6;
@@ -76,7 +94,6 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
 ////                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
 ////                byte[] data = bos.toByteArray();
 //                String newdata=Base64.encodeToString(data,Base64.DEFAULT);
-                Integer randomname=ThreadLocalRandom.current().nextInt(0, 99999999 + 1);
                 mutipartbuilder.addFormDataPart("images", f.getName(),RequestBody.create(f,MediaType.parse("image/*png")));
             }
         }
@@ -111,6 +128,19 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
                 String content=post.getString("content");
                 String id=post.getString("_id");
                 JSONArray categories=post.getJSONArray("categories");
+                JSONArray imagearray = post.getJSONArray("images");
+                if (imagearray.length() > 0) {
+                    for(int i=0;i<imagearray.length();i++) {
+                        JSONObject image = imagearray.getJSONObject(i);
+                        String imageurl = image.getString("path");
+                        DataHolder.newpost.setImageurl(imageurl);
+                    }
+                }
+               DataHolder.posts.add(DataHolder.newpost);
+                if (pd.isShowing()){
+                    pd.dismiss();
+                }
+                activity.finish();
             } catch (JSONException e) {
 
             }

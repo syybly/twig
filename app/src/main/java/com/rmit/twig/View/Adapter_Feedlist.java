@@ -24,6 +24,7 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
     private TextView location;
     private TextView content;
     private LinearLayout eventbuttons;
+    private ImageView feedimage;
 
 
     public Adapter_Feedlist(Context context, ArrayList<Post> posts) {
@@ -56,6 +57,15 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
         eventbuttons.setVisibility(View.INVISIBLE);
         if (feed instanceof EventPost){
             eventbuttons.setVisibility(View.VISIBLE);
+        }
+        feedimage=convertView.findViewById(R.id.feed_image);
+        if(feed.getImageurl()!=null){
+            Picasso.with(context)
+                    .load(feed.getImageurl())
+                    .placeholder(R.drawable.noimage)
+                    .error(R.drawable.noimage)
+                    .fit().centerCrop()
+                    .into(feedimage);
         }
         return convertView;
     }

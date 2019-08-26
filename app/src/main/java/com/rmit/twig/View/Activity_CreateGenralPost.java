@@ -110,9 +110,6 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     @Override
     protected void onResume() {
         super.onResume();
-        for (String s:categories){
-            System.out.println(s);
-        }
     }
 
     @Override
@@ -167,8 +164,6 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
                     imagepath= cursor.getString(columnIndex);
                     cursor.close();
 //                }
-                System.out.println(imagepath);
-                System.out.println(Environment.getExternalStorageDirectory());
                 File imagefile=new File(imagepath);
                 imagefiles.add(imagefile);
 //                try {

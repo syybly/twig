@@ -23,12 +23,15 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.net.ssl.HttpsURLConnection;
 
 public class SignUpAsyncTask extends AsyncTask<String, String, String> {
     private Context context;
     private ProgressDialog pd;
+    private Map<String, List<String>> headers;
 
     public SignUpAsyncTask(Context context) {
         this.context = context;
@@ -59,6 +62,7 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
             wr.writeBytes(params[1]);
 
             int status=connection.getResponseCode();
+            headers = connection.getHeaderFields();
 
             if (status==400) {
                 return null;
@@ -110,7 +114,9 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
                 for (int i=0;i<jsonArray.length();i++) {
                     interests.add(jsonArray.get(i).toString());
                 }
+                String token=headers.get("x-auth").get(0);
                 User newuser=new User(id,email,name,interests);
+                newuser.setToken(token);
                 DataHolder.user=newuser;
                 Intent intent = new Intent(context, Activity_Homepage.class);
                 context.startActivity(intent);

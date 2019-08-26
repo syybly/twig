@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 
 import com.rmit.twig.Controller.Controller_Post_SubmitCategory;
+import com.rmit.twig.Controller.DataHolder;
 import com.rmit.twig.R;
 
 public class Activity_PostCategory extends AppCompatActivity {
@@ -18,6 +19,7 @@ public class Activity_PostCategory extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        DataHolder.postcategories.clear();
         setContentView(R.layout.activity_post_category);
         box1 = (CheckBox) findViewById(R.id.Innovation);
         box2 = (CheckBox) findViewById(R.id.Conservation);

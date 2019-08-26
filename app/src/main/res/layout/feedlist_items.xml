@@ -35,13 +35,12 @@
             android:layout_below="@id/feed_name"
             android:layout_alignLeft="@id/feed_name"
             android:fontFamily="@font/open_sans_light"
-            android:text="Melbourne, Australia"
             android:textColor="#393939"
             android:textFontWeight="300"
             android:textSize="15dp" />
     </RelativeLayout>
 
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/feed_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,8 +49,7 @@
         android:adjustViewBounds="true"
         android:maxWidth="250dp"
         android:maxHeight="300dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/noimage"></android.support.v7.widget.AppCompatImageView>
+        android:scaleType="fitXY"/>
 
     <LinearLayout
         android:id="@+id/post_action"

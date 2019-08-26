@@ -46,75 +46,78 @@ public class Controller_Post_SubmitCategory implements View.OnClickListener {
         box18 = activity.findViewById(R.id.Financialwellbeing);
         box19 = activity.findViewById(R.id.EntrepreneurialMindset);
         box20 = activity.findViewById(R.id.SelfDevelopment);
-        ArrayList<String> pre = new ArrayList<>();
         if (box1.isChecked()) {
-            pre.add("Innovation");
+            DataHolder.postcategories.add("Innovation");
         }
         if (box2.isChecked()) {
-            pre.add("Conservation");
+            DataHolder.postcategories.add("Conservation");
         }
         if (box3.isChecked()) {
-            pre.add("Social Impact");
+            DataHolder.postcategories.add("Social Impact");
         }
         if (box4.isChecked()) {
-            pre.add("Environmental Impact");
+            DataHolder.postcategories.add("Environmental Impact");
         }
         if (box5.isChecked()) {
-            pre.add("Cities");
+            DataHolder.postcategories.add("Cities");
         }
         if (box6.isChecked()) {
-            pre.add("Biodiversity");
+            DataHolder.postcategories.add("Biodiversity");
         }
         if (box7.isChecked()) {
-            pre.add("Wildlife / animals");
+            DataHolder.postcategories.add("Wildlife / animals");
         }
         if (box8.isChecked()) {
-            pre.add("Sustainable Cities");
+            DataHolder.postcategories.add("Sustainable Cities");
         }
         if (box9.isChecked()) {
-            pre.add("Urbanisation");
+            DataHolder.postcategories.add("Urbanisation");
         }
         if (box10.isChecked()) {
-            pre.add("Future Design");
+            DataHolder.postcategories.add("Future Design");
         }
         if (box11.isChecked()) {
-            pre.add("Industry");
+            DataHolder.postcategories.add("Industry");
         }
         if (box12.isChecked()) {
-            pre.add("Infrastructure");
+            DataHolder.postcategories.add("Infrastructure");
         }
         if (box13.isChecked()) {
-            pre.add("Economic Growth");
+            DataHolder.postcategories.add("Economic Growth");
         }
         if (box14.isChecked()) {
-            pre.add("Technology");
+            DataHolder.postcategories.add("Technology");
         }
         if (box15.isChecked()) {
-            pre.add("Consumption");
+            DataHolder.postcategories.add("Consumption");
         }
         if (box16.isChecked()) {
-            pre.add("Entrepreneurship");
+            DataHolder.postcategories.add("Entrepreneurship");
         }
         if (box17.isChecked()) {
-            pre.add("Leadership");
+            DataHolder.postcategories.add("Leadership");
         }
         if (box18.isChecked()) {
-            pre.add("Financial wellbeing");
+            DataHolder.postcategories.add("Financial wellbeing");
         }
         if (box19.isChecked()) {
-            pre.add("Entrepreneurial Mindset");
+            DataHolder.postcategories.add("Entrepreneurial Mindset");
         }
         if (box20.isChecked()) {
-            pre.add("Self-Development");
+            DataHolder.postcategories.add("Self-Development");
         }
-//        if (pre.size() < 5) {
-//            Toast lespre = Toast.makeText(activity, "Please choose at least five interests", Toast.LENGTH_SHORT);
-//            lespre.show();
-//        }
+        if (DataHolder.postcategories.size() < 1) {
+            Toast less = Toast.makeText(activity, "Please choose at least one category", Toast.LENGTH_SHORT);
+            less.show();
+        }
+        else if (DataHolder.postcategories.size()>5){
+            Toast morethan = Toast.makeText(activity, "Please choose no more than five category", Toast.LENGTH_SHORT);
+            morethan.show();
+        }
         Activity_CreateGenralPost.categories.clear();
-        for (String s:pre){
-            Activity_CreateGenralPost.categories.add(s);
-        }
+//        for (String s:DataHolder.postcategories){
+//            Activity_CreateGenralPost.categories.add(s);
+//        }
         activity.finish();
     }
 }
