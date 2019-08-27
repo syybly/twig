@@ -2,27 +2,17 @@ package com.rmit.twig.com;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Base64;
-import android.view.View;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
-import com.rmit.twig.Controller.DataHolder;
-import com.rmit.twig.Model.Post;
-import com.rmit.twig.Model.User;
-import com.rmit.twig.View.Activity_CreateGenralPost;
+import com.rmit.twig.controller.DataHolder;
+import com.rmit.twig.model.Post;
+import com.rmit.twig.view.Activity_CreateGenralPost;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 

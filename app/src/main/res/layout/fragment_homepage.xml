@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".View.Fragment_Homepage">
+    tools:context=".view.Fragment_Homepage">
 
     <ListView
         android:id="@+id/feedlist"

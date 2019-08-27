@@ -2,15 +2,12 @@ package com.rmit.twig.com;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.rmit.twig.Controller.DataHolder;
-import com.rmit.twig.Model.User;
-import com.rmit.twig.View.Activity_Homepage;
+import com.rmit.twig.controller.DataHolder;
+import com.rmit.twig.model.User;
 
-import org.apache.http.Header;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

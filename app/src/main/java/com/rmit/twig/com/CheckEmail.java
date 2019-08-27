@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.rmit.twig.View.Activity_Preference;
+import com.rmit.twig.view.Activity_Preference;
 
 import org.json.JSONException;
 import org.json.JSONObject;

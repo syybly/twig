@@ -5,22 +5,22 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label=""
+        android:label="TWIG"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".View.Activity_PostCategory" />
+        <activity android:name=".view.Activity_PostCategory" />
 
-        <activity android:name=".View.Activity_CreateOppo" />
-        <activity android:name=".View.Activity_CreateEvent" />
-        <activity android:name=".View.Activity_CreateGenralPost" />
-        <activity android:name=".View.Activity_Homepage" />
-        <activity android:name=".View.AdminWelcomeActivity" />
-        <activity android:name=".View.MentorWelcomeActivity" />
-        <activity android:name=".View.StudentWelcomeActivity" />
-        <activity android:name=".View.ForgetPasswordActivity" />
-        <activity android:name=".View.Activity_Preference" />
-        <activity android:name=".View.LoginSignupContainer">
+        <activity android:name=".view.Activity_CreateOppo" />
+        <activity android:name=".view.Activity_CreateEvent" />
+        <activity android:name=".view.Activity_CreateGenralPost" />
+        <activity android:name=".view.Activity_Homepage" />
+        <activity android:name=".view.AdminWelcomeActivity" />
+        <activity android:name=".view.MentorWelcomeActivity" />
+        <activity android:name=".view.StudentWelcomeActivity" />
+        <activity android:name=".view.ForgetPasswordActivity" />
+        <activity android:name=".view.Activity_Preference" />
+        <activity android:name=".view.LoginSignupContainer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -32,7 +32,7 @@
             android:resource="@array/preloaded_fonts" />
 
         <service
-            android:name=".Service.Service_Location"
+            android:name=".service.Service_Location"
             android:enabled="true"
             android:exported="true" />
     </application>
