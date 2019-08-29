@@ -31,28 +31,29 @@ public class ClickListener_Post implements View.OnClickListener {
         Post gp=null;
         if(type.equals("GeneralPost")){
             if(Activity_CreateGenralPost.location.getText().toString().equals("Locating...")||Activity_CreateGenralPost.location.getText().toString().equals("add location")) {
-                 gp= new GeneralPost(DataHolder.user, postcontent.getText().toString());
+                 gp= new GeneralPost(DataHolder.currentuser, postcontent.getText().toString());
             }
             else{
-                gp=new GeneralPost(DataHolder.user, postcontent.getText().toString(),Activity_CreateGenralPost.location.getText().toString());
+                gp=new GeneralPost(DataHolder.currentuser, postcontent.getText().toString(),Activity_CreateGenralPost.location.getText().toString());
             }
         }
         if(type.equals("Opportunity")){
             if(Activity_CreateOppo.location.getText().toString().equals("Locating...")||Activity_CreateOppo.location.getText().toString().equals("add location")) {
-                gp= new OppotunityPost(DataHolder.user, postcontent.getText().toString());
+                gp= new OppotunityPost(DataHolder.currentuser, postcontent.getText().toString());
             }
             else{
-                gp=new OppotunityPost(DataHolder.user, postcontent.getText().toString(),Activity_CreateOppo.location.getText().toString());
+                gp=new OppotunityPost(DataHolder.currentuser, postcontent.getText().toString(),Activity_CreateOppo.location.getText().toString());
             }
         }
         if(type.equals("Event")){
             if(Activity_CreateEvent.location.getText().toString().equals("Locating...")||Activity_CreateEvent.location.getText().toString().equals("add location")) {
-                gp= new EventPost(DataHolder.user, postcontent.getText().toString());
+                gp= new EventPost(DataHolder.currentuser, postcontent.getText().toString());
             }
             else{
-                gp=new EventPost(DataHolder.user, postcontent.getText().toString(),Activity_CreateEvent.location.getText().toString());
+                gp=new EventPost(DataHolder.currentuser, postcontent.getText().toString(),Activity_CreateEvent.location.getText().toString());
             }
         }
+        gp.setUser(DataHolder.users.get(DataHolder.currentuser));
         DataHolder.newpost=gp;
         if (DataHolder.postcategories.size() < 1) {
             Toast less = Toast.makeText(activity, "Please choose at least one category", Toast.LENGTH_SHORT);

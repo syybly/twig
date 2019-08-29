@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/feed_image"
         android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <ImageButton
@@ -101,8 +101,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/post_action"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
         android:fontFamily="@font/open_sans_light"
         android:text="Type something to describe about the event and this is a paragraph about dummy text to show content fun event!"
         android:textColor="#393939"

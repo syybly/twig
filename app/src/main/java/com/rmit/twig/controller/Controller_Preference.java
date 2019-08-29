@@ -115,14 +115,14 @@ public class Controller_Preference implements View.OnClickListener{
             lespre.show();
         }
         if(pre.size()>=5) {
-            DataHolder.user.setPreference(pre);
+            DataHolder.newuser.setPreference(pre);
             JSONObject signindata = new JSONObject();
             String url = "https://twig-api-v2.herokuapp.com/users/signup";
             try {
-                signindata.put("email", DataHolder.user.getEmail());
-                signindata.put("password", DataHolder.user.getPassword());
-                signindata.put("name", DataHolder.user.getFullname());
-                signindata.put("interests", new JSONArray(DataHolder.user.getPreference()));
+                signindata.put("email", DataHolder.newuser.getEmail());
+                signindata.put("password", DataHolder.newuser.getPassword());
+                signindata.put("name", DataHolder.newuser.getFullname());
+                signindata.put("interests", new JSONArray(DataHolder.newuser.getPreference()));
                 new SignUpAsyncTask(activity).execute(url, signindata.toString());
             } catch (JSONException e) {
                 e.printStackTrace();

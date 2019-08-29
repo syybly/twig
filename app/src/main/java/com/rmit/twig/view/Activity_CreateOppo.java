@@ -40,9 +40,9 @@ public class Activity_CreateOppo extends AppCompatActivity {
         post.setOnClickListener(new ClickListener_Post(activity,"Opportunity"));
         userphoto= findViewById(R.id.feed_userphoto);
         name=findViewById(R.id.feed_name);
-        name.setText(DataHolder.user.getFullname());
+        name.setText(DataHolder.users.get(DataHolder.currentuser).getFullname());
         Picasso.with(this)
-                .load(DataHolder.user.getPhotourl())
+                .load(DataHolder.users.get(DataHolder.currentuser).getPhotourl())
                 .placeholder(R.drawable.nophoto)
                 .error(R.drawable.nophoto)
                 .into(userphoto);

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.EventPost;
 import com.rmit.twig.model.Post;
 import com.rmit.twig.R;

@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.rmit.twig.R;
+import com.rmit.twig.com.AsyncTask_GetUser;
 
 public class Activity_Homepage extends AppCompatActivity {
     private BottomNavigationView navView;
@@ -94,6 +95,7 @@ public class Activity_Homepage extends AppCompatActivity {
         navView.setItemIconTintList(null);
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.homepage_container, new Fragment_Homepage()).commit();
+
     }
 
 

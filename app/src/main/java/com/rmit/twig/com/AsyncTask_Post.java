@@ -27,6 +27,7 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
     private ProgressBar progressBar;
     private ProgressDialog pd;
     private Activity activity;
+    private Post post;
 
     public AsyncTask_Post(Activity activity) {
         this.activity = activity;
@@ -63,7 +64,7 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
     @Override
     protected String doInBackground(Object... objects) {
         try {
-        Post post=(Post)objects[0];
+            post=(Post)objects[0];
             MultipartBody.Builder mutipartbuilder=new MultipartBody.Builder()
                     .setType(MultipartBody.FORM)
                     .addFormDataPart("content",post.getContent());
@@ -91,7 +92,7 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
         OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
                     .header("Content-Type", "multipart/form-data")
-                    .header("x-auth",DataHolder.user.getToken())
+                    .header("x-auth",DataHolder.users.get(DataHolder.currentuser).getToken())
                     .url("https://twig-api-v2.herokuapp.com/posts")
                     .post(requestBody)
                     .build();
@@ -114,19 +115,26 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
         super.onPostExecute(result);
         if(result!=null)
             try {
-                JSONObject post=new JSONObject(result);
-                String content=post.getString("content");
-                String id=post.getString("_id");
-                JSONArray categories=post.getJSONArray("categories");
-                JSONArray imagearray = post.getJSONArray("images");
+                JSONObject getpost=new JSONObject(result);
+                String content=getpost.getString("content");
+                String id=getpost.getString("_id");
+                JSONArray categories=getpost.getJSONArray("categories");
+                JSONArray imagearray = getpost.getJSONArray("images");
+                String location=getpost.getString("location");
+                if(location!="null"){
+                    post.setLocation(location);
+                }
+                else{
+                    post.setLocation(null);
+                }
                 if (imagearray.length() > 0) {
                     for(int i=0;i<imagearray.length();i++) {
                         JSONObject image = imagearray.getJSONObject(i);
                         String imageurl = image.getString("path");
-                        DataHolder.newpost.setImageurl(imageurl);
+                        post.setImageurl(imageurl);
                     }
                 }
-               DataHolder.posts.add(DataHolder.newpost);
+               DataHolder.posts.add(0,post);
                 if (pd.isShowing()){
                     pd.dismiss();
                 }

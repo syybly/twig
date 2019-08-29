@@ -117,7 +117,8 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
                 String token=headers.get("x-auth").get(0);
                 User newuser=new User(id,email,name,interests);
                 newuser.setToken(token);
-                DataHolder.user=newuser;
+                DataHolder.currentuser=id;
+                DataHolder.users.put(id,newuser);
                 Intent intent = new Intent(context, Activity_Homepage.class);
                 context.startActivity(intent);
                 ((Activity)context).finish();

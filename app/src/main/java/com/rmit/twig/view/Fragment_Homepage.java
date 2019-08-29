@@ -9,16 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.rmit.twig.com.AsyncTask_GetUser;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
 import com.rmit.twig.R;
 
+import java.util.ArrayList;
+
 public class Fragment_Homepage extends Fragment {
     private ListView feedlist;
     private View view;
-    private Activity activity;
     private Context context;
-    public static Post[] posts;
 
 
     @Override
@@ -28,6 +29,8 @@ public class Fragment_Homepage extends Fragment {
         feedlist=view.findViewById(R.id.feedlist);
         Adapter_Feedlist adapter=new Adapter_Feedlist(context,DataHolder.posts);
         feedlist.setAdapter(adapter);
+        AsyncTask_GetUser getUser=new AsyncTask_GetUser(view,adapter);
+        getUser.execute();
         return  view;
     }
 

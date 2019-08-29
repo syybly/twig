@@ -4,27 +4,28 @@ import java.util.HashSet;
 
 public class Post {
     private String postID;
-    private User user;
+    private String author;
     private String content;
     private String location;
     private String date;
     private HashSet<String> categories;
     private String imageurl;
+    private User user;
 
-    public Post(String postID, User user, String content, String location) {
+    public Post(String postID, String author, String content, String location) {
         this.postID = postID;
-        this.user = user;
+        this.author=author;
         this.content = content;
         this.location=location;
     }
 
-    public Post(User user, String content) {
-        this.user = user;
+    public Post(String author, String content) {
+        this.author=author;
         this.content = content;
     }
 
-    public Post(User user, String content, String location) {
-        this.user = user;
+    public Post(String author, String content, String location) {
+        this.author=author;
         this.content = content;
         this.location=location;
     }
@@ -35,14 +36,6 @@ public class Post {
 
     public void setPostID(String postID) {
         this.postID = postID;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getContent() {
@@ -83,5 +76,21 @@ public class Post {
 
     public void setImageurl(String imageurl) {
         this.imageurl = imageurl;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

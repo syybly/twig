@@ -2,15 +2,15 @@ package com.rmit.twig.model;
 
 public class OppotunityPost extends Post {
 
-    public OppotunityPost(String postID, User user, String content, String location) {
-        super(postID, user, content, location);
+    public OppotunityPost(String postID, String author, String content, String location) {
+        super(postID, author, content, location);
     }
 
-    public OppotunityPost(User user, String content) {
-        super(user, content);
+    public OppotunityPost(String author, String content) {
+        super(author, content);
     }
 
-    public OppotunityPost(User user, String content, String location) {
-        super(user, content, location);
+    public OppotunityPost(String author, String content, String location) {
+        super(author, content, location);
     }
 }

@@ -2,11 +2,13 @@ package com.rmit.twig.com;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.User;
+import com.rmit.twig.view.Activity_Homepage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,7 +29,7 @@ import javax.net.ssl.HttpsURLConnection;
 
 public class SignInAsyncTask extends AsyncTask<String, String, String> {
     private Context context;
-    private ProgressDialog pd;
+    public static ProgressDialog pd;
     private Map<String, List<String>> headers;
 
     public SignInAsyncTask(Context context) {
@@ -97,9 +99,9 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        if (pd.isShowing()){
-            pd.dismiss();
-        }
+//        if (pd.isShowing()){
+//            pd.dismiss();
+//        }
         if(result!=null)
         try {
             JSONObject user=new JSONObject(result);
@@ -113,17 +115,24 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             }
             String token=headers.get("x-auth").get(0);
             User newuser=new User(id,email,name,interests);
-            DataHolder.user=newuser;
-            DataHolder.user.setToken(token);
+//            DataHolder.user=newuser;
+//            DataHolder.user.setToken(token);
+            newuser.setToken(token);
+            DataHolder.users.put(id,newuser);
+            DataHolder.currentuser=id;
             GetPostListAsyncTask getPostListAsyncTask=new GetPostListAsyncTask(context);
             getPostListAsyncTask.execute();
+            SignInAsyncTask.pd.dismiss();
+
 
         } catch (JSONException e) {
 
         }
+
         else {
             Toast nomatch = Toast.makeText(context, "Invalid Credentials!", Toast.LENGTH_SHORT);
             nomatch.show();
         }
+
     }
 }

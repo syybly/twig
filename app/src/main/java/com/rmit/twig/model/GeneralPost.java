@@ -2,15 +2,15 @@ package com.rmit.twig.model;
 
 public class GeneralPost extends Post {
 
-    public GeneralPost(String postID, User user, String content, String location) {
-        super(postID, user, content, location);
+    public GeneralPost(String postID, String author, String content, String location) {
+        super(postID, author, content, location);
     }
 
-    public GeneralPost(User user, String content) {
-        super(user, content);
+    public GeneralPost(String author, String content) {
+        super(author, content);
     }
 
-    public GeneralPost(User user, String content, String location) {
-        super(user, content, location);
+    public GeneralPost(String author, String content, String location) {
+        super(author, content, location);
     }
 }

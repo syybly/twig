@@ -49,7 +49,7 @@ public class SignUpController implements View.OnClickListener {
             password.getText().clear();
             comfirmpass.getText().clear();
             name.getText().clear();
-            DataHolder.user=new User(Email,Password,fullname);
+            DataHolder.newuser=new User(Email,Password,fullname);
             String url ="https://twig-api-v2.herokuapp.com/users/check-user/";
             new CheckEmail(activity).execute(url+Email);
         }
