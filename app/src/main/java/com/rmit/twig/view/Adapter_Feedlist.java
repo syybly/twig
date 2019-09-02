@@ -2,12 +2,17 @@ package com.rmit.twig.view;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuInflater;
+import android.content.Intent;
 
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.EventPost;
@@ -26,6 +31,9 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
     private TextView content;
     private LinearLayout eventbuttons;
     private ImageView feedimage;
+    private ImageButton deletebutton;
+    private Post feed;
+
 
 
     public Adapter_Feedlist(Context context, ArrayList<Post> posts) {
@@ -36,7 +44,7 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Post feed=posts.get(position);
+        feed=posts.get(position);
         if(convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.feedlist_items, parent, false);
         }
@@ -68,6 +76,39 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
                     .fit().centerCrop()
                     .into(feedimage);
         }
+        deletebutton=convertView.findViewById(R.id.delete_edit);
+        deletebutton.setOnClickListener(new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popup = new PopupMenu(context, v);
+                MenuInflater inflater = popup.getMenuInflater();
+                inflater.inflate(R.menu.delete_edit_menu, popup.getMenu());
+
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.edit:
+                                Intent editintent = new Intent(context, Activity_Edit.class);
+                                context.startActivity(editintent);
+                                break;
+                            case R.id.delete:
+                                Intent deleteintent = new Intent(context, Activity_Delete.class);
+                                context.startActivity(deleteintent);
+                                break;
+                            default:
+                                break;
+                        }
+                        return true;
+                    }
+                });
+                if(feed.getUser().getEmail()==DataHolder.users.get(DataHolder.currentuser).getEmail())
+                { popup.show();
+                }
+
+            }
+        });
         return convertView;
+
     }
 }

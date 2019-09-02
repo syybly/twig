@@ -46,4 +46,3 @@ android {
         exclude 'META-INF/ASL2.0'
     }
 }
-
