@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
@@ -15,6 +16,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -71,9 +73,11 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
             if(post.getLocation()!=null){
                 mutipartbuilder.addFormDataPart("location",post.getLocation());
             }
+            JSONArray cats=new JSONArray();
             for(String cat:DataHolder.postcategories){
-                mutipartbuilder.addFormDataPart("categories[]",cat);
+                cats.put(cat);
             }
+            mutipartbuilder.addFormDataPart("categories",cats.toString());
         if(Activity_CreateGenralPost.imagefiles.size()>0){
             for(int i=0;i<Activity_CreateGenralPost.imagefiles.size();i++){
                 File f=Activity_CreateGenralPost.imagefiles.get(i);
@@ -121,7 +125,7 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
                 JSONArray categories=getpost.getJSONArray("categories");
                 JSONArray imagearray = getpost.getJSONArray("images");
                 String location=getpost.getString("location");
-                if(location!="null"){
+                if(!location.equals("null")){
                     post.setLocation(location);
                 }
                 else{
@@ -134,6 +138,11 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
                         post.setImageurl(imageurl);
                     }
                 }
+                HashSet<String> catset=new HashSet<>();
+                for(int i=0;i<categories.length();i++){
+                    catset.add(categories.getString(i));
+                }
+                post.setCategories(catset);
                DataHolder.posts.add(0,post);
                 if (pd.isShowing()){
                     pd.dismiss();
@@ -143,8 +152,8 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
 
             }
         else {
-//            Toast nomatch = Toast.makeText(context, "Something went wrong, please try again.", Toast.LENGTH_SHORT);
-//            nomatch.show();
+            Toast nomatch = Toast.makeText(activity, "Something went wrong, please try again.", Toast.LENGTH_SHORT);
+            nomatch.show();
         }
     }
 }
