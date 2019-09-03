@@ -66,8 +66,6 @@
     <string name="selectcategory">Please select category for your post: </string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="title_activity__edit">Activity_Edit</string>
-    <string name="title_activity__delete">Activity_Delete</string>
     <string-array name="spinnerItems">
         <item>Student</item>
         <item>Mentor</item>

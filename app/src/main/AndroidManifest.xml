@@ -9,14 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".view.Activity_Delete"
-            android:label="@string/title_activity__delete"
-            android:theme="@style/NoActionBar"></activity>
-        <activity
-            android:name=".view.Activity_Edit"
-            android:label="@string/title_activity__edit"
-            android:theme="@style/NoActionBar" />
         <activity android:name=".view.Activity_PostCategory" />
         <activity android:name=".view.Activity_CreateOppo" />
         <activity android:name=".view.Activity_CreateEvent" />

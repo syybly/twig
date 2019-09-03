@@ -94,9 +94,7 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.edit:
-                                Intent editintent = new Intent(context, Activity_Edit.class);
-                                editintent.putExtra("postID","postID");
-                                context.startActivity(editintent);
+
                                 break;
                             case R.id.delete:
 
