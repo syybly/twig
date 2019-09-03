@@ -41,14 +41,13 @@
 
         <ImageButton
             android:id="@+id/delete_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_alignTop="@+id/feed_name"
             android:layout_marginLeft="220dp"
             android:layout_toRightOf="@+id/feed_name"
             android:background="#ffffff"
-            android:onClick="showPopup"
-            android:src="@drawable/overflow" />
+            app:srcCompat="@drawable/overflow" />
     </RelativeLayout>
 
     <ImageView

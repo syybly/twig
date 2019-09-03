@@ -14,6 +14,7 @@ import android.support.v7.widget.PopupMenu;
 import android.view.MenuInflater;
 import android.content.Intent;
 
+
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.EventPost;
 import com.rmit.twig.model.Post;
@@ -77,6 +78,10 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
                     .into(feedimage);
         }
         deletebutton=convertView.findViewById(R.id.delete_edit);
+        deletebutton.setVisibility(View.INVISIBLE);
+        if(feed.getAuthor().equals(DataHolder.currentuser)){
+            deletebutton.setVisibility(View.VISIBLE);
+        }
         deletebutton.setOnClickListener(new View.OnClickListener () {
             @Override
             public void onClick(View v) {
@@ -90,11 +95,11 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
                         switch (item.getItemId()) {
                             case R.id.edit:
                                 Intent editintent = new Intent(context, Activity_Edit.class);
+                                editintent.putExtra("postID","postID");
                                 context.startActivity(editintent);
                                 break;
                             case R.id.delete:
-                                Intent deleteintent = new Intent(context, Activity_Delete.class);
-                                context.startActivity(deleteintent);
+
                                 break;
                             default:
                                 break;
@@ -102,9 +107,9 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
                         return true;
                     }
                 });
-                if(feed.getUser().getEmail()==DataHolder.users.get(DataHolder.currentuser).getEmail())
-                { popup.show();
-                }
+
+                popup.show();
+
 
             }
         });

@@ -42,6 +42,7 @@ public class GetPostListAsyncTask extends AsyncTask<String, String, String> {
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept","application/json");
+            connection.setRequestProperty("x-auth",DataHolder.users.get(DataHolder.currentuser).getToken());
             connection.connect();
             int status=connection.getResponseCode();
 
