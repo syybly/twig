@@ -91,7 +91,7 @@ public class Activity_CreateEvent extends AppCompatActivity {
                     Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     intent.setType("image/*");
 //                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(Intent.createChooser(intent, "Complete action using"), 1);
+                    startActivityForResult(Intent.createChooser(intent, "Complete action using"), 5);
                 }
             }
 
@@ -129,7 +129,7 @@ public class Activity_CreateEvent extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Check which request we're responding to
-        if (requestCode == 1) {
+        if (requestCode == 5) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 postaddimage1.setImageURI(data.getData());

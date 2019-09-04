@@ -71,7 +71,6 @@ public class GetPostListAsyncTask extends AsyncTask<String, String, String> {
             JSONArray postarray=new JSONArray(result);
             for(int k=0;k<postarray.length();k++) {
                 JSONObject post = postarray.getJSONObject(k);
-                System.out.println(post);
                 JSONArray imagearray = post.getJSONArray("images");
                 String content = post.getString("content");
                 String id = post.getString("_id");
