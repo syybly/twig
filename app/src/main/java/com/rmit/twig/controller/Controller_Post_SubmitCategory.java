@@ -111,10 +111,6 @@ public class Controller_Post_SubmitCategory implements View.OnClickListener {
             Toast morethan = Toast.makeText(activity, "Please choose no more than five category", Toast.LENGTH_SHORT);
             morethan.show();
         }
-        Activity_CreateGenralPost.categories.clear();
-//        for (String s:DataHolder.postcategories){
-//            Activity_CreateGenralPost.categories.add(s);
-//        }
         activity.finish();
     }
 }

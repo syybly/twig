@@ -65,13 +65,13 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
         content.setText(feed.getContent());
         eventbuttons=convertView.findViewById(R.id.eventbuttons);
         eventbuttons.setVisibility(View.INVISIBLE);
-        if (feed instanceof EventPost){
+        if (feed.getType().equals("Event")){
             eventbuttons.setVisibility(View.VISIBLE);
         }
         feedimage=convertView.findViewById(R.id.feed_image);
-        if(feed.getImageurl()!=null){
+        if(feed.getImageurl().size()>0){
             Picasso.with(context)
-                    .load(feed.getImageurl())
+                    .load(feed.getImageurl().get(0))
                     .placeholder(R.drawable.noimage)
                     .error(R.drawable.noimage)
                     .fit().centerCrop()

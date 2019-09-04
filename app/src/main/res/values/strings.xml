@@ -66,6 +66,7 @@
     <string name="selectcategory">Please select category for your post: </string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+    <string name="pleaseenteralocation">Please enter a location</string>
     <string-array name="spinnerItems">
         <item>Student</item>
         <item>Mentor</item>
