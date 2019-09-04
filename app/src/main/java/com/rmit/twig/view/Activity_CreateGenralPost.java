@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.rmit.twig.controller.ClickListener_Post;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.R;
+import com.rmit.twig.model.Post;
 import com.rmit.twig.service.Service_Location;
 import com.squareup.picasso.Picasso;
 
@@ -39,12 +40,14 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     public static TextView location;
     private ImageButton addimage;
     private ImageView postaddimage1;
-    public static ArrayList<File> imagefiles=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_genral_post);
+        Post p=new Post(DataHolder.currentuser,"General");
+        p.setUser(DataHolder.users.get(DataHolder.currentuser));
+        DataHolder.newpost=p;
         categories=new HashSet<>();
         activity=this;
         userphoto= findViewById(R.id.feed_userphoto);
@@ -164,7 +167,7 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
                     cursor.close();
 //                }
                 File imagefile=new File(imagepath);
-                imagefiles.add(imagefile);
+                DataHolder.newpost.getNewpostimages().add(imagefile);
 //                try {
 //                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 //                    imagefiles.add(bitmap);

@@ -1,5 +1,7 @@
 package com.rmit.twig.model;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Post {
@@ -7,27 +9,35 @@ public class Post {
     private String author;
     private String content;
     private String location;
-    private String date;
+    private Long date;
     private HashSet<String> categories;
-    private String imageurl;
+    private ArrayList<String> imageurl;
     private User user;
+    private String type;
+    private ArrayList<File> newpostimages;
 
     public Post(String postID, String author, String content, String location) {
         this.postID = postID;
         this.author=author;
         this.content = content;
         this.location=location;
-    }
-
-    public Post(String author, String content) {
-        this.author=author;
-        this.content = content;
+        this.imageurl=new ArrayList<>();
+        this.newpostimages=new ArrayList<>();
     }
 
     public Post(String author, String content, String location) {
         this.author=author;
         this.content = content;
         this.location=location;
+        this.imageurl=new ArrayList<>();
+        this.newpostimages=new ArrayList<>();
+    }
+
+    public Post(String author, String type){
+        this.author=author;
+        this.type=type;
+        this.imageurl=new ArrayList<>();
+        this.newpostimages=new ArrayList<>();
     }
 
     public String getPostID() {
@@ -46,11 +56,11 @@ public class Post {
         this.content = content;
     }
 
-    public String getDate() {
+    public Long getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Long date) {
         this.date = date;
     }
 
@@ -70,11 +80,11 @@ public class Post {
         this.categories = categories;
     }
 
-    public String getImageurl() {
+    public ArrayList<String> getImageurl() {
         return imageurl;
     }
 
-    public void setImageurl(String imageurl) {
+    public void setImageurl(ArrayList<String> imageurl) {
         this.imageurl = imageurl;
     }
 
@@ -92,5 +102,21 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public ArrayList<File> getNewpostimages() {
+        return newpostimages;
+    }
+
+    public void setNewpostimages(ArrayList<File> newpostimages) {
+        this.newpostimages = newpostimages;
     }
 }
