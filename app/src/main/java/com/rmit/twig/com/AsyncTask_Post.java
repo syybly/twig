@@ -159,6 +159,8 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
 //                    catset.add(categories.getString(i));
 //                }
 //                post.setCategories(catset);
+                long createtime=getpost.getLong("createdTime");
+                post.setCreatetime(createtime);
                DataHolder.posts.add(0,DataHolder.newpost);
 
                 activity.finish();
