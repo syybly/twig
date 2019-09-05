@@ -51,11 +51,11 @@ public class Activity_CreateEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_event);
         activity=this;
-        DataHolder.newpost=new EventPost(DataHolder.currentuser,"Event");
+        DataHolder.newpost=new EventPost(DataHolder.currentuser,"event");
         DataHolder.newpost.setUser(DataHolder.users.get(DataHolder.currentuser));
         categorylayout=findViewById(R.id.addcategory);
         post=findViewById(R.id.post);
-        post.setOnClickListener(new ClickListener_Post(activity,"Event"));
+        post.setOnClickListener(new ClickListener_Post(activity,"event"));
         userphoto= findViewById(R.id.feed_userphoto);
         name=findViewById(R.id.feed_name);
         name.setText(DataHolder.users.get(DataHolder.currentuser).getFullname());

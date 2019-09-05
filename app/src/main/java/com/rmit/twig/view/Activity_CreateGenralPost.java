@@ -45,7 +45,7 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_genral_post);
-        Post p=new Post(DataHolder.currentuser,"General");
+        Post p=new Post(DataHolder.currentuser,"post");
         p.setUser(DataHolder.users.get(DataHolder.currentuser));
         DataHolder.newpost=p;
         categories=new HashSet<>();
@@ -83,7 +83,7 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
                 }
             }
         });
-        post.setOnClickListener(new ClickListener_Post(activity,"GeneralPost"));
+        post.setOnClickListener(new ClickListener_Post(activity,"post"));
         addimage=findViewById(R.id.addimage);
         postaddimage1=findViewById(R.id.addpostimage1);
         addimage.setOnClickListener(new View.OnClickListener() {
