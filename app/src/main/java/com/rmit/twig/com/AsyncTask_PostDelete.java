@@ -8,7 +8,6 @@ import android.widget.ProgressBar;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
 import com.rmit.twig.view.Activity_CreateGenralPost;
-import com.rmit.twig.view.Activity_DeletePost;
 
 import org.json.JSONArray;
 import org.json.JSONException;
