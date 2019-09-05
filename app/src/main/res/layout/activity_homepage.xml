@@ -27,13 +27,14 @@
         android:theme="?attr/actionBarTheme">
 
         <TextView
+            android:id="@+id/toolbartitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#2B2A2A"
             android:textSize="38dp"
             android:fontFamily="@font/open_sans_semibold"
             android:layout_gravity="center_horizontal"
-            android:text="@string/twig"/>
+            />
 
         <ImageButton
             android:id="@+id/notification"
