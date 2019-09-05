@@ -39,6 +39,19 @@
             android:textFontWeight="300"
             android:textSize="15dp" />
 
+        <TextView
+            android:id="@+id/eventtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/feed_location"
+            android:layout_alignLeft="@id/feed_name"
+            android:fontFamily="@font/open_sans_light"
+            android:textColor="#393939"
+            android:visibility="invisible"
+            android:textFontWeight="300"
+            android:textSize="15dp"
+            />
+
         <ImageButton
             android:id="@+id/delete_edit"
             android:layout_width="40dp"
