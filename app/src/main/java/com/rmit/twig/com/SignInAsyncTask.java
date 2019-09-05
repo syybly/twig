@@ -99,9 +99,6 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-//        if (pd.isShowing()){
-//            pd.dismiss();
-//        }
         if(result!=null)
         try {
             JSONObject user=new JSONObject(result);
@@ -130,6 +127,9 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
         }
 
         else {
+            if (pd.isShowing()){
+            pd.dismiss();
+        }
             Toast nomatch = Toast.makeText(context, "Invalid Credentials!", Toast.LENGTH_SHORT);
             nomatch.show();
         }
