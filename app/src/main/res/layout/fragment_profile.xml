@@ -21,14 +21,13 @@
             android:theme="?attr/actionBarTheme">
 
             <TextView
-                android:id="@+id/cancel"
+                android:id="@+id/proile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#2B2A2A"
                 android:textSize="20sp"
-                android:fontFamily="@font/open_sans_light"
-                android:layout_gravity="start"
-                android:textStyle="italic"
+                android:fontFamily="@font/open_sans_semibold"
+                android:layout_gravity="center"
                 android:text="@string/profile"/>
 
         </android.support.v7.widget.Toolbar>
@@ -36,181 +35,130 @@
 
     <ScrollView
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/app_bar">
+        android:layout_height="fill_parent"
+        android:layout_below="@id/app_bar"
+        android:layout_marginTop="0dp">
 
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/feed_head"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <FrameLayout
+                android:id="@+id/photo"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
 
-                <ImageView
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.rmit.twig.view.CircleImageView
                     android:id="@+id/feed_userphoto"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:maxWidth="80dp"
-                    android:maxHeight="80dp" />
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:layout_marginTop="20dp" />
+
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/photo"
+                android:layout_marginTop="20dp"
+                android:layout_centerInParent="true"
+                >
 
                 <TextView
                     android:id="@+id/feed_name"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@id/feed_userphoto"
-                    android:layout_marginLeft="5dp"
-                    android:layout_toRightOf="@id/feed_userphoto"
-                    android:layout_weight="600"
+                    android:layout_height="40dp"
                     android:fontFamily="@font/open_sans_semibold"
                     android:text="Jess J"
                     android:textColor="#393939"
-                    android:textSize="19dp" />
+                    android:textSize="25dp" />
 
                 <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/feed_name"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_toRightOf="@id/feed_userphoto"
-                    android:text="School of Science, RMIT"
-                    android:textSize="13dp" />
-
-
-                <TextView
-                    android:id="@+id/description"
-                    android:layout_width="230dp"
-                    android:layout_height="80dp"
-                    android:maxWidth="230dp"
-                    android:maxHeight="80dp"
-                    android:layout_alignTop="@+id/feed_name"
-                    android:layout_marginLeft="15dp"
+                    android:id="@+id/type"
+                    android:layout_width="90dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="30dp"
                     android:layout_toRightOf="@+id/feed_name"
-                    android:text="a brief paragraph of self-statement" />
-
-
+                    android:layout_marginTop="8dp"
+                    android:background="#FF5722"
+                    android:textAlignment="center"/>
             </RelativeLayout>
 
+            <LinearLayout
+                android:id="@+id/basic_information"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
 
-            <RelativeLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Syndey, Australia"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="School of Science"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:text="UNSW"
+                    android:textSize="12dp"/>
+
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@+id/basic_information"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#0C424242" />
+
+            <TextView
+                android:id="@+id/description"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/feed_head"
-                android:layout_marginTop="100dp"
-                android:orientation="vertical" />
-
-            <View
-                android:id="@+id/line1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/feed_head"
-                android:layout_marginTop="30dp"
-                android:background="@android:color/darker_gray" />
-
-            <RelativeLayout
-                android:id="@+id/my_education"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@id/line1"
-                android:layout_marginTop="5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="30dp"
-                    app:srcCompat="@drawable/graterthan" />
+                android:layout_below="@+id/basic_information"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="12dp"
+                android:text="I aspaire to create social change through both my own future start up and a career in the social impact space" />
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/open_sans"
-                    android:gravity="center_vertical"
-                    android:text="@string/my_education"
-                    android:textColor="#2B2A2A"
-                    android:textSize="8pt" />
-            </RelativeLayout>
-
-            <View
-                android:id="@+id/line2"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/my_education"
-                android:layout_marginTop="30dp"
-                android:background="@android:color/darker_gray" />
-
-            <RelativeLayout
-                android:id="@+id/my_experience"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@id/line2"
-                android:layout_marginTop="5dp">
-
-                <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="30dp"
-                    app:srcCompat="@drawable/graterthan" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/open_sans"
-                    android:gravity="center_vertical"
-                    android:text="@string/my_experience"
-                    android:textColor="#2B2A2A"
-                    android:textSize="8pt" />
-            </RelativeLayout>
-
-            <View
-                android:id="@+id/line3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/my_experience"
-                android:layout_marginTop="30dp"
-                android:background="@android:color/darker_gray" />
-
-            <RelativeLayout
-                android:id="@+id/my_post"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@id/line3"
-                android:layout_marginTop="5dp">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="30dp"
-                    app:srcCompat="@drawable/graterthan" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginBottom="8dp"
-                    android:fontFamily="@font/open_sans"
-                    android:gravity="center_vertical"
-                    android:text="@string/my_post"
-                    android:textColor="#2B2A2A"
-                    android:textSize="8pt" />
-            </RelativeLayout>
-
+                    android:layout_marginLeft="280dp"
+                    android:layout_marginTop="60dp"
+                    android:text="@string/see_all"
+                    android:textColor="#03A9F4" />
+            </FrameLayout>
 
         </RelativeLayout>
-    </ScrollView>
 
+
+    </ScrollView>
 
 </RelativeLayout>
