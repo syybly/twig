@@ -17,24 +17,29 @@ import com.squareup.picasso.Picasso;
 
 
 public class Fragment_Profile extends Fragment {
+    private CircleImageView userphoto;
 
-    private ImageView image;
     private TextView name;
     private Context context;
     private RelativeLayout myPost;
+    private TextView type;
 
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        image=view.findViewById(R.id.feed_userphoto);
+        userphoto=view.findViewById(R.id.feed_userphoto);
         Picasso.with(context)
                 .load(DataHolder.users.get(DataHolder.currentuser).getPhotourl())
                 .placeholder(R.drawable.nophoto)
                 .error(R.drawable.nophoto)
-                .into(image);
+                .into(userphoto);
 
         name=view.findViewById(R.id.feed_name);
         name.setText(DataHolder.users.get(DataHolder.currentuser).getFullname());
+        type=view.findViewById(R.id.type);
+        type.setText(DataHolder.users.get(DataHolder.currentuser).getType());
+
+
         return view;
 
 
