@@ -10,10 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
-            android:name=".view.Activity_MyPost"
-            android:label="@string/title_activity__my_post"
-            android:theme="@style/NoActionBar"></activity>
-        <activity
             android:name=".view.Activity_Edit"
             android:label="@string/title_activity__edit"
             android:theme="@style/NoActionBar" />
