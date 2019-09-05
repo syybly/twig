@@ -6,9 +6,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.rmit.twig.Controller.DataHolder;
-import com.rmit.twig.Model.User;
-import com.rmit.twig.View.HomepageActivity;
+import com.rmit.twig.controller.DataHolder;
+import com.rmit.twig.model.User;
+import com.rmit.twig.view.Activity_Homepage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,14 +19,18 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class SignInAsyncTask extends AsyncTask<String, String, String> {
     private Context context;
-    private ProgressDialog pd;
+    public static ProgressDialog pd;
+    private Map<String, List<String>> headers;
 
     public SignInAsyncTask(Context context) {
         this.context = context;
@@ -41,12 +45,12 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
     }
 
     protected String doInBackground(String... params) {
-        HttpURLConnection connection = null;
+        HttpsURLConnection connection = null;
         BufferedReader reader = null;
 
         try {
             URL url = new URL(params[0]);
-            connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept","application/json");
@@ -57,6 +61,7 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             wr.writeBytes(params[1]);
 
             int status=connection.getResponseCode();
+            headers = connection.getHeaderFields();
 
             if (status==400) {
                 return null;
@@ -94,9 +99,9 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-        if (pd.isShowing()){
-            pd.dismiss();
-        }
+//        if (pd.isShowing()){
+//            pd.dismiss();
+//        }
         if(result!=null)
         try {
             JSONObject user=new JSONObject(result);
@@ -108,16 +113,26 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             for (int i=0;i<jsonArray.length();i++) {
                 interests.add(jsonArray.get(i).toString());
             }
+            String token=headers.get("x-auth").get(0);
             User newuser=new User(id,email,name,interests);
-            DataHolder.user=newuser;
-            Intent intent = new Intent(context, HomepageActivity.class);
-            context.startActivity(intent);
+//            DataHolder.user=newuser;
+//            DataHolder.user.setToken(token);
+            newuser.setToken(token);
+            DataHolder.users.put(id,newuser);
+            DataHolder.currentuser=id;
+            GetPostListAsyncTask getPostListAsyncTask=new GetPostListAsyncTask(context);
+            getPostListAsyncTask.execute();
+            SignInAsyncTask.pd.dismiss();
+
+
         } catch (JSONException e) {
 
         }
+
         else {
             Toast nomatch = Toast.makeText(context, "Invalid Credentials!", Toast.LENGTH_SHORT);
             nomatch.show();
         }
+
     }
 }

@@ -6,24 +6,16 @@
     <string name="FullName">Full Name</string>
     <string name="Spinner">Select your account roll?</string>
 
-    <string-array name="spinnerItems">
-        <item>Student</item>
-        <item>Mentor</item>
-        <item>Admin</item>
-    </string-array>
-
     <string name="SignUp">Sign Up</string>
+
     <string name="Fgtpswd">Forget your password?</string>
     <string name="Login">Sign In</string>
     <string name="ResetPassword">Reset Password</string>
-
     <string name="Submit">Submit</string>
-    <string name="title_activity_homepage">Homepage</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
+    <string name="title_home">Home</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="select">Please select your interesting</string>
     <string name="Innovation">Innovation</string>
     <string name="Conservation">Conservation</string>
@@ -54,5 +46,30 @@
     <string name="title_profile">Profile</string>
     <string name="chats">Chats</string>
     <string name="addnew">Add New</string>
-
+    <string name="twig">twig</string>
+    <string name="newpost">New Post</string>
+    <string name="newevent">New Event</string>
+    <string name="newoppo">New Opportunity</string>
+    <string name="createevent">create event</string>
+    <string name="createpost">create post</string>
+    <string name="cancel">cancel</string>
+    <string name="post">post</string>
+    <string name="addlocation">add location</string>
+    <string name="writesomething">write something...</string>
+    <string name="addcategory">add category</string>
+    <string name="tagsomeone">tag someone</string>
+    <string name="addtimedate">add time &amp; date</string>
+    <string name="addcoorg">add co-organiser</string>
+    <string name="sharepublic">share it with public</string>
+    <string name="signupticket">sign up or ticket</string>
+    <string name="createoppo">create opportunity</string>
+    <string name="selectcategory">Please select category for your post: </string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="pleaseenteralocation">Please enter a location</string>
+    <string-array name="spinnerItems">
+        <item>Student</item>
+        <item>Mentor</item>
+        <item>Admin</item>
+    </string-array>
 </resources>

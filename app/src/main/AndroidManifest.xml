@@ -2,25 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rmit.twig">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="TWIG"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity
-            android:name=".View.HomepageActivity"
-            android:label="@string/title_activity_homepage"></activity>
-        <activity android:name=".View.AdminWelcomeActivity" />
-        <activity android:name=".View.MentorWelcomeActivity" />
-        <activity android:name=".View.StudentWelcomeActivity" />
-        <activity android:name=".View.ForgetPasswordActivity" />
-        <activity android:name=".View.PreferenceAcitivity" />
-        <activity android:name=".View.LoginSignupContainer">
+        <activity android:name=".view.Activity_AddLocation"></activity>
+        <activity android:name=".view.Activity_PostCategory" />
+        <activity android:name=".view.Activity_CreateOppo" />
+        <activity android:name=".view.Activity_CreateEvent" />
+        <activity android:name=".view.Activity_CreateGenralPost" />
+        <activity android:name=".view.Activity_Homepage" />
+        <activity android:name=".view.AdminWelcomeActivity" />
+        <activity android:name=".view.MentorWelcomeActivity" />
+        <activity android:name=".view.StudentWelcomeActivity" />
+        <activity android:name=".view.ForgetPasswordActivity" />
+        <activity android:name=".view.Activity_Preference" />
+        <activity android:name=".view.LoginSignupContainer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,6 +31,18 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <service
+            android:name=".service.Service_Location"
+            android:enabled="true"
+            android:exported="true" />
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 </manifest>

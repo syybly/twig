@@ -6,24 +6,19 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.rmit.twig.Controller.DataHolder;
-import com.rmit.twig.Model.User;
-import com.rmit.twig.View.HomepageActivity;
-import com.rmit.twig.View.PreferenceAcitivity;
+import com.rmit.twig.model.User;
+import com.rmit.twig.view.Activity_Preference;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class CheckEmail extends AsyncTask<String, String, String> {
     private Context context;
@@ -90,7 +85,7 @@ public class CheckEmail extends AsyncTask<String, String, String> {
                 JSONObject emailcheck=new JSONObject(result);
                 boolean exists=emailcheck.getBoolean("emailExisted");
                 if(!exists){
-                    Intent intent=new Intent(context, PreferenceAcitivity.class);
+                    Intent intent=new Intent(context, Activity_Preference.class);
                     context.startActivity(intent);
                 }
                 else{

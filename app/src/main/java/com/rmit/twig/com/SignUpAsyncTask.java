@@ -7,9 +7,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.rmit.twig.Controller.DataHolder;
-import com.rmit.twig.Model.User;
-import com.rmit.twig.View.HomepageActivity;
+import com.rmit.twig.controller.DataHolder;
+import com.rmit.twig.model.User;
+import com.rmit.twig.view.Activity_Homepage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,14 +20,18 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.net.ssl.HttpsURLConnection;
 
 public class SignUpAsyncTask extends AsyncTask<String, String, String> {
     private Context context;
     private ProgressDialog pd;
+    private Map<String, List<String>> headers;
 
     public SignUpAsyncTask(Context context) {
         this.context = context;
@@ -42,12 +46,12 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
     }
 
     protected String doInBackground(String... params) {
-        HttpURLConnection connection = null;
+        HttpsURLConnection connection = null;
         BufferedReader reader = null;
 
         try {
             URL url = new URL(params[0]);
-            connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept","application/json");
@@ -58,6 +62,7 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
             wr.writeBytes(params[1]);
 
             int status=connection.getResponseCode();
+            headers = connection.getHeaderFields();
 
             if (status==400) {
                 return null;
@@ -109,9 +114,12 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
                 for (int i=0;i<jsonArray.length();i++) {
                     interests.add(jsonArray.get(i).toString());
                 }
+                String token=headers.get("x-auth").get(0);
                 User newuser=new User(id,email,name,interests);
-                DataHolder.user=newuser;
-                Intent intent = new Intent(context, HomepageActivity.class);
+                newuser.setToken(token);
+                DataHolder.currentuser=id;
+                DataHolder.users.put(id,newuser);
+                Intent intent = new Intent(context, Activity_Homepage.class);
                 context.startActivity(intent);
                 ((Activity)context).finish();
             } catch (JSONException e) {
