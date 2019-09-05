@@ -35,15 +35,6 @@ public class Fragment_Profile extends Fragment {
 
         name=view.findViewById(R.id.feed_name);
         name.setText(DataHolder.users.get(DataHolder.currentuser).getFullname());
-        myPost=view.findViewById(R.id.my_post);
-        myPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent postIntent = new Intent(context, Activity_MyPost.class);
-                postIntent.putExtra("userID", "userID");
-                startActivity(postIntent);
-            }
-        });
         return view;
 
 
