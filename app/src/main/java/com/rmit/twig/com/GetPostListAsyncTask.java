@@ -37,7 +37,7 @@ public class GetPostListAsyncTask extends AsyncTask<String, String, String> {
         HttpsURLConnection connection = null;
         BufferedReader reader = null;
         try {
-            URL url = new URL("https://twig-api-v2.herokuapp.com/posts");
+            URL url = new URL("https://twig-api-v2.herokuapp.com/feeds");
             connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Content-Type", "application/json");
@@ -75,7 +75,8 @@ public class GetPostListAsyncTask extends AsyncTask<String, String, String> {
                 String content = post.getString("content");
                 String id = post.getString("_id");
                 String author = post.getString("author");
-                Post feed = new Post(author,"General");
+                String type=post.getString("type");
+                Post feed = new Post(author,type);
                 feed.setContent(content);
                 if(!post.getString("location").equals("null")){
                     feed.setLocation(post.getString("location"));

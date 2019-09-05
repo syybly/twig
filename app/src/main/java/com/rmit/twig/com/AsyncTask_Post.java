@@ -96,10 +96,10 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
                 mutipartbuilder.addFormDataPart("images", f.getName(),RequestBody.create(f,MediaType.parse("image/*png")));
             }
         }
-            if(post.getType().equals("General")){
+            if(post.getType().equals("post")){
                 url=new URL("https://twig-api-v2.herokuapp.com/posts");
             }
-            if(post.getType().equals("Event")){
+            if(post.getType().equals("event")){
                 url=new URL("https://twig-api-v2.herokuapp.com/events");
                 mutipartbuilder.addFormDataPart("time",DataHolder.newpost.getDate().toString());
             }

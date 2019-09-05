@@ -65,7 +65,7 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
         content.setText(feed.getContent());
         eventbuttons=convertView.findViewById(R.id.eventbuttons);
         eventbuttons.setVisibility(View.INVISIBLE);
-        if (feed.getType().equals("Event")){
+        if (feed.getType().equals("event")){
             eventbuttons.setVisibility(View.VISIBLE);
         }
         feedimage=convertView.findViewById(R.id.feed_image);

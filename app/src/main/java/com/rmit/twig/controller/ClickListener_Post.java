@@ -40,7 +40,7 @@ public class ClickListener_Post implements View.OnClickListener {
             less.show();
             validpost=false;
         }
-        if(DataHolder.newpost.getType().equals("Event")){
+        if(DataHolder.newpost.getType().equals("event")){
             if(DataHolder.newpost.getDate()==null){
                 Toast less = Toast.makeText(activity, "Please set a time for the event", Toast.LENGTH_SHORT);
                 less.show();
