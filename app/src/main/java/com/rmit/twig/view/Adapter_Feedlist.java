@@ -6,9 +6,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuInflater;
@@ -39,6 +41,10 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
     private Post feed;
     private TextView eventtime;
     private TextView hourago;
+    private TextView feedcat;
+    private LinearLayout postaction;
+    private Button going;
+    private Button decidelater;
 
 
     public Adapter_Feedlist(Context context, ArrayList<Post> posts) {
@@ -55,6 +61,12 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
         }
         eventtime=convertView.findViewById(R.id.eventtime);
         hourago=convertView.findViewById(R.id.hourago);
+        feedcat=convertView.findViewById(R.id.feedcat);
+        String cats="";
+        for(String s:feed.getCategories()){
+            cats=cats+"#"+s+"   ";
+        }
+        feedcat.setText(cats);
         Timestamp current = new Timestamp(System.currentTimeMillis());
         long currenttime=current.getTime();
         double creatediff=(double)(currenttime-feed.getCreatetime())/ (60 * 60 * 1000);
@@ -81,14 +93,19 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
         content.setText(feed.getContent());
         eventbuttons=convertView.findViewById(R.id.eventbuttons);
         eventbuttons.setVisibility(View.INVISIBLE);
+        decidelater=convertView.findViewById(R.id.decidelater);
+        going=convertView.findViewById(R.id.going);
         if (feed.getType().equals("event")){
             eventbuttons.setVisibility(View.VISIBLE);
             eventtime.setVisibility(View.VISIBLE);
+            going.setVisibility(View.VISIBLE);
+            decidelater.setVisibility(View.VISIBLE);
             Timestamp timestamp=new Timestamp(feed.getDate());
             SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy hh:mm a");
             eventtime.setText(simpleDateFormat.format(timestamp));
         }
         feedimage=convertView.findViewById(R.id.feed_image);
+        postaction=convertView.findViewById(R.id.post_action);
         if(feed.getImageurl().size()>0){
             Picasso.with(context)
                     .load(feed.getImageurl().get(0))
@@ -96,6 +113,15 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
                     .error(R.drawable.noimage)
                     .fit().centerCrop()
                     .into(feedimage);
+        }
+        if(feed.getImageurl().size()==0){
+            ((RelativeLayout.LayoutParams) content.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feed_head);
+            ((RelativeLayout.LayoutParams) postaction.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feedcat);
+            ((RelativeLayout.LayoutParams) eventbuttons.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.post_action);
+            feedimage.setVisibility(View.INVISIBLE);
+            ViewGroup.MarginLayoutParams params =
+                    (ViewGroup.MarginLayoutParams)content.getLayoutParams();
+            params.setMargins(params.leftMargin,40,params.rightMargin,params.bottomMargin);
         }
         deletebutton=convertView.findViewById(R.id.delete_edit);
         deletebutton.setVisibility(View.INVISIBLE);

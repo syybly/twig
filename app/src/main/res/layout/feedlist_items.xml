@@ -130,13 +130,26 @@
         android:text="Type something to describe about the event and this is a paragraph about dummy text to show content fun event!"
         android:textColor="#393939"
         android:textFontWeight="382"
-        android:textSize="16dp" />
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/feedcat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@id/feed_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@+id/feed_content"
+        android:textColor="@color/orange" />
 
     <LinearLayout
         android:id="@+id/eventbuttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/feed_content"
+        android:layout_below="@id/feedcat"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
@@ -146,6 +159,7 @@
             android:layout_height="38dp"
             android:background="@drawable/radium"
             android:fontFamily="@font/open_sans_semibold"
+            android:visibility="gone"
             android:text="I'm Going"
             android:layout_marginLeft="30dp"
             android:textFontWeight="600"
@@ -155,6 +169,7 @@
             android:id="@+id/decidelater"
             android:layout_width="150dp"
             android:layout_height="38dp"
+            android:visibility="gone"
             android:background="@drawable/radium"
             android:fontFamily="@font/open_sans_semibold"
             android:layout_marginLeft="42dp"
@@ -162,4 +177,5 @@
             android:textFontWeight="600"
             android:textSize="14dp" />
     </LinearLayout>
+
 </RelativeLayout>
