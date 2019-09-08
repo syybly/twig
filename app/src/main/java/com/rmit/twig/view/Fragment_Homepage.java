@@ -45,8 +45,5 @@ public class Fragment_Homepage extends Fragment {
         feedlist.setAdapter(adapter2);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
         feedlist.setLayoutManager(linearLayoutManager);
-        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(feedlist.getContext(),
-                linearLayoutManager.getOrientation());
-        feedlist.addItemDecoration(dividerItemDecoration);
     }
 }
