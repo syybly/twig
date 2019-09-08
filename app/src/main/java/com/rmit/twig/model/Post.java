@@ -15,6 +15,7 @@ public class Post {
     private User user;
     private String type;
     private ArrayList<File> newpostimages;
+    private long createtime;
 
     public Post(String postID, String author, String content, String location) {
         this.postID = postID;
@@ -118,5 +119,13 @@ public class Post {
 
     public void setNewpostimages(ArrayList<File> newpostimages) {
         this.newpostimages = newpostimages;
+    }
+
+    public long getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(long createtime) {
+        this.createtime = createtime;
     }
 }

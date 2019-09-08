@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ListView;
 
@@ -106,8 +108,9 @@ public class AsyncTask_GetUser extends AsyncTask<Void, String, String> {
                     p.setUser(DataHolder.users.get(key));
             }
         }
-            ListView l=view.findViewById(R.id.feedlist);
+            RecyclerView l=view.findViewById(R.id.feedlist);
             adapter_feedlist.notifyDataSetChanged();
             l.setAdapter(adapter_feedlist);
+            l.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
 }

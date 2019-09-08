@@ -5,14 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.rmit.twig.model.EventPost;
-import com.rmit.twig.model.GeneralPost;
-import com.rmit.twig.model.OppotunityPost;
-import com.rmit.twig.model.Post;
 import com.rmit.twig.R;
-import com.rmit.twig.view.Activity_CreateEvent;
-import com.rmit.twig.view.Activity_CreateGenralPost;
-import com.rmit.twig.view.Activity_CreateOppo;
 import com.rmit.twig.com.AsyncTask_Post;
 
 public class ClickListener_Post implements View.OnClickListener {
