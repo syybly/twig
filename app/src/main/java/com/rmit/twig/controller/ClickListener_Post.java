@@ -13,6 +13,7 @@ public class ClickListener_Post implements View.OnClickListener {
     private Activity activity;
     private EditText postcontent;
     private boolean validpost;
+    private EditText title;
 
     public ClickListener_Post(Activity activity, String type) {
         this.type = type;
@@ -28,7 +29,7 @@ public class ClickListener_Post implements View.OnClickListener {
             less.show();
             validpost=false;
         }
-        if (DataHolder.postcategories.size() < 1) {
+        if (DataHolder.newpost.getCategories().size() < 1) {
             Toast less = Toast.makeText(activity, "Please choose at least one category", Toast.LENGTH_SHORT);
             less.show();
             validpost=false;
@@ -44,10 +45,16 @@ public class ClickListener_Post implements View.OnClickListener {
                 less.show();
                 validpost=false;
             }
+            title=activity.findViewById(R.id.eventtitle);
+            DataHolder.newpost.setTitle(title.getText().toString());
+            if(DataHolder.newpost.getTitle().length()==0){
+                Toast less = Toast.makeText(activity, "Please set a title for the event", Toast.LENGTH_SHORT);
+                less.show();
+                validpost=false;
+            }
         }
         if(validpost) {
             DataHolder.newpost.setContent(postcontent.getText().toString());
-            DataHolder.newpost.setCategories(DataHolder.postcategories);
             AsyncTask_Post asyncTask_post = new AsyncTask_Post(activity);
             asyncTask_post.execute(DataHolder.newpost);
 

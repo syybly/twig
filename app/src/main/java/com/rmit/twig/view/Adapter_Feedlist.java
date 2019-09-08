@@ -16,7 +16,9 @@ import android.widget.TextView;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuInflater;
 
-
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
+import com.daimajia.slider.library.Transformers.BaseTransformer;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
 import com.rmit.twig.R;
@@ -48,7 +50,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
         private TextView location;
         private TextView content;
         private LinearLayout eventbuttons;
-        private ImageView feedimage;
+        private SliderLayout feedimage;
         private ImageButton deletebutton;
         private TextView eventtime;
         private TextView hourago;
@@ -56,6 +58,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
         private LinearLayout postaction;
         private Button going;
         private Button decidelater;
+        private TextView title;
         public GeneralViewHolder(View convertView) {
             super(convertView);
             eventtime=convertView.findViewById(R.id.eventtime);
@@ -71,43 +74,44 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
             feedimage=convertView.findViewById(R.id.feed_image);
             postaction=convertView.findViewById(R.id.post_action);
             deletebutton=convertView.findViewById(R.id.delete_edit);
+            title=convertView.findViewById(R.id.titletext);
         }
     }
 
-    public static class EventViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
-        private ImageView image;
-        private TextView name;
-        private TextView location;
-        private TextView content;
-        private LinearLayout eventbuttons;
-        private ImageView feedimage;
-        private ImageButton deletebutton;
-        private TextView eventtime;
-        private TextView hourago;
-        private TextView feedcat;
-        private LinearLayout postaction;
-        private Button going;
-        private Button decidelater;
-        public EventViewHolder(View convertView) {
-            super(convertView);
-            eventtime=convertView.findViewById(R.id.eventtime);
-            hourago=convertView.findViewById(R.id.hourago);
-            feedcat=convertView.findViewById(R.id.feedcat);
-            image=convertView.findViewById(R.id.feed_userphoto);
-            name=convertView.findViewById(R.id.feed_name);
-            location=convertView.findViewById(R.id.feed_location);
-            content=convertView.findViewById(R.id.feed_content);
-            eventbuttons=convertView.findViewById(R.id.eventbuttons);
-            decidelater=convertView.findViewById(R.id.decidelater);
-            going=convertView.findViewById(R.id.going);
-            feedimage=convertView.findViewById(R.id.feed_image);
-            postaction=convertView.findViewById(R.id.post_action);
-            deletebutton=convertView.findViewById(R.id.delete_edit);
-
-
-        }
-    }
+//    public static class EventViewHolder extends RecyclerView.ViewHolder {
+//        // each data item is just a string in this case
+//        private ImageView image;
+//        private TextView name;
+//        private TextView location;
+//        private TextView content;
+//        private LinearLayout eventbuttons;
+//        private ImageView feedimage;
+//        private ImageButton deletebutton;
+//        private TextView eventtime;
+//        private TextView hourago;
+//        private TextView feedcat;
+//        private LinearLayout postaction;
+//        private Button going;
+//        private Button decidelater;
+//        public EventViewHolder(View convertView) {
+//            super(convertView);
+//            eventtime=convertView.findViewById(R.id.eventtime);
+//            hourago=convertView.findViewById(R.id.hourago);
+//            feedcat=convertView.findViewById(R.id.feedcat);
+//            image=convertView.findViewById(R.id.feed_userphoto);
+//            name=convertView.findViewById(R.id.feed_name);
+//            location=convertView.findViewById(R.id.feed_location);
+//            content=convertView.findViewById(R.id.feed_content);
+//            eventbuttons=convertView.findViewById(R.id.eventbuttons);
+//            decidelater=convertView.findViewById(R.id.decidelater);
+//            going=convertView.findViewById(R.id.going);
+//            feedimage=convertView.findViewById(R.id.feed_image);
+//            postaction=convertView.findViewById(R.id.post_action);
+//            deletebutton=convertView.findViewById(R.id.delete_edit);
+//
+//
+//        }
+//    }
 
     @Override
     public long getItemId(int position) {
@@ -165,12 +169,21 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
         }
         holder.hourago.setText(houragotext);
         if(feed.getImageurl().size()>0){
-            Picasso.with(context)
-                    .load(feed.getImageurl().get(0))
-                    .placeholder(R.drawable.noimage)
-                    .error(R.drawable.noimage)
-                    .fit().centerCrop()
-                    .into(holder.feedimage);
+            for(String url:feed.getImageurl()){
+                DefaultSliderView textSliderView = new DefaultSliderView(context);
+                textSliderView
+                        .image(url);
+                holder.feedimage.addSlider(textSliderView);
+            }
+            if(feed.getImageurl().size()==1){
+                holder.feedimage.setPagerTransformer(false, new BaseTransformer() {
+                    @Override
+                    public void onTransform(View view, float position) {
+                    }
+
+                });
+            }
+            holder.feedimage.stopAutoCycle();
             holder.feedimage.setVisibility(View.VISIBLE);
         }
         if (feed.getType().equals("event")) {
@@ -181,9 +194,11 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
             holder.eventtime.setVisibility(View.VISIBLE);
             holder.going.setVisibility(View.VISIBLE);
             holder.decidelater.setVisibility(View.VISIBLE);
+            holder.title.setText(feed.getTitle());
+            holder.title.setVisibility(View.VISIBLE);
         }
         if(feed.getImageurl().size()==0){
-            ((RelativeLayout.LayoutParams) holder.content.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feed_head);
+            ((RelativeLayout.LayoutParams) holder.title.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feed_head);
             ((RelativeLayout.LayoutParams) holder.postaction.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feedcat);
             ((RelativeLayout.LayoutParams) holder.eventbuttons.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.post_action);
             ViewGroup.MarginLayoutParams params =

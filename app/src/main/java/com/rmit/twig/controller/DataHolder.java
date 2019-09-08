@@ -16,7 +16,6 @@ public class DataHolder {
    public static String currentuser;
    public static ArrayList<Post> posts;
 //   public static ArrayList<String> postimagefiles;
-   public static HashSet<String> postcategories;
    public static Post newpost;
    public static User userholder;
 
@@ -25,7 +24,6 @@ public class DataHolder {
       if(posts==null)
       posts=new ArrayList<Post>();
 //      postimagefiles=new ArrayList<>();
-      postcategories=new HashSet<>();
       users=new HashMap<>();
       userholder=new User("Loading","Loading","Loading");
    }

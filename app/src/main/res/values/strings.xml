@@ -74,6 +74,7 @@
     <string name="choosefromalbum">choose from album</string>
     <string name="pleaseenteralocation">Please enter a location</string>
     <string name="see_all">See All</string>
+    <string name="setatitleforevent">Set A Title For Event</string>
     <string-array name="spinnerItems">
         <item>Student</item>
         <item>Mentor</item>

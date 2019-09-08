@@ -77,11 +77,10 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
                 mutipartbuilder.addFormDataPart("location",post.getLocation());
             }
             JSONArray cats=new JSONArray();
-            for(String cat:DataHolder.postcategories){
+            for(String cat:DataHolder.newpost.getCategories()){
                 cats.put(cat);
             }
             mutipartbuilder.addFormDataPart("categories",cats.toString());
-            mutipartbuilder.addFormDataPart("title","null");
         if(DataHolder.newpost.getNewpostimages().size()>0){
             for(int i=0;i<DataHolder.newpost.getNewpostimages().size();i++){
                 File f=DataHolder.newpost.getNewpostimages().get(i);
@@ -102,6 +101,7 @@ public class AsyncTask_Post extends AsyncTask <Object, String, String> {
             if(post.getType().equals("event")){
                 url=new URL("https://twig-api-v2.herokuapp.com/events");
                 mutipartbuilder.addFormDataPart("time",DataHolder.newpost.getDate().toString());
+                mutipartbuilder.addFormDataPart("title",DataHolder.newpost.getTitle());
             }
             RequestBody requestBody=mutipartbuilder.build();
         OkHttpClient client = new OkHttpClient();

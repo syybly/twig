@@ -7,11 +7,11 @@ import android.widget.Toast;
 
 import com.rmit.twig.model.User;
 import com.rmit.twig.R;
+import com.rmit.twig.view.Activity_CreateEvent;
 import com.rmit.twig.view.Activity_CreateGenralPost;
 
 public class Controller_Post_SubmitCategory implements View.OnClickListener {
 
-    private String type;
     private Activity activity;
     private String name;
     private CheckBox box1, box2, box3, box4, box5, box6, box7, box8, box9, box10,
@@ -44,72 +44,82 @@ public class Controller_Post_SubmitCategory implements View.OnClickListener {
         box19 = activity.findViewById(R.id.EntrepreneurialMindset);
         box20 = activity.findViewById(R.id.SelfDevelopment);
         if (box1.isChecked()) {
-            DataHolder.postcategories.add("Innovation");
+            DataHolder.newpost.getCategories().add("Innovation");
         }
         if (box2.isChecked()) {
-            DataHolder.postcategories.add("Conservation");
+            DataHolder.newpost.getCategories().add("Conservation");
         }
         if (box3.isChecked()) {
-            DataHolder.postcategories.add("Social Impact");
+            DataHolder.newpost.getCategories().add("Social Impact");
         }
         if (box4.isChecked()) {
-            DataHolder.postcategories.add("Environmental Impact");
+            DataHolder.newpost.getCategories().add("Environmental Impact");
         }
         if (box5.isChecked()) {
-            DataHolder.postcategories.add("Cities");
+            DataHolder.newpost.getCategories().add("Cities");
         }
         if (box6.isChecked()) {
-            DataHolder.postcategories.add("Biodiversity");
+            DataHolder.newpost.getCategories().add("Biodiversity");
         }
         if (box7.isChecked()) {
-            DataHolder.postcategories.add("Wildlife / animals");
+            DataHolder.newpost.getCategories().add("Wildlife / animals");
         }
         if (box8.isChecked()) {
-            DataHolder.postcategories.add("Sustainable Cities");
+            DataHolder.newpost.getCategories().add("Sustainable Cities");
         }
         if (box9.isChecked()) {
-            DataHolder.postcategories.add("Urbanisation");
+            DataHolder.newpost.getCategories().add("Urbanisation");
         }
         if (box10.isChecked()) {
-            DataHolder.postcategories.add("Future Design");
+            DataHolder.newpost.getCategories().add("Future Design");
         }
         if (box11.isChecked()) {
-            DataHolder.postcategories.add("Industry");
+            DataHolder.newpost.getCategories().add("Industry");
         }
         if (box12.isChecked()) {
-            DataHolder.postcategories.add("Infrastructure");
+            DataHolder.newpost.getCategories().add("Infrastructure");
         }
         if (box13.isChecked()) {
-            DataHolder.postcategories.add("Economic Growth");
+            DataHolder.newpost.getCategories().add("Economic Growth");
         }
         if (box14.isChecked()) {
-            DataHolder.postcategories.add("Technology");
+            DataHolder.newpost.getCategories().add("Technology");
         }
         if (box15.isChecked()) {
-            DataHolder.postcategories.add("Consumption");
+            DataHolder.newpost.getCategories().add("Consumption");
         }
         if (box16.isChecked()) {
-            DataHolder.postcategories.add("Entrepreneurship");
+            DataHolder.newpost.getCategories().add("Entrepreneurship");
         }
         if (box17.isChecked()) {
-            DataHolder.postcategories.add("Leadership");
+            DataHolder.newpost.getCategories().add("Leadership");
         }
         if (box18.isChecked()) {
-            DataHolder.postcategories.add("Financial wellbeing");
+            DataHolder.newpost.getCategories().add("Financial wellbeing");
         }
         if (box19.isChecked()) {
-            DataHolder.postcategories.add("Entrepreneurial Mindset");
+            DataHolder.newpost.getCategories().add("Entrepreneurial Mindset");
         }
         if (box20.isChecked()) {
-            DataHolder.postcategories.add("Self-Development");
+            DataHolder.newpost.getCategories().add("Self-Development");
         }
-        if (DataHolder.postcategories.size() < 1) {
+        if (DataHolder.newpost.getCategories().size() < 1) {
             Toast less = Toast.makeText(activity, "Please choose at least one category", Toast.LENGTH_SHORT);
             less.show();
         }
-        else if (DataHolder.postcategories.size()>5){
+        else if (DataHolder.newpost.getCategories().size()>5){
             Toast morethan = Toast.makeText(activity, "Please choose no more than five category", Toast.LENGTH_SHORT);
             morethan.show();
+        }
+        String cats="";
+        for(String s:DataHolder.newpost.getCategories()){
+            cats=cats+"#"+s+"   ";
+        }
+        if(DataHolder.newpost.getType().equals("event")){
+            Activity_CreateEvent.cats.setText(cats);
+        }
+        if(DataHolder.newpost.getType().equals("post")){
+            Activity_CreateGenralPost.cats.setText(cats);
         }
         activity.finish();
     }

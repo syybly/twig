@@ -16,6 +16,7 @@ public class Post {
     private String type;
     private ArrayList<File> newpostimages;
     private long createtime;
+    private String title;
 
     public Post(String postID, String author, String content, String location) {
         this.postID = postID;
@@ -24,6 +25,7 @@ public class Post {
         this.location=location;
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
+        this.categories=new HashSet<>();
     }
 
     public Post(String author, String content, String location) {
@@ -32,6 +34,7 @@ public class Post {
         this.location=location;
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
+        this.categories=new HashSet<>();
     }
 
     public Post(String author, String type){
@@ -39,6 +42,7 @@ public class Post {
         this.type=type;
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
+        this.categories=new HashSet<>();
     }
 
     public String getPostID() {
@@ -127,5 +131,13 @@ public class Post {
 
     public void setCreatetime(long createtime) {
         this.createtime = createtime;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

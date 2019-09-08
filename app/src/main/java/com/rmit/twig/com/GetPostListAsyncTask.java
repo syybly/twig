@@ -83,6 +83,7 @@ public class GetPostListAsyncTask extends AsyncTask<String, String, String> {
                 if(type.equals("event")){
                     long eventdate=post.getLong("time");
                     feed.setDate(eventdate);
+                    feed.setTitle(post.getString("title"));
                 }
                 feed.setContent(content);
                 if(!post.getString("location").equals("null")){
