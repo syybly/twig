@@ -153,7 +153,6 @@ public class Activity_CreateEvent extends AppCompatActivity {
         location=findViewById(R.id.feed_location);
         location.setVisibility(View.INVISIBLE);
         categorylayout=findViewById(R.id.addcategory);
-        post=findViewById(R.id.post);
         categorylayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

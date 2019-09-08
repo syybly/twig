@@ -57,6 +57,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
         private LinearLayout postaction;
         private Button going;
         private Button decidelater;
+        private TextView title;
         public GeneralViewHolder(View convertView) {
             super(convertView);
             eventtime=convertView.findViewById(R.id.eventtime);
@@ -72,6 +73,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
             feedimage=convertView.findViewById(R.id.feed_image);
             postaction=convertView.findViewById(R.id.post_action);
             deletebutton=convertView.findViewById(R.id.delete_edit);
+            title=convertView.findViewById(R.id.titletext);
         }
     }
 
@@ -183,9 +185,11 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
             holder.eventtime.setVisibility(View.VISIBLE);
             holder.going.setVisibility(View.VISIBLE);
             holder.decidelater.setVisibility(View.VISIBLE);
+            holder.title.setText(feed.getTitle());
+            holder.title.setVisibility(View.VISIBLE);
         }
         if(feed.getImageurl().size()==0){
-            ((RelativeLayout.LayoutParams) holder.content.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feed_head);
+            ((RelativeLayout.LayoutParams) holder.title.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feed_head);
             ((RelativeLayout.LayoutParams) holder.postaction.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feedcat);
             ((RelativeLayout.LayoutParams) holder.eventbuttons.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.post_action);
             ViewGroup.MarginLayoutParams params =

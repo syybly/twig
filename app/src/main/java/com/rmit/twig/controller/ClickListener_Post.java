@@ -13,6 +13,7 @@ public class ClickListener_Post implements View.OnClickListener {
     private Activity activity;
     private EditText postcontent;
     private boolean validpost;
+    private EditText title;
 
     public ClickListener_Post(Activity activity, String type) {
         this.type = type;
@@ -41,6 +42,13 @@ public class ClickListener_Post implements View.OnClickListener {
             }
             if(DataHolder.newpost.getLocation()==null){
                 Toast less = Toast.makeText(activity, "Please set a location for the event", Toast.LENGTH_SHORT);
+                less.show();
+                validpost=false;
+            }
+            title=activity.findViewById(R.id.eventtitle);
+            DataHolder.newpost.setTitle(title.getText().toString());
+            if(DataHolder.newpost.getTitle().length()==0){
+                Toast less = Toast.makeText(activity, "Please set a title for the event", Toast.LENGTH_SHORT);
                 less.show();
                 validpost=false;
             }
