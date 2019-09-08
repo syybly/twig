@@ -64,6 +64,8 @@ public class AsyncTask_EditPost extends AsyncTask<Object, String, String> {
                 mutipartbuilder.addFormDataPart("images", f.getName(), RequestBody.create(f, MediaType.parse("image/*png")));
             }
 
+            post.getNewpostimages().clear();
+
             if (post.getType().equals("post")) {
                 url = new URL("https://twig-api-v2.herokuapp.com/posts/" + post.getPostID());
             }
