@@ -31,7 +31,6 @@ public class Activity_Homepage extends AppCompatActivity {
                 case R.id.navigation_home:
                     toolbartitle.setText("twig");
                     SwitchToHomepage();
-                    toolbartitle.setText("twig");
                     return true;
                 case R.id.navigation_explore:
 

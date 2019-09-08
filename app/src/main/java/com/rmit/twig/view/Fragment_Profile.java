@@ -89,8 +89,9 @@ public class Fragment_Profile extends Fragment {
         for (Post p : DataHolder.posts) {
 
                 if (p.getAuthor().equals(DataHolder.currentuser)&&(p.getImageurl()!=null)) {
-
-                    imageURI.add(p.getImageurl());
+                    for(String s:p.getImageurl()) {
+                        imageURI.add(s);
+                    }
                 }
                 }
 
