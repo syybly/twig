@@ -211,6 +211,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                     (ViewGroup.MarginLayoutParams)holder.content.getLayoutParams();
             params.setMargins(params.leftMargin,40,params.rightMargin,params.bottomMargin);
         }
+
         holder.deletebutton.setVisibility(View.INVISIBLE);
         if(feed.getAuthor().equals(DataHolder.currentuser)){
             holder.deletebutton.setVisibility(View.VISIBLE);
@@ -227,7 +228,9 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.edit:
-
+                                Intent intent = new Intent(context, Activity_EditPost.class);
+                                intent.putExtra("postID", posts.get(position).getPostID());
+                                context.startActivity(intent);
                                 break;
                             case R.id.delete:
                                 AlertDialog.Builder builder = new AlertDialog.Builder(context);

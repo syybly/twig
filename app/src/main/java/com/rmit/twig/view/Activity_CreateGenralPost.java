@@ -81,6 +81,7 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
             }
         });
         cats=findViewById(R.id.cats);
+
         location = findViewById(R.id.feed_location);
         location.setOnClickListener(new View.OnClickListener() {
             @Override

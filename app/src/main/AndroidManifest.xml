@@ -23,6 +23,7 @@
         <activity android:name=".view.Activity_CreateOppo" />
         <activity android:name=".view.Activity_CreateEvent" />
         <activity android:name=".view.Activity_CreateGenralPost" />
+        <activity android:name=".view.Activity_EditPost" />
         <activity android:name=".view.Activity_Homepage" />
         <activity android:name=".view.AdminWelcomeActivity" />
         <activity android:name=".view.MentorWelcomeActivity" />
