@@ -30,7 +30,7 @@ public class Fragment_Homepage extends Fragment {
         view=inflater.inflate(R.layout.fragment_homepage, container, false);
         context=view.getContext();
         feedlist=view.findViewById(R.id.feedlist);
-        Adapter_Feedlist adapter=new Adapter_Feedlist(context,DataHolder.posts);
+        Adapter_Feedlist adapter=new Adapter_Feedlist(context,DataHolder.posts,feedlist);
         feedlist.setAdapter(adapter);
         feedlist.setLayoutManager(new LinearLayoutManager(context));
         AsyncTask_GetUser getUser=new AsyncTask_GetUser(view,adapter);
@@ -41,7 +41,7 @@ public class Fragment_Homepage extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        Adapter_Feedlist adapter2=new Adapter_Feedlist(context,DataHolder.posts);
+        Adapter_Feedlist adapter2=new Adapter_Feedlist(context,DataHolder.posts,feedlist);
         feedlist.setAdapter(adapter2);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
         feedlist.setLayoutManager(linearLayoutManager);

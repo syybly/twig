@@ -38,15 +38,17 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
     private Context context;
     private ArrayList<Post> posts;
     private Post feed;
+    private RecyclerView feedlist;
     private final static int GENERAL=1;
     private final static int EVENT=2;
     private final static int IMAGE=3;
     private final static int NOIMAGE=4;
 
 
-    public Adapter_Feedlist(Context context, ArrayList<Post> posts) {
+    public Adapter_Feedlist(Context context, ArrayList<Post> posts, RecyclerView feedlist) {
         this.context=context;
         this.posts=posts;
+        this.feedlist=feedlist;
     }
 
     public static class GeneralViewHolder extends RecyclerView.ViewHolder {
@@ -235,12 +237,12 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                             case R.id.delete:
                                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                                 builder.setTitle("delete post");
-                                builder.setMessage("Are you sure you want to delete it?");
+                                builder.setMessage("Are you sure you want to delete this post?");
 
                                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(Adapter_Feedlist.this);
+                                        AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(context,feedlist);
 
                                         String deleteEndpoint;
                                         feed = posts.get(position);
@@ -255,7 +257,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                                         }
 
                                         asyncTask_deletePost.execute(deleteEndpoint, feed.getPostID());
-                                        Toast.makeText(context,"Delete successfully",Toast.LENGTH_SHORT).show();
+
                                     }
 
                                 });
