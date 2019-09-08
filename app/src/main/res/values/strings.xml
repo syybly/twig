@@ -66,14 +66,16 @@
     <string name="selectcategory">Please select category for your post: </string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
-    <string name="title_activity__edit">Activity_Edit</string>
-    <string name="title_activity__delete">Activity_Delete</string>
     <string name="my_education">My Education</string>
     <string name="profile">Profile</string>
     <string name="my_experience">My Experience</string>
     <string name="my_post">My Post</string>
-    <string name="title_activity__my_post">Activity_MyPost</string>
+    <string name="camera">camera</string>
+    <string name="choosefromalbum">choose from album</string>
+    <string name="pleaseenteralocation">Please enter a location</string>
     <string name="see_all">See All</string>
+    <string name="setatitleforevent">Set A Title For Event</string>
+    <string name="editpost">Edit post</string>
     <string-array name="spinnerItems">
         <item>Student</item>
         <item>Mentor</item>

@@ -5,20 +5,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.rmit.twig.model.EventPost;
-import com.rmit.twig.model.GeneralPost;
-import com.rmit.twig.model.OppotunityPost;
-import com.rmit.twig.model.Post;
 import com.rmit.twig.R;
-import com.rmit.twig.view.Activity_CreateEvent;
-import com.rmit.twig.view.Activity_CreateGenralPost;
-import com.rmit.twig.view.Activity_CreateOppo;
 import com.rmit.twig.com.AsyncTask_Post;
 
 public class ClickListener_Post implements View.OnClickListener {
     private String type;
     private Activity activity;
     private EditText postcontent;
+    private boolean validpost;
+    private EditText title;
 
     public ClickListener_Post(Activity activity, String type) {
         this.type = type;
@@ -28,42 +23,40 @@ public class ClickListener_Post implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         postcontent=activity.findViewById(R.id.createpostcontent);
-        Post gp=null;
-        if(type.equals("GeneralPost")){
-            if(Activity_CreateGenralPost.location.getText().toString().equals("Locating...")||Activity_CreateGenralPost.location.getText().toString().equals("add location")) {
-                 gp= new GeneralPost(DataHolder.currentuser, postcontent.getText().toString());
-            }
-            else{
-                gp=new GeneralPost(DataHolder.currentuser, postcontent.getText().toString(),Activity_CreateGenralPost.location.getText().toString());
-            }
+        validpost=true;
+        if(postcontent.getText()==null){
+            Toast less = Toast.makeText(activity, "Post content is empty", Toast.LENGTH_SHORT);
+            less.show();
+            validpost=false;
         }
-        if(type.equals("Opportunity")){
-            if(Activity_CreateOppo.location.getText().toString().equals("Locating...")||Activity_CreateOppo.location.getText().toString().equals("add location")) {
-                gp= new OppotunityPost(DataHolder.currentuser, postcontent.getText().toString());
-            }
-            else{
-                gp=new OppotunityPost(DataHolder.currentuser, postcontent.getText().toString(),Activity_CreateOppo.location.getText().toString());
-            }
-        }
-        if(type.equals("Event")){
-            if(Activity_CreateEvent.location.getText().toString().equals("Locating...")||Activity_CreateEvent.location.getText().toString().equals("add location")) {
-                gp= new EventPost(DataHolder.currentuser, postcontent.getText().toString());
-            }
-            else{
-                gp=new EventPost(DataHolder.currentuser, postcontent.getText().toString(),Activity_CreateEvent.location.getText().toString());
-            }
-        }
-        gp.setUser(DataHolder.users.get(DataHolder.currentuser));
-        DataHolder.newpost=gp;
-        if (DataHolder.postcategories.size() < 1) {
+        if (DataHolder.newpost.getCategories().size() < 1) {
             Toast less = Toast.makeText(activity, "Please choose at least one category", Toast.LENGTH_SHORT);
             less.show();
+            validpost=false;
         }
-        else {
-            DataHolder.newpost.setCategories(DataHolder.postcategories);
-            gp.setCategories(DataHolder.postcategories);
+        if(DataHolder.newpost.getType().equals("event")){
+            if(DataHolder.newpost.getDate()==null){
+                Toast less = Toast.makeText(activity, "Please set a time for the event", Toast.LENGTH_SHORT);
+                less.show();
+                validpost=false;
+            }
+            if(DataHolder.newpost.getLocation()==null){
+                Toast less = Toast.makeText(activity, "Please set a location for the event", Toast.LENGTH_SHORT);
+                less.show();
+                validpost=false;
+            }
+            title=activity.findViewById(R.id.eventtitle);
+            DataHolder.newpost.setTitle(title.getText().toString());
+            if(DataHolder.newpost.getTitle().length()==0){
+                Toast less = Toast.makeText(activity, "Please set a title for the event", Toast.LENGTH_SHORT);
+                less.show();
+                validpost=false;
+            }
+        }
+        if(validpost) {
+            DataHolder.newpost.setContent(postcontent.getText().toString());
             AsyncTask_Post asyncTask_post = new AsyncTask_Post(activity);
-            asyncTask_post.execute(gp);
+            asyncTask_post.execute(DataHolder.newpost);
 
         }
     }

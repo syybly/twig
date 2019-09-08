@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Looper;
 
+import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.view.Activity_CreateEvent;
 import com.rmit.twig.view.Activity_CreateGenralPost;
 import com.rmit.twig.view.Activity_CreateOppo;
@@ -55,7 +56,6 @@ public class Service_Location extends Service implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
         Geocoder gcd = new Geocoder(this, Locale.getDefault());
-        System.out.println(location);
         List<Address> addresses = null;
         try {
             addresses = gcd.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
@@ -66,6 +66,7 @@ public class Service_Location extends Service implements LocationListener {
             String ad=addresses.get(0).getLocality()+", "+addresses.get(0).getAdminArea()+", "+addresses.get(0).getCountryName();
             if(type.equals("general")) {
                 Activity_CreateGenralPost.location.setText(ad);
+                DataHolder.newpost.setLocation(ad);
             }
             if(type.equals("oppo")){
                 Activity_CreateOppo.location.setText(ad);

@@ -29,6 +29,7 @@ public class Activity_Homepage extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
+                    toolbartitle.setText("twig");
                     SwitchToHomepage();
                     toolbartitle.setText("twig");
                     return true;
