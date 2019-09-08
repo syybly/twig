@@ -22,6 +22,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.rmit.twig.R;
 import com.rmit.twig.controller.ClickListener_EditPost;
@@ -67,6 +68,8 @@ public class Activity_EditPost extends AppCompatActivity {
                 p = post;
             }
         }
+
+        p.getNewpostimages().clear();
 
         name = findViewById(R.id.feed_name);
         name.setText(DataHolder.users.get(DataHolder.currentuser).getFullname());
@@ -142,6 +145,10 @@ public class Activity_EditPost extends AppCompatActivity {
         addimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (p.getImageurl().size() + p.getNewpostimages().size() >= 3) {
+                    Toast.makeText(Activity_EditPost.this.activity, "Cannot attach more than 3 images per post.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 PopupMenu imagepop = new PopupMenu(activity, v);
                 imagepop.getMenuInflater().inflate(R.menu.imagemenu, imagepop.getMenu());
                 imagepop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
