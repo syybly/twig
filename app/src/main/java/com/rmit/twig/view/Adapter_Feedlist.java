@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
+import com.daimajia.slider.library.Transformers.BaseTransformer;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
 import com.rmit.twig.R;
@@ -173,6 +174,14 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                 textSliderView
                         .image(url);
                 holder.feedimage.addSlider(textSliderView);
+            }
+            if(feed.getImageurl().size()==1){
+                holder.feedimage.setPagerTransformer(false, new BaseTransformer() {
+                    @Override
+                    public void onTransform(View view, float position) {
+                    }
+
+                });
             }
             holder.feedimage.stopAutoCycle();
             holder.feedimage.setVisibility(View.VISIBLE);
