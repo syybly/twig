@@ -1,25 +1,25 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:3:1-7:12
-INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:3:1-7:12
-INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:3:1-7:12
+ADDED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:3:1-7:12
+INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:3:1-7:12
+INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:3:1-7:12
 	package
-		ADDED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:5:5-52
-		INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
-		INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+		ADDED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:5:5-52
+		INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+		INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:4:5-63
+		ADDED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml:4:5-63
 uses-sdk
-INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
-INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
-INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
-INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
-		ADDED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
-		INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+		INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+		ADDED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+		INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
-		ADDED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
-		INJECTED from /Users/haixiao/Documents/Final Project/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+		INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+		ADDED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml
+		INJECTED from /Users/mingmingmingming/StudioProjects/twig_mobile/slideDateTimePicker/src/main/AndroidManifest.xml

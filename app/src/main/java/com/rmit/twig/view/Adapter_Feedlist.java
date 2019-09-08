@@ -15,11 +15,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuInflater;
-
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Transformers.BaseTransformer;
 import com.rmit.twig.controller.DataHolder;
+import android.content.Intent;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.widget.Toast;
+
+
+import com.rmit.twig.com.AsyncTask_DeletePost;
 import com.rmit.twig.model.Post;
 import com.rmit.twig.R;
 import com.squareup.picasso.Picasso;
@@ -141,8 +147,8 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GeneralViewHolder holder, int position) {
-        feed=posts.get(position);
+    public void onBindViewHolder(@NonNull GeneralViewHolder holder, final int position) {
+        feed = posts.get(position);
         Picasso.with(context)
                 .load(feed.getUser().getPhotourl())
                 .placeholder(R.drawable.nophoto)
@@ -224,6 +230,39 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
 
                                 break;
                             case R.id.delete:
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setTitle("delete post");
+                                builder.setMessage("Are you sure you want to delete it?");
+
+                                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(Adapter_Feedlist.this);
+
+                                        String deleteEndpoint;
+                                        feed = posts.get(position);
+
+                                        if (feed.getType().equals("event")) {
+                                            deleteEndpoint = "/events/";
+                                        } else if (feed.getType().equals("post")) {
+                                            deleteEndpoint = "/posts/";
+                                        }
+                                        else {
+                                            deleteEndpoint = "/NOT_IMPLEMENTED";
+                                        }
+
+                                        asyncTask_deletePost.execute(deleteEndpoint, feed.getPostID());
+                                        Toast.makeText(context,"Delete successfully",Toast.LENGTH_SHORT).show();
+                                    }
+
+                                });
+                                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(context,"Cancel",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                builder.show();
 
                                 break;
                             default:
