@@ -3,6 +3,7 @@ package com.rmit.twig.view;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.rmit.twig.R;
 import com.rmit.twig.com.AsyncTask_GetUser;
@@ -18,6 +20,8 @@ import com.rmit.twig.com.AsyncTask_GetUser;
 public class Activity_Homepage extends AppCompatActivity {
     private BottomNavigationView navView;
     private Context context;
+    private AppBarLayout appBarLayout;
+    private TextView toolbartitle;
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -26,7 +30,7 @@ public class Activity_Homepage extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     SwitchToHomepage();
-
+                    toolbartitle.setText("twig");
                     return true;
                 case R.id.navigation_explore:
 
@@ -69,7 +73,7 @@ public class Activity_Homepage extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_profile:
-
+                    toolbartitle.setText("profile");
                     SwitchToProfile();
 
                     return true;
@@ -86,6 +90,9 @@ public class Activity_Homepage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+        appBarLayout=findViewById(R.id.app_bar);
+        toolbartitle=findViewById(R.id.toolbartitle);
+        toolbartitle.setText("twig");
         context=this;
         navView = findViewById(R.id.nav_view);
         Toolbar myToolbar = findViewById(R.id.toolbar);

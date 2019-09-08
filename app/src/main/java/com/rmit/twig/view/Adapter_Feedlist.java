@@ -13,7 +13,9 @@ import android.widget.TextView;
 import android.support.v7.widget.PopupMenu;
 import android.view.MenuInflater;
 import android.content.Intent;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.widget.Toast;
 
 
 import com.rmit.twig.controller.DataHolder;
@@ -100,7 +102,25 @@ public class Adapter_Feedlist extends ArrayAdapter<Post> {
                                 context.startActivity(editintent);
                                 break;
                             case R.id.delete:
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setTitle("delete post");
+                                builder.setMessage("Are you sure you want to delete it?");
 
+                                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(context,"Delete successfully",Toast.LENGTH_SHORT).show();
+
+                                    }
+
+                                });
+                                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        Toast.makeText(context,"Cancel",Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                                builder.show();
                                 break;
                             default:
                                 break;
