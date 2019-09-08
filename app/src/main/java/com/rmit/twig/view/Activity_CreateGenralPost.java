@@ -52,6 +52,7 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     private ImageView postaddimage2;
     private ImageView postaddimage3;
     private File photoFile = null;
+    public static TextView cats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +80,7 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
                 startActivity(catintent);
             }
         });
+        cats=findViewById(R.id.cats);
         location = findViewById(R.id.feed_location);
         location.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -168,27 +168,31 @@
             android:id="@+id/line1"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
             android:background="@android:color/darker_gray" />
 
         <RelativeLayout
             android:id="@+id/addcategory"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/line1"
             android:layout_marginTop="5dp">
 
             <TextView
+                android:id="@+id/cats"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
-                android:fontFamily="@font/open_sans"
-                android:text="@string/addcategory"
-                android:gravity="center_vertical"
                 android:layout_marginBottom="8dp"
+                android:layout_toLeftOf="@+id/i1"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center_vertical"
+                android:text="@string/addcategory"
                 android:textColor="#2B2A2A"
                 android:textSize="8pt" />
 
             <ImageView
+                android:id="@+id/i1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -202,6 +206,7 @@
             android:layout_below="@id/addcategory"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginTop="2dp"
             android:background="@android:color/darker_gray"/>
 
         <RelativeLayout

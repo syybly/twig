@@ -32,6 +32,7 @@ public class Activity_AddLocation extends AppCompatActivity {
                 }
                 else{
                     DataHolder.newpost.setLocation(eventlocation.getText().toString());
+                    Activity_CreateEvent.locationtext.setText(eventlocation.getText().toString());
                     activity.finish();
                 }
             }

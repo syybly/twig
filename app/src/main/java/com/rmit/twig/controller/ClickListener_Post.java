@@ -28,7 +28,7 @@ public class ClickListener_Post implements View.OnClickListener {
             less.show();
             validpost=false;
         }
-        if (DataHolder.postcategories.size() < 1) {
+        if (DataHolder.newpost.getCategories().size() < 1) {
             Toast less = Toast.makeText(activity, "Please choose at least one category", Toast.LENGTH_SHORT);
             less.show();
             validpost=false;
@@ -47,7 +47,6 @@ public class ClickListener_Post implements View.OnClickListener {
         }
         if(validpost) {
             DataHolder.newpost.setContent(postcontent.getText().toString());
-            DataHolder.newpost.setCategories(DataHolder.postcategories);
             AsyncTask_Post asyncTask_post = new AsyncTask_Post(activity);
             asyncTask_post.execute(DataHolder.newpost);
 

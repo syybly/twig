@@ -35,6 +35,7 @@ import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
@@ -55,6 +56,9 @@ public class Activity_CreateEvent extends AppCompatActivity {
     private File photoFile = null;
     private ImageView postaddimage2;
     private ImageView postaddimage3;
+    private TextView timetext;
+    public static TextView cats;
+    public static TextView locationtext;
 
 
     @Override
@@ -71,6 +75,8 @@ public class Activity_CreateEvent extends AppCompatActivity {
         name=findViewById(R.id.feed_name);
         name.setText(DataHolder.users.get(DataHolder.currentuser).getFullname());
         addlocation=findViewById(R.id.addlocation);
+        timetext=findViewById(R.id.timetext);
+        locationtext=findViewById(R.id.locationtext);
         addlocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +85,7 @@ public class Activity_CreateEvent extends AppCompatActivity {
             }
         });
         timedate=findViewById(R.id.addtimedate);
+        cats=findViewById(R.id.cats);
         timedate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,6 +171,8 @@ public class Activity_CreateEvent extends AppCompatActivity {
             eventtime=date.toString();
             long timeInMilliSeconds = date.getTime();
             DataHolder.newpost.setDate(timeInMilliSeconds);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
+            timetext.setText(simpleDateFormat.format(date));
         }
     };
 

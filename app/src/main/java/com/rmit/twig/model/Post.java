@@ -24,6 +24,7 @@ public class Post {
         this.location=location;
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
+        this.categories=new HashSet<>();
     }
 
     public Post(String author, String content, String location) {
@@ -32,6 +33,7 @@ public class Post {
         this.location=location;
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
+        this.categories=new HashSet<>();
     }
 
     public Post(String author, String type){
@@ -39,6 +41,7 @@ public class Post {
         this.type=type;
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
+        this.categories=new HashSet<>();
     }
 
     public String getPostID() {
