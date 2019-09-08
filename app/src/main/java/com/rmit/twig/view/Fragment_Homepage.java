@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +20,7 @@ import com.rmit.twig.R;
 import java.util.ArrayList;
 
 public class Fragment_Homepage extends Fragment {
-    private ListView feedlist;
+    private RecyclerView feedlist;
     private View view;
     private Context context;
 
@@ -29,6 +32,7 @@ public class Fragment_Homepage extends Fragment {
         feedlist=view.findViewById(R.id.feedlist);
         Adapter_Feedlist adapter=new Adapter_Feedlist(context,DataHolder.posts);
         feedlist.setAdapter(adapter);
+        feedlist.setLayoutManager(new LinearLayoutManager(context));
         AsyncTask_GetUser getUser=new AsyncTask_GetUser(view,adapter);
         getUser.execute();
         return  view;
@@ -39,5 +43,7 @@ public class Fragment_Homepage extends Fragment {
         super.onResume();
         Adapter_Feedlist adapter2=new Adapter_Feedlist(context,DataHolder.posts);
         feedlist.setAdapter(adapter2);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
+        feedlist.setLayoutManager(linearLayoutManager);
     }
 }

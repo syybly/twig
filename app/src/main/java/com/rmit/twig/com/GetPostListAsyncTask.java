@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -76,7 +77,13 @@ public class GetPostListAsyncTask extends AsyncTask<String, String, String> {
                 String id = post.getString("_id");
                 String author = post.getString("author");
                 String type=post.getString("type");
+                long createtime=post.getLong("createdTime");
                 Post feed = new Post(author,type);
+                feed.setCreatetime(createtime);
+                if(type.equals("event")){
+                    long eventdate=post.getLong("time");
+                    feed.setDate(eventdate);
+                }
                 feed.setContent(content);
                 if(!post.getString("location").equals("null")){
                     feed.setLocation(post.getString("location"));

@@ -5,14 +5,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.location.LocationListener;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -27,7 +33,10 @@ import com.rmit.twig.service.Service_Location;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 
 public class Activity_CreateGenralPost extends AppCompatActivity implements LocationListener {
@@ -40,67 +49,96 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     public static TextView location;
     private ImageButton addimage;
     private ImageView postaddimage1;
+    private File photoFile = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_genral_post);
-        Post p=new Post(DataHolder.currentuser,"post");
+        Post p = new Post(DataHolder.currentuser, "post");
         p.setUser(DataHolder.users.get(DataHolder.currentuser));
-        DataHolder.newpost=p;
-        categories=new HashSet<>();
-        activity=this;
-        userphoto= findViewById(R.id.feed_userphoto);
-        name=findViewById(R.id.feed_name);
+        DataHolder.newpost = p;
+        categories = new HashSet<>();
+        activity = this;
+        userphoto = findViewById(R.id.feed_userphoto);
+        name = findViewById(R.id.feed_name);
         name.setText(DataHolder.users.get(DataHolder.currentuser).getFullname());
         Picasso.with(this)
                 .load(DataHolder.users.get(DataHolder.currentuser).getPhotourl())
                 .placeholder(R.drawable.nophoto)
                 .error(R.drawable.nophoto)
                 .into(userphoto);
-        categorylayout=findViewById(R.id.addcategory);
-        post=findViewById(R.id.post);
+        categorylayout = findViewById(R.id.addcategory);
+        post = findViewById(R.id.post);
         categorylayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent catintent=new Intent(activity, Activity_PostCategory.class);
+                Intent catintent = new Intent(activity, Activity_PostCategory.class);
                 startActivity(catintent);
             }
         });
-        location=findViewById(R.id.feed_location);
+        location = findViewById(R.id.feed_location);
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 location.setText("Locating...");
-                String[] PERMISSIONS ={  android.Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION };
-                if ( ContextCompat.checkSelfPermission( activity, android.Manifest.permission.ACCESS_COARSE_LOCATION ) != PackageManager.PERMISSION_GRANTED ) {
-                    ActivityCompat.requestPermissions( activity, PERMISSIONS ,112);
-                }
-                else {
-                    Intent intent=new Intent(activity, Service_Location.class);
-                    intent.putExtra("type","general");
+                String[] PERMISSIONS = {android.Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
+                if (ContextCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(activity, PERMISSIONS, 112);
+                } else {
+                    Intent intent = new Intent(activity, Service_Location.class);
+                    intent.putExtra("type", "general");
                     activity.startService(intent);
                 }
             }
         });
-        post.setOnClickListener(new ClickListener_Post(activity,"post"));
-        addimage=findViewById(R.id.addimage);
-        postaddimage1=findViewById(R.id.addpostimage1);
+        post.setOnClickListener(new ClickListener_Post(activity, "post"));
+        addimage = findViewById(R.id.addimage);
+        postaddimage1 = findViewById(R.id.addpostimage1);
+        final String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
         addimage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] PERMISSIONS ={  Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE };
-                if ( ContextCompat.checkSelfPermission( activity, Manifest.permission.READ_EXTERNAL_STORAGE ) != PackageManager.PERMISSION_GRANTED ) {
-                    ActivityCompat.requestPermissions( activity, PERMISSIONS ,113);
-                }
-                else {
-                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                    intent.setType("image/*");
-//                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(Intent.createChooser(intent, "Complete action using"), 1);
-                }
-            }
+                PopupMenu imagepop = new PopupMenu(activity, v);
+                imagepop.getMenuInflater().inflate(R.menu.imagemenu, imagepop.getMenu());
+                imagepop.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.choosefromalbum:
 
+                                if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(activity, PERMISSIONS, 113);
+                                } else {
+                                    Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    intent.setType("image/*");
+                                    startActivityForResult(Intent.createChooser(intent, "Complete action using"), 1);
+                                }
+                                break;
+
+                            case R.id.camera:
+                                if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, 114);
+                                }
+                                else {
+                                    Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                                    try {
+                                        photoFile = createImageFile();
+                                    } catch (IOException ex) {
+
+                                    }
+                                    Uri photoURI = FileProvider.getUriForFile(activity,
+                                            "com.example.android.fileprovider",
+                                            photoFile);
+                                    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                                    startActivityForResult(cameraIntent, 2);
+                                }
+                        }
+                        return false;
+                    }
+                });
+                imagepop.show();
+            }
         });
     }
 
@@ -138,13 +176,13 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Check which request we're responding to
-        if (requestCode == 1) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                postaddimage1.setImageURI(data.getData());
-                postaddimage1.setVisibility(View.VISIBLE);
-                Uri imageUri = data.getData();
-                String imagepath=imageUri.getPath();
+            if (requestCode == 1) {
+                // Make sure the request was successful
+                if (resultCode == RESULT_OK) {
+                    postaddimage1.setImageURI(data.getData());
+                    postaddimage1.setVisibility(View.VISIBLE);
+                    Uri imageUri = data.getData();
+                    String imagepath = imageUri.getPath();
 //                try {
 //                    InputStream inputStream = activity.getContentResolver().openInputStream(data.getData());
 //                } catch (FileNotFoundException e) {
@@ -156,18 +194,18 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
 //                    imagepath=pa[1];
 //                }
 //                else{
-                    String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                    String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
                     Cursor cursor = getContentResolver().query(imageUri,
                             filePathColumn, null, null, null);
                     cursor.moveToFirst();
 
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    imagepath= cursor.getString(columnIndex);
+                    imagepath = cursor.getString(columnIndex);
                     cursor.close();
 //                }
-                File imagefile=new File(imagepath);
-                DataHolder.newpost.getNewpostimages().add(imagefile);
+                    File imagefile = new File(imagepath);
+                    DataHolder.newpost.getNewpostimages().add(imagefile);
 //                try {
 //                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 //                    imagefiles.add(bitmap);
@@ -175,8 +213,31 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
 //                    e.printStackTrace();
 //                }
 
+
+                }
             }
-        }
+
+            if (requestCode == 2 && resultCode == RESULT_OK) {
+                Bitmap imageBitmap = BitmapFactory.decodeFile(photoFile.getPath());
+                postaddimage1.setImageBitmap(imageBitmap);
+                postaddimage1.setVisibility(View.VISIBLE);
+                DataHolder.newpost.getNewpostimages().add(photoFile);
+            }
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        return image;
     }
 
 }

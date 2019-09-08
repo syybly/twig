@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_marginBottom="30dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/feed_head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <com.rmit.twig.view.CircleImageView
             android:id="@+id/feed_userphoto"
             android:layout_width="60dp"
             android:layout_height="60dp"
@@ -39,6 +40,19 @@
             android:textFontWeight="300"
             android:textSize="15dp" />
 
+        <TextView
+            android:id="@+id/eventtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/feed_location"
+            android:layout_alignLeft="@id/feed_name"
+            android:fontFamily="@font/open_sans_light"
+            android:textColor="#393939"
+            android:visibility="invisible"
+            android:textFontWeight="300"
+            android:textSize="15dp"
+            />
+
         <ImageButton
             android:id="@+id/delete_edit"
             android:layout_width="40dp"
@@ -59,6 +73,7 @@
         android:adjustViewBounds="true"
         android:maxWidth="250dp"
         android:maxHeight="300dp"
+        android:visibility="gone"
         android:scaleType="fitXY"/>
 
     <LinearLayout
@@ -117,13 +132,26 @@
         android:text="Type something to describe about the event and this is a paragraph about dummy text to show content fun event!"
         android:textColor="#393939"
         android:textFontWeight="382"
-        android:textSize="16dp" />
+        android:textSize="20sp" />
+
+
+    <TextView
+        android:id="@+id/feedcat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_below="@id/feed_content"
+        android:layout_marginTop="5dp"
+        android:layout_alignStart="@+id/feed_content"
+        android:textColor="@color/orange" />
 
     <LinearLayout
         android:id="@+id/eventbuttons"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/feed_content"
+        android:layout_below="@id/feedcat"
+        android:visibility="gone"
+        android:layout_marginBottom="10dp"
         android:layout_marginTop="15dp"
         android:orientation="horizontal">
 
@@ -133,6 +161,7 @@
             android:layout_height="38dp"
             android:background="@drawable/radium"
             android:fontFamily="@font/open_sans_semibold"
+            android:visibility="gone"
             android:text="I'm Going"
             android:layout_marginLeft="30dp"
             android:textFontWeight="600"
@@ -142,6 +171,7 @@
             android:id="@+id/decidelater"
             android:layout_width="150dp"
             android:layout_height="38dp"
+            android:visibility="gone"
             android:background="@drawable/radium"
             android:fontFamily="@font/open_sans_semibold"
             android:layout_marginLeft="42dp"
@@ -149,4 +179,5 @@
             android:textFontWeight="600"
             android:textSize="14dp" />
     </LinearLayout>
+
 </RelativeLayout>
