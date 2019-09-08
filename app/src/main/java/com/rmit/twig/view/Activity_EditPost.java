@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.rmit.twig.R;
+import com.rmit.twig.controller.ClickListener_EditPost;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
 import com.squareup.picasso.Picasso;
@@ -51,6 +52,7 @@ public class Activity_EditPost extends AppCompatActivity {
     private File photoFile = null;
     public static TextView cats;
     private TextView edit;
+    private Post p;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +62,7 @@ public class Activity_EditPost extends AppCompatActivity {
 
         String postID = getIntent().getStringExtra("postID");
 
-        Post p = null;
-
-        for (Post post: DataHolder.posts) {
+        for (Post post : DataHolder.posts) {
             if (postID.equals(post.getPostID())) {
                 p = post;
             }
@@ -94,10 +94,10 @@ public class Activity_EditPost extends AppCompatActivity {
             }
         });
 
-        cats=findViewById(R.id.cats);
+        cats = findViewById(R.id.cats);
 
         String catsText = "";
-        for(String s:p.getCategories()){
+        for (String s : p.getCategories()) {
             catsText = catsText + "#" + s + "   ";
         }
 
@@ -106,11 +106,20 @@ public class Activity_EditPost extends AppCompatActivity {
         location = findViewById(R.id.feed_location);
         location.setText(p.getLocation());
 
-//        post.setOnClickListener(new ClickListener_Post(activity, "post"));
+        edit.setOnClickListener(new ClickListener_EditPost(activity, p));
+
+        TextView cancelButton = findViewById(R.id.cancel);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Activity_EditPost.this.finish();
+            }
+        });
+
         addimage = findViewById(R.id.addimage);
         postaddimage1 = findViewById(R.id.addpostimage1);
-        postaddimage2=findViewById(R.id.addpostimage2);
-        postaddimage3=findViewById(R.id.addpostimage3);
+        postaddimage2 = findViewById(R.id.addpostimage2);
+        postaddimage3 = findViewById(R.id.addpostimage3);
 
         ArrayList<ImageView> postImageViews = new ArrayList<ImageView>();
         postImageViews.add(postaddimage1);
@@ -153,8 +162,7 @@ public class Activity_EditPost extends AppCompatActivity {
                             case R.id.camera:
                                 if (ContextCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                                     ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.CAMERA}, 114);
-                                }
-                                else {
+                                } else {
                                     Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                                     try {
                                         photoFile = createImageFile();
@@ -180,79 +188,59 @@ public class Activity_EditPost extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Check which request we're responding to
-//        int imagenum=DataHolder.newpost.getNewpostimages().size();
-//        if (requestCode == 1) {
-//            // Make sure the request was successful
-//            if (resultCode == RESULT_OK) {
-//                Uri imageUri = data.getData();
-//                String imagepath = imageUri.getPath();
-////                try {
-////                    InputStream inputStream = activity.getContentResolver().openInputStream(data.getData());
-////                } catch (FileNotFoundException e) {
-////                    e.printStackTrace();
-////                }
-////                System.out.println(imageUri.toString());
-////                if(Build.VERSION.SDK_INT==28){
-////                    String[] pa=imagepath.split(":");
-////                    imagepath=pa[1];
-////                }
-////                else{
-//                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-//
-//                Cursor cursor = getContentResolver().query(imageUri,
-//                        filePathColumn, null, null, null);
-//                cursor.moveToFirst();
-//
-//                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//                imagepath = cursor.getString(columnIndex);
-//                cursor.close();
-////                }
-//                File imagefile = new File(imagepath);
-//                DataHolder.newpost.getNewpostimages().add(imagefile);
-//
-//                switch (imagenum){
-//                    case 0:
-//                        postaddimage1.setVisibility(View.VISIBLE);
-//                        postaddimage1.setImageURI(data.getData());
-//                        break;
-//                    case 1:
-//                        postaddimage2.setVisibility(View.VISIBLE);
-//                        postaddimage2.setImageURI(data.getData());
-//                        break;
-//                    case 2:
-//                        postaddimage3.setVisibility(View.VISIBLE);
-//                        postaddimage3.setImageURI(data.getData());
-//                        break;
-//                }
-//                try {
-//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
-//                    imagefiles.add(bitmap);
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
+        int imagenum = p.getNewpostimages().size() + p.getImageurl().size();
+        if (requestCode == 1) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                Uri imageUri = data.getData();
+                String imagepath = imageUri.getPath();
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
-//
-//            }
-//        }
-//
-//        if (requestCode == 2 && resultCode == RESULT_OK) {
-//            Bitmap imageBitmap = BitmapFactory.decodeFile(photoFile.getPath());
-//            DataHolder.newpost.getNewpostimages().add(photoFile);
-//            switch (imagenum){
-//                case 0:
-//                    postaddimage1.setVisibility(View.VISIBLE);
-//                    postaddimage1.setImageBitmap(imageBitmap);
-//                    break;
-//                case 1:
-//                    postaddimage2.setVisibility(View.VISIBLE);
-//                    postaddimage2.setImageBitmap(imageBitmap);
-//                    break;
-//                case 2:
-//                    postaddimage3.setVisibility(View.VISIBLE);
-//                    postaddimage3.setImageBitmap(imageBitmap);
-//                    break;
-//            }
-//        }
+                Cursor cursor = getContentResolver().query(imageUri,
+                        filePathColumn, null, null, null);
+                cursor.moveToFirst();
+
+                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                imagepath = cursor.getString(columnIndex);
+                cursor.close();
+                File imagefile = new File(imagepath);
+                p.getNewpostimages().add(imagefile);
+
+                switch (imagenum) {
+                    case 0:
+                        postaddimage1.setVisibility(View.VISIBLE);
+                        postaddimage1.setImageURI(data.getData());
+                        break;
+                    case 1:
+                        postaddimage2.setVisibility(View.VISIBLE);
+                        postaddimage2.setImageURI(data.getData());
+                        break;
+                    case 2:
+                        postaddimage3.setVisibility(View.VISIBLE);
+                        postaddimage3.setImageURI(data.getData());
+                        break;
+                }
+            }
+        }
+
+        if (requestCode == 2 && resultCode == RESULT_OK) {
+            Bitmap imageBitmap = BitmapFactory.decodeFile(photoFile.getPath());
+            p.getNewpostimages().add(photoFile);
+            switch (imagenum) {
+                case 0:
+                    postaddimage1.setVisibility(View.VISIBLE);
+                    postaddimage1.setImageBitmap(imageBitmap);
+                    break;
+                case 1:
+                    postaddimage2.setVisibility(View.VISIBLE);
+                    postaddimage2.setImageBitmap(imageBitmap);
+                    break;
+                case 2:
+                    postaddimage3.setVisibility(View.VISIBLE);
+                    postaddimage3.setImageBitmap(imageBitmap);
+                    break;
+            }
+        }
     }
 
     private File createImageFile() throws IOException {
