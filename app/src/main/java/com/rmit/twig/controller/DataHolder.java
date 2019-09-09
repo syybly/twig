@@ -18,12 +18,13 @@ public class DataHolder {
 //   public static ArrayList<String> postimagefiles;
    public static Post newpost;
    public static User userholder;
+   public static ArrayList<Post> bookmarks;
 
 
    public DataHolder(){
       if(posts==null)
       posts=new ArrayList<Post>();
-//      postimagefiles=new ArrayList<>();
+      bookmarks=new ArrayList<>();
       users=new HashMap<>();
       userholder=new User("Loading","Loading","Loading");
    }
