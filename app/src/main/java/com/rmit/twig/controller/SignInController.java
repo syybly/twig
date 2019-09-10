@@ -26,15 +26,7 @@ public class SignInController implements View.OnClickListener {
         EditText Password=activity.findViewById(R.id.Password);
         this.email=Email.getText().toString();
         this.password=Password.getText().toString();
-        JSONObject signindata = new JSONObject();
-        String url ="https://twig-api-v2.herokuapp.com/users/signin";
-        try {
-            signindata.put("email", email);
-            signindata.put("password", password);
-            new SignInAsyncTask(activity).execute(url,signindata.toString());
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        new SignInAsyncTask(activity).execute(email,password);
 
     }
 }
