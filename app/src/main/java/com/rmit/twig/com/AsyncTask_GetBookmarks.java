@@ -13,36 +13,58 @@ import com.rmit.twig.model.Post;
 import com.rmit.twig.view.Activity_CreateGenralPost;
 import com.rmit.twig.view.Adapter_Feedlist;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class AsyncTask_GetBookmarks extends AsyncTask<String, String, String> {
     private ArrayList<String> bookmarkid=new ArrayList<>();
     private Activity activity;
-    private Adapter_Feedlist adapter_feedlist;
 
-    public AsyncTask_GetBookmarks(Activity activity, Adapter_Feedlist adapter_feedlist) {
+    public AsyncTask_GetBookmarks(Activity activity) {
         this.activity = activity;
-        this.adapter_feedlist = adapter_feedlist;
     }
 
     @Override
     protected String doInBackground(String... params) {
-        return null;
+        try {
+            String url = "https://twig-api-v2.herokuapp.com/feeds/saved";
+            OkHttpClient client = new OkHttpClient();
+            Request request = new Request.Builder()
+                    .header("x-auth", DataHolder.users.get(DataHolder.currentuser).getToken())
+                    .url(url)
+                    .get()
+                    .build();
+            Response response = client.newCall(request).execute();
+            int statusCode = response.code();
+            if (statusCode != 200) {
+                return "false";
+            }
+            return response.body().string();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "false";
     }
 
     @Override
     protected void onPostExecute(String result) {
-        for(String id:bookmarkid){
-            for(Post p: DataHolder.posts){
-                if(id.equals(p.getPostID())){
-                    DataHolder.bookmarks.add(p);
-                    RecyclerView l=activity.findViewById(R.id.bookmarklist);
-                    adapter_feedlist.notifyDataSetChanged();
-                    l.setAdapter(adapter_feedlist);
-                    l.setLayoutManager(new LinearLayoutManager(activity));
-                }
-            }
-        }
+        super.onPostExecute(result);
+//        for(String id:bookmarkid){
+//            for(Post p: DataHolder.posts){
+//                if(id.equals(p.getPostID())){
+//                    DataHolder.bookmarks.add(p);
+//                    RecyclerView l=activity.findViewById(R.id.bookmarklist);
+//                    adapter_feedlist.notifyDataSetChanged();
+//                    l.setAdapter(adapter_feedlist);
+//                    l.setLayoutManager(new LinearLayoutManager(activity));
+//                }
+//            }
+//        }
 
     }
 }
