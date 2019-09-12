@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Transformers.BaseTransformer;
+import com.rmit.twig.com.AsyncTask_SaveToBookmark;
 import com.rmit.twig.controller.DataHolder;
 import android.content.Intent;
 import android.app.AlertDialog;
@@ -33,6 +34,7 @@ import com.squareup.picasso.Picasso;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.GeneralViewHolder> {
     private Context context;
@@ -67,6 +69,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
         private Button going;
         private Button decidelater;
         private TextView title;
+        private ImageButton savetobookmark;
         public GeneralViewHolder(View convertView) {
             super(convertView);
             eventtime=convertView.findViewById(R.id.eventtime);
@@ -83,6 +86,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
             postaction=convertView.findViewById(R.id.post_action);
             deletebutton=convertView.findViewById(R.id.delete_edit);
             title=convertView.findViewById(R.id.titletext);
+            savetobookmark=convertView.findViewById(R.id.feed_save);
         }
     }
 
@@ -166,6 +170,15 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
             cats=cats+"#"+s+"   ";
         }
         holder.feedcat.setText(cats);
+        holder.savetobookmark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AsyncTask_SaveToBookmark asyncTask_saveToBookmark=new AsyncTask_SaveToBookmark(context);
+                asyncTask_saveToBookmark.execute(posts.get(position).getPostID(),feed.getType());
+                Intent intent=new Intent(context,Activity_Bookmarks.class);
+                context.startActivity(intent);
+            }
+        });
         Timestamp current = new Timestamp(System.currentTimeMillis());
         long currenttime=current.getTime();
         double creatediff=(double)(currenttime-feed.getCreatetime())/ (60 * 60 * 1000);
