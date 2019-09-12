@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Transformers.BaseTransformer;
+import com.rmit.twig.com.AsyncTask_RemoveBookmark;
 import com.rmit.twig.com.AsyncTask_SaveToBookmark;
 import com.rmit.twig.controller.DataHolder;
 import android.content.Intent;
@@ -153,7 +154,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
     }
 
     @Override
-    public void onBindViewHolder(@NonNull GeneralViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final GeneralViewHolder holder, final int position) {
         feed = posts.get(position);
         Picasso.with(context)
                 .load(feed.getUser().getPhotourl())
@@ -170,15 +171,31 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
             cats=cats+"#"+s+"   ";
         }
         holder.feedcat.setText(cats);
-        holder.savetobookmark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AsyncTask_SaveToBookmark asyncTask_saveToBookmark=new AsyncTask_SaveToBookmark(context);
-                asyncTask_saveToBookmark.execute(posts.get(position).getPostID(),feed.getType());
-                Intent intent=new Intent(context,Activity_Bookmarks.class);
-                context.startActivity(intent);
-            }
-        });
+
+        if(posts.get(position).isSaved()){
+            holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save_r));
+            holder.savetobookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save));
+                    AsyncTask_RemoveBookmark asyncTask_removeBookmark=new AsyncTask_RemoveBookmark(context,posts.get(position));
+                    asyncTask_removeBookmark.execute();
+                    Adapter_Feedlist.this.notifyDataSetChanged();
+                }
+            });
+        }
+        else{
+            holder.savetobookmark.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AsyncTask_SaveToBookmark asyncTask_saveToBookmark=new AsyncTask_SaveToBookmark(context,posts.get(position));
+                    asyncTask_saveToBookmark.execute();
+                    Intent intent=new Intent(context,Activity_Bookmarks.class);
+                    context.startActivity(intent);
+                    holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save_r));
+                }
+            });
+        }
         Timestamp current = new Timestamp(System.currentTimeMillis());
         long currenttime=current.getTime();
         double creatediff=(double)(currenttime-feed.getCreatetime())/ (60 * 60 * 1000);

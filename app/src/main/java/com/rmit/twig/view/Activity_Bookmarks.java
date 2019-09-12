@@ -50,7 +50,6 @@ public class Activity_Bookmarks extends AppCompatActivity {
                 for(int i=0;i<jsonArray.length();i++){
                     JSONObject feedjson=jsonArray.getJSONObject(i).getJSONObject("feed");
                     String feedid=feedjson.getString("_id");
-                    System.out.println(feedid);
                     for(Post p:DataHolder.posts){
                         if(feedid.equals(p.getPostID())){
                             System.out.println(p.getContent());

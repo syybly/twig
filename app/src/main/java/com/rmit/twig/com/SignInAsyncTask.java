@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.rmit.twig.controller.DataHolder;
+import com.rmit.twig.model.Bookmark;
 import com.rmit.twig.model.User;
 import com.rmit.twig.view.Activity_Homepage;
 
@@ -107,12 +108,26 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             String id=user.getString("_id");
             String name=user.getString("name");
             String email=user.getString("email");
+            JSONArray savedposts=user.getJSONArray("savedPosts");
+            JSONArray savedevents=user.getJSONArray("savedEvents");
             ArrayList<String> interests=new ArrayList<>();
             for (int i=0;i<jsonArray.length();i++) {
                 interests.add(jsonArray.get(i).toString());
             }
             String token=headers.get("x-auth").get(0);
             User newuser=new User(id,email,name,interests);
+            for(int q=0;q<savedposts.length();q++){
+                String bookmarkid=savedposts.getJSONObject(q).getString("_id");
+                String feedid=savedposts.getJSONObject(q).getString("feed");
+                Bookmark b=new Bookmark(bookmarkid,feedid,"post");
+                newuser.getSavedposts().put(feedid,b);
+            }
+            for(int q=0;q<savedevents.length();q++){
+                String bookmarkid=savedposts.getJSONObject(q).getString("_id");
+                String feedid=savedposts.getJSONObject(q).getString("feed");
+                Bookmark b2=new Bookmark(bookmarkid,feedid,"event");
+                newuser.getSavedposts().put(feedid,b2);
+            }
 //            DataHolder.user=newuser;
 //            DataHolder.user.setToken(token);
             newuser.setToken(token);

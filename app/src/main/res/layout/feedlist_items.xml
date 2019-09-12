@@ -114,9 +114,10 @@
         <ImageButton
             android:id="@+id/feed_save"
             android:layout_width="30dp"
-            android:layout_height="wrap_content"
+            android:layout_height="27dp"
             android:layout_marginLeft="12dp"
             android:background="#ffffff"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/save" />
 
         <TextView

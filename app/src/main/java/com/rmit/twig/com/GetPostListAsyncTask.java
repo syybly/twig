@@ -104,6 +104,9 @@ public class GetPostListAsyncTask extends AsyncTask<String, String, String> {
                     }
                 }
                 feed.setUser(DataHolder.userholder);
+                if(DataHolder.users.get(DataHolder.currentuser).getSavedposts().containsKey(id)||DataHolder.users.get(DataHolder.currentuser).getSavedevents().containsKey(id)){
+                    feed.setSaved(true);
+                }
                 DataHolder.posts.add(feed);
 
 
