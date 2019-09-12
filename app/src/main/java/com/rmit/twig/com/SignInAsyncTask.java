@@ -49,7 +49,10 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
         BufferedReader reader = null;
 
         try {
-            URL url = new URL(params[0]);
+            JSONObject signindata = new JSONObject();
+            signindata.put("email", params[0]);
+            signindata.put("password", params[1]);
+            URL url = new URL("https://twig-api-v2.herokuapp.com/users/signin");
             connection = (HttpsURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type", "application/json");
@@ -58,7 +61,7 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             connection.connect();
 
             DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
-            wr.writeBytes(params[1]);
+            wr.writeBytes(signindata.toString());
 
             int status=connection.getResponseCode();
             headers = connection.getHeaderFields();
@@ -77,9 +80,7 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             }
             return buffer.toString();
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         } finally {
             if (connection != null) {
