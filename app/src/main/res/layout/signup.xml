@@ -64,8 +64,30 @@
         android:theme="@style/LogInButtonStyle"
         android:ems="12"/>
 
+    <TextView
+        android:id="@+id/tc1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUp"
+        android:layout_alignLeft="@id/SignUp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        android:textSize="10dp"
+        android:theme="@style/EditTextTheme"
+        android:text="@string/tc1" />
 
-
+    <TextView
+        android:id="@+id/tc2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SignUp"
+        android:layout_toRightOf="@id/tc1"
+        android:layout_marginLeft="3dp"
+        android:layout_marginTop="7dp"
+        android:textSize="10dp"
+        android:textColor="@color/orange"
+        android:theme="@style/EditTextTheme"
+        android:text="@string/tc2" />
 
 
 </RelativeLayout>

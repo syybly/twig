@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/tools"
     android:layout_marginBottom="30dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:id="@+id/feed_head"
@@ -58,23 +60,32 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignTop="@+id/feed_name"
-            android:layout_marginLeft="220dp"
-            android:layout_toRightOf="@+id/feed_name"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
             android:background="#ffffff"
             app:srcCompat="@drawable/overflow" />
     </RelativeLayout>
 
-    <ImageView
+<!--    <ImageView-->
+<!--        android:id="@+id/feed_image"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/feed_head"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        android:adjustViewBounds="true"-->
+<!--        android:maxWidth="250dp"-->
+<!--        android:maxHeight="300dp"-->
+<!--        android:visibility="gone"-->
+<!--        android:scaleType="fitXY"/>-->
+
+    <com.daimajia.slider.library.SliderLayout
         android:id="@+id/feed_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
+        android:visibility="gone"
         android:layout_below="@id/feed_head"
         android:layout_marginTop="12dp"
-        android:adjustViewBounds="true"
-        android:maxWidth="250dp"
-        android:maxHeight="300dp"
-        android:visibility="gone"
-        android:scaleType="fitXY"/>
+        />
 
     <LinearLayout
         android:id="@+id/post_action"
@@ -103,9 +114,10 @@
         <ImageButton
             android:id="@+id/feed_save"
             android:layout_width="30dp"
-            android:layout_height="wrap_content"
+            android:layout_height="27dp"
             android:layout_marginLeft="12dp"
             android:background="#ffffff"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/save" />
 
         <TextView
@@ -121,15 +133,28 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/feed_content"
+        android:id="@+id/titletext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/post_action"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="15dp"
+        android:fontFamily="@font/open_sans_light"
+        android:textStyle="bold"
+        android:textFontWeight="382"
+        android:visibility="gone"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/feed_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/titletext"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="5dp"
         android:layout_marginRight="15dp"
         android:fontFamily="@font/open_sans_light"
-        android:text="Type something to describe about the event and this is a paragraph about dummy text to show content fun event!"
         android:textColor="#393939"
         android:textFontWeight="382"
         android:textSize="20sp" />

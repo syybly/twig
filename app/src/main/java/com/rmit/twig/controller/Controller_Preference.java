@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.rmit.twig.R;
 import com.rmit.twig.model.User;
-import com.rmit.twig.com.SignUpAsyncTask;
+import com.rmit.twig.asynctask.SignUpAsyncTask;
 
 import org.json.JSONArray;
 import org.json.JSONException;

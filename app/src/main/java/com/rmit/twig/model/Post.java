@@ -16,6 +16,8 @@ public class Post {
     private String type;
     private ArrayList<File> newpostimages;
     private long createtime;
+    private String title;
+    private boolean saved;
 
     public Post(String postID, String author, String content, String location) {
         this.postID = postID;
@@ -24,6 +26,8 @@ public class Post {
         this.location=location;
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
+        this.categories=new HashSet<>();
+        this.saved=false;
     }
 
     public Post(String author, String content, String location) {
@@ -32,6 +36,8 @@ public class Post {
         this.location=location;
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
+        this.categories=new HashSet<>();
+        this.saved=false;
     }
 
     public Post(String author, String type){
@@ -39,6 +45,8 @@ public class Post {
         this.type=type;
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
+        this.categories=new HashSet<>();
+        this.saved=false;
     }
 
     public String getPostID() {
@@ -127,5 +135,40 @@ public class Post {
 
     public void setCreatetime(long createtime) {
         this.createtime = createtime;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isSaved() {
+        return saved;
+    }
+
+    public void setSaved(boolean saved) {
+        this.saved = saved;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (!(obj instanceof Post)) {
+            return false;
+        }
+
+        Post p2=(Post)obj;
+        return this.getPostID().equals(p2.getPostID());
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getPostID().hashCode();
     }
 }

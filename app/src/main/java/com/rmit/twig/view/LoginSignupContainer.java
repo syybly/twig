@@ -26,6 +26,9 @@ public class LoginSignupContainer extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        DataHolder.posts.clear();
+//        DataHolder.bookmarks.clear();
+        DataHolder.users.clear();
     }
 
     public void switchToHomepahe() {

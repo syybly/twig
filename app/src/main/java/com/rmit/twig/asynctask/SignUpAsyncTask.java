@@ -1,19 +1,12 @@
-package com.rmit.twig.com;
+package com.rmit.twig.asynctask;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.rmit.twig.controller.DataHolder;
-import com.rmit.twig.model.User;
-import com.rmit.twig.view.Activity_Homepage;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -22,7 +15,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -103,28 +95,11 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
         if (pd.isShowing()){
             pd.dismiss();
         }
-        if(result!=null)
-            try {
-                JSONObject user=new JSONObject(result);
-                JSONArray jsonArray=user.getJSONArray("interests");
-                String id=user.getString("_id");
-                String name=user.getString("name");
-                String email=user.getString("email");
-                ArrayList<String> interests=new ArrayList<>();
-                for (int i=0;i<jsonArray.length();i++) {
-                    interests.add(jsonArray.get(i).toString());
-                }
-                String token=headers.get("x-auth").get(0);
-                User newuser=new User(id,email,name,interests);
-                newuser.setToken(token);
-                DataHolder.currentuser=id;
-                DataHolder.users.put(id,newuser);
-                Intent intent = new Intent(context, Activity_Homepage.class);
-                context.startActivity(intent);
-                ((Activity)context).finish();
-            } catch (JSONException e) {
-
-            }
+        if(result!=null) {
+            SignInAsyncTask signInAsyncTask = new SignInAsyncTask(context);
+            signInAsyncTask.execute(DataHolder.newuser.getEmail(), DataHolder.newuser.getPassword());
+            ((Activity)context).finish();
+        }
         else {
             Toast nomatch = Toast.makeText(context, "Something went wrong, please try again.", Toast.LENGTH_SHORT);
             nomatch.show();

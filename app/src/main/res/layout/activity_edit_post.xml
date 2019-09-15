@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.Activity_CreateGenralPost">
+    tools:context=".view.Activity_EditPost">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -13,45 +13,45 @@
         android:layout_alignParentTop="true"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#F0F0F0"
-        android:theme="?attr/actionBarTheme">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#F0F0F0"
+            android:theme="?attr/actionBarTheme">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#2B2A2A"
-            android:textSize="20sp"
-            android:fontFamily="@font/open_sans_semibold"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/createpost"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#2B2A2A"
+                android:textSize="20sp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/editpost"/>
 
-        <TextView
-            android:id="@+id/cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#2B2A2A"
-            android:textSize="20sp"
-            android:fontFamily="@font/open_sans_light"
-            android:layout_gravity="start"
-            android:textStyle="italic"
-            android:text="@string/cancel"/>
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#2B2A2A"
+                android:textSize="20sp"
+                android:fontFamily="@font/open_sans_light"
+                android:layout_gravity="start"
+                android:textStyle="italic"
+                android:text="@string/cancel"/>
 
-        <TextView
-            android:id="@+id/post"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#4A9EEF"
-            android:textSize="20sp"
-            android:fontFamily="@font/open_sans_semibold"
-            android:layout_gravity="end"
-            android:layout_marginRight="20dp"
-            android:text="@string/post"/>
+            <TextView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#4A9EEF"
+                android:textSize="20sp"
+                android:fontFamily="@font/open_sans_semibold"
+                android:layout_gravity="end"
+                android:layout_marginRight="20dp"
+                android:text="@string/edit"/>
 
-    </android.support.v7.widget.Toolbar>
+        </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
@@ -95,7 +95,7 @@
     </RelativeLayout>
 
     <EditText
-        android:id="@+id/createpostcontent"
+        android:id="@+id/editpostcontent"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@id/feed_head"
@@ -112,7 +112,7 @@
         android:id="@+id/imagelayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/createpostcontent"
+        android:layout_below="@id/editpostcontent"
         android:layout_marginTop="20dp">
 
         <ImageView

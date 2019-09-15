@@ -1,6 +1,9 @@
 package com.rmit.twig.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
 
 public class User {
     private String id;
@@ -12,6 +15,9 @@ public class User {
     private ArrayList<String> preference;
     private String photourl;
     private String token;
+    private Map<String,Bookmark> savedposts;
+    private ArrayList<String> bookmarks;
+//    private Map<String,Bookmark> savedevents;
 
     public User(String id,String email, String fullname, String type,ArrayList<String> preference) {
         this.id=id;
@@ -20,6 +26,9 @@ public class User {
         this.type=type;
         this.preference=preference;
         this.photourl="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png";
+        this.savedposts =new HashMap<>();
+        this.bookmarks=new ArrayList<>();
+//        this.savedevents=new HashMap<>();
     }
 
     public User(String id,String email, String fullname, ArrayList<String> preference) {
@@ -29,6 +38,9 @@ public class User {
         this.type="student";
         this.preference=preference;
         this.photourl="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png";
+        this.savedposts =new HashMap<>();
+        this.bookmarks=new ArrayList<>();
+//        this.savedevents=new HashMap<>();
     }
 
     public User(String email, String password, String fullname) {
@@ -37,6 +49,9 @@ public class User {
         this.fullname = fullname;
         this.type="student";
         this.photourl="https://microhealth.com/assets/images/illustrations/personal-user-illustration-@2x.png";
+        this.savedposts =new HashMap<>();
+        this.bookmarks=new ArrayList<>();
+//        this.savedevents=new HashMap<>();
     }
 
     public String getEmail() {
@@ -109,5 +124,21 @@ public class User {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Map<String, Bookmark> getSavedposts() {
+        return savedposts;
+    }
+
+    public void setSavedposts(Map<String, Bookmark> savedposts) {
+        this.savedposts = savedposts;
+    }
+
+    public ArrayList<String> getBookmarks() {
+        return bookmarks;
+    }
+
+    public void setBookmarks(ArrayList<String> bookmarks) {
+        this.bookmarks = bookmarks;
     }
 }

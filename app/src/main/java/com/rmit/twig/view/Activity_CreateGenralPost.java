@@ -49,7 +49,10 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     public static TextView location;
     private ImageButton addimage;
     private ImageView postaddimage1;
+    private ImageView postaddimage2;
+    private ImageView postaddimage3;
     private File photoFile = null;
+    public static TextView cats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,8 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
                 startActivity(catintent);
             }
         });
+        cats=findViewById(R.id.cats);
+
         location = findViewById(R.id.feed_location);
         location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,6 +100,8 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
         post.setOnClickListener(new ClickListener_Post(activity, "post"));
         addimage = findViewById(R.id.addimage);
         postaddimage1 = findViewById(R.id.addpostimage1);
+        postaddimage2=findViewById(R.id.addpostimage2);
+        postaddimage3=findViewById(R.id.addpostimage3);
         final String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
         addimage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -176,11 +183,10 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // Check which request we're responding to
+        int imagenum=DataHolder.newpost.getNewpostimages().size();
             if (requestCode == 1) {
                 // Make sure the request was successful
                 if (resultCode == RESULT_OK) {
-                    postaddimage1.setImageURI(data.getData());
-                    postaddimage1.setVisibility(View.VISIBLE);
                     Uri imageUri = data.getData();
                     String imagepath = imageUri.getPath();
 //                try {
@@ -206,6 +212,21 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
 //                }
                     File imagefile = new File(imagepath);
                     DataHolder.newpost.getNewpostimages().add(imagefile);
+
+                    switch (imagenum){
+                        case 0:
+                            postaddimage1.setVisibility(View.VISIBLE);
+                            postaddimage1.setImageURI(data.getData());
+                            break;
+                        case 1:
+                            postaddimage2.setVisibility(View.VISIBLE);
+                            postaddimage2.setImageURI(data.getData());
+                            break;
+                        case 2:
+                            postaddimage3.setVisibility(View.VISIBLE);
+                            postaddimage3.setImageURI(data.getData());
+                            break;
+                    }
 //                try {
 //                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), imageUri);
 //                    imagefiles.add(bitmap);
@@ -219,9 +240,21 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
 
             if (requestCode == 2 && resultCode == RESULT_OK) {
                 Bitmap imageBitmap = BitmapFactory.decodeFile(photoFile.getPath());
-                postaddimage1.setImageBitmap(imageBitmap);
-                postaddimage1.setVisibility(View.VISIBLE);
                 DataHolder.newpost.getNewpostimages().add(photoFile);
+                switch (imagenum){
+                    case 0:
+                        postaddimage1.setVisibility(View.VISIBLE);
+                        postaddimage1.setImageBitmap(imageBitmap);
+                        break;
+                    case 1:
+                        postaddimage2.setVisibility(View.VISIBLE);
+                        postaddimage2.setImageBitmap(imageBitmap);
+                        break;
+                    case 2:
+                        postaddimage3.setVisibility(View.VISIBLE);
+                        postaddimage3.setImageBitmap(imageBitmap);
+                        break;
+                }
             }
     }
 
@@ -232,7 +265,7 @@ public class Activity_CreateGenralPost extends AppCompatActivity implements Loca
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
-                ".jpg",         /* suffix */
+                ".png",         /* suffix */
                 storageDir      /* directory */
         );
 

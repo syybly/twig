@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.rmit.twig.R;
-import com.rmit.twig.com.AsyncTask_GetUser;
 
 public class Activity_Homepage extends AppCompatActivity {
     private BottomNavigationView navView;
@@ -31,7 +30,6 @@ public class Activity_Homepage extends AppCompatActivity {
                 case R.id.navigation_home:
                     toolbartitle.setText("twig");
                     SwitchToHomepage();
-
                     return true;
                 case R.id.navigation_explore:
 

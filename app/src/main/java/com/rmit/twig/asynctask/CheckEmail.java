@@ -1,4 +1,4 @@
-package com.rmit.twig.com;
+package com.rmit.twig.asynctask;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
-import com.rmit.twig.model.User;
 import com.rmit.twig.view.Activity_Preference;
 
 import org.json.JSONException;

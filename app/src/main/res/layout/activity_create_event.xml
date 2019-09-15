@@ -102,11 +102,25 @@
             android:textSize="15dp" />
     </RelativeLayout>
 
+            <EditText
+                android:id="@+id/eventtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/feed_head"
+                android:textStyle="italic"
+                android:background="@null"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="15dp"
+                android:gravity="top"
+                android:fontFamily="@font/open_sans_light"
+                android:hint="@string/setatitleforevent" />
+
     <EditText
         android:id="@+id/createpostcontent"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@id/feed_head"
+        android:layout_below="@id/eventtitle"
         android:textStyle="italic"
         android:background="@null"
         android:layout_marginTop="20dp"
@@ -142,6 +156,26 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:srcCompat="@drawable/addimage" />
 
+                <ImageView
+                    android:id="@+id/addpostimage2"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/addimage"
+                    app:layout_constraintStart_toStartOf="@id/addimage"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/addimage" />
+
+                <ImageView
+                    android:id="@+id/addpostimage3"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="10dp"
+                    app:layout_constraintTop_toBottomOf="@id/addpostimage1"
+                    app:layout_constraintStart_toStartOf="@id/addpostimage1"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="@id/addpostimage1" />
+
             </android.support.constraint.ConstraintLayout>
 
     <RelativeLayout
@@ -165,6 +199,7 @@
             android:layout_marginTop="5dp">
 
             <TextView
+                android:id="@+id/timetext"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="50dp"
@@ -223,27 +258,31 @@
             android:layout_below="@id/addcoorg"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginBottom="2dp"
             android:background="@android:color/darker_gray"/>
 
         <RelativeLayout
             android:id="@+id/addcategory"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="wrap_content"
             android:layout_below="@id/line4"
             android:layout_marginTop="5dp">
 
             <TextView
+                android:id="@+id/cats"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="50dp"
-                android:fontFamily="@font/open_sans"
-                android:text="@string/addcategory"
-                android:gravity="center_vertical"
                 android:layout_marginBottom="8dp"
+                android:layout_toLeftOf="@+id/i1"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center_vertical"
+                android:text="@string/addcategory"
                 android:textColor="#2B2A2A"
                 android:textSize="8pt" />
 
             <ImageView
+                android:id="@+id/i1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -257,6 +296,7 @@
             android:layout_below="@id/addcategory"
             android:layout_width="match_parent"
             android:layout_height="1dp"
+            android:layout_marginTop="2dp"
             android:background="@android:color/darker_gray"/>
 
         <RelativeLayout
@@ -320,25 +360,36 @@
                 app:srcCompat="@drawable/graterthan" />
         </RelativeLayout>
 
+        <View
+            android:id="@+id/line6"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/signupticket"
+            android:layout_marginBottom="2dp"
+            android:background="@android:color/darker_gray" />
+
         <RelativeLayout
             android:id="@+id/addlocation"
             android:layout_below="@id/line6"
             android:layout_width="match_parent"
-            android:layout_height="45dp">
+            android:layout_height="wrap_content">
 
             <TextView
+                android:id="@+id/locationtext"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="50dp"
                 android:layout_marginTop="5dp"
-                android:text="@string/addlocation"
-                android:fontFamily="@font/open_sans"
-                android:textColor="#2B2A2A"
-                android:gravity="center_vertical"
                 android:layout_marginBottom="8dp"
+                android:layout_toLeftOf="@+id/i2"
+                android:fontFamily="@font/open_sans"
+                android:gravity="center_vertical"
+                android:text="@string/addlocation"
+                android:textColor="#2B2A2A"
                 android:textSize="8pt" />
 
             <ImageView
+                android:id="@+id/i2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -348,16 +399,10 @@
         </RelativeLayout>
 
         <View
-            android:id="@+id/line6"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/signupticket"
-            android:background="@android:color/darker_gray" />
-
-        <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_below="@+id/addlocation"
+            android:layout_marginTop="2dp"
             android:background="@android:color/darker_gray" />
 
     </RelativeLayout>
