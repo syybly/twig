@@ -27,7 +27,7 @@ public class LoginSignupContainer extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         DataHolder.posts.clear();
-        DataHolder.bookmarks.clear();
+//        DataHolder.bookmarks.clear();
         DataHolder.users.clear();
     }
 

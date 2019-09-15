@@ -18,7 +18,6 @@ public class Post {
     private long createtime;
     private String title;
     private boolean saved;
-    private String bookmarkid;
 
     public Post(String postID, String author, String content, String location) {
         this.postID = postID;
@@ -154,11 +153,22 @@ public class Post {
         this.saved = saved;
     }
 
-    public String getBookmarkid() {
-        return bookmarkid;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (!(obj instanceof Post)) {
+            return false;
+        }
+
+        Post p2=(Post)obj;
+        return this.getPostID().equals(p2.getPostID());
     }
 
-    public void setBookmarkid(String bookmarkid) {
-        this.bookmarkid = bookmarkid;
+    @Override
+    public int hashCode() {
+        return this.getPostID().hashCode();
     }
 }

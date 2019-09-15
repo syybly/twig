@@ -7,7 +7,7 @@ import android.widget.Toast;
 
 import com.rmit.twig.model.User;
 import com.rmit.twig.R;
-import com.rmit.twig.com.CheckEmail;
+import com.rmit.twig.asynctask.CheckEmail;
 
 public class SignUpController implements View.OnClickListener {
 

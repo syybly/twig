@@ -1,23 +1,17 @@
 package com.rmit.twig.view;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
-import com.rmit.twig.com.AsyncTask_GetUser;
+import com.rmit.twig.asynctask.AsyncTask_GetUser;
 import com.rmit.twig.controller.DataHolder;
-import com.rmit.twig.model.Post;
 import com.rmit.twig.R;
-
-import java.util.ArrayList;
 
 public class Fragment_Homepage extends Fragment {
     private RecyclerView feedlist;

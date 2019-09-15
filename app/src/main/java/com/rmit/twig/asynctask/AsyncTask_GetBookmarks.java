@@ -1,20 +1,13 @@
-package com.rmit.twig.com;
+package com.rmit.twig.asynctask;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.rmit.twig.R;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
-import com.rmit.twig.view.Activity_CreateGenralPost;
 import com.rmit.twig.view.Adapter_Bookmark;
-import com.rmit.twig.view.Adapter_Feedlist;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,7 +45,7 @@ public class AsyncTask_GetBookmarks extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... params) {
         try {
-            String url = "https://twig-api-v2.herokuapp.com/feeds/saved";
+            String url = "https://twig-api-v2.herokuapp.com/feeds/saved-merge";
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
                     .header("x-auth", DataHolder.users.get(DataHolder.currentuser).getToken())
@@ -84,11 +77,9 @@ public class AsyncTask_GetBookmarks extends AsyncTask<String, String, String> {
         }
         else {
             try {
-                JSONObject resultjson = new JSONObject(result);
-                JSONArray jsonArray = resultjson.getJSONArray("savedPosts");
-                System.out.println(DataHolder.users.get(DataHolder.currentuser).getToken());
+                JSONArray jsonArray = new JSONArray(result);
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject feedjson = jsonArray.getJSONObject(i).getJSONObject("feed");
+                    JSONObject feedjson = jsonArray.getJSONObject(i);
                     String feedid = feedjson.getString("_id");
                     for (Post p : DataHolder.posts) {
                         if (feedid.equals(p.getPostID()) && !bookmarkarray.contains(p)) {

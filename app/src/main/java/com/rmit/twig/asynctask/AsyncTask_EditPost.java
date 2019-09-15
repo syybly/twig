@@ -1,4 +1,4 @@
-package com.rmit.twig.com;
+package com.rmit.twig.asynctask;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

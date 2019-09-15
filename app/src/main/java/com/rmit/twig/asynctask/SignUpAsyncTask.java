@@ -1,4 +1,4 @@
-package com.rmit.twig.com;
+package com.rmit.twig.asynctask;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -96,23 +96,9 @@ public class SignUpAsyncTask extends AsyncTask<String, String, String> {
             pd.dismiss();
         }
         if(result!=null) {
-//            try {
-//                JSONObject user=new JSONObject(result);
-//                JSONArray jsonArray=user.getJSONArray("interests");
-//                String id=user.getString("_id");
-//                String name=user.getString("name");
-//                String email=user.getString("email");
-//                ArrayList<String> interests=new ArrayList<>();
-//                for (int i=0;i<jsonArray.length();i++) {
-//                    interests.add(jsonArray.get(i).toString());
-//                }
             SignInAsyncTask signInAsyncTask = new SignInAsyncTask(context);
             signInAsyncTask.execute(DataHolder.newuser.getEmail(), DataHolder.newuser.getPassword());
             ((Activity)context).finish();
-            
-//            } catch (JSONException e) {
-//
-//            }
         }
         else {
             Toast nomatch = Toast.makeText(context, "Something went wrong, please try again.", Toast.LENGTH_SHORT);

@@ -1,15 +1,13 @@
-package com.rmit.twig.com;
+package com.rmit.twig.asynctask;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
 import com.rmit.twig.controller.DataHolder;
-import com.rmit.twig.model.Bookmark;
+import com.rmit.twig.model.Post;
 import com.rmit.twig.model.User;
-import com.rmit.twig.view.Activity_Homepage;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,9 +18,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -117,19 +115,23 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             String token=headers.get("x-auth").get(0);
             User newuser=new User(id,email,name,interests);
             for(int q=0;q<savedposts.length();q++){
-                String bookmarkid=savedposts.getJSONObject(q).getString("_id");
-                String feedid=savedposts.getJSONObject(q).getString("feed");
-                Bookmark b=new Bookmark(bookmarkid,feedid,"post");
-                newuser.getSavedposts().put(feedid,b);
+                String feedid=savedposts.getJSONObject(q).getString("_id");
+//                Bookmark b=new Bookmark(feedid,"post");
+//                newuser.getSavedposts().put(feedid,b);
+//                Post post=jsontopost(savedposts.getJSONObject(q),"post");
+//                post.setSaved(true);
+//                DataHolder.posts.add(post);
+                newuser.getBookmarks().add(feedid);
             }
             for(int q=0;q<savedevents.length();q++){
-                String bookmarkid=savedposts.getJSONObject(q).getString("_id");
-                String feedid=savedposts.getJSONObject(q).getString("feed");
-                Bookmark b2=new Bookmark(bookmarkid,feedid,"event");
-                newuser.getSavedposts().put(feedid,b2);
+                String feedid=savedposts.getJSONObject(q).getString("_id");
+//                Bookmark b2=new Bookmark(feedid,"event");
+//                newuser.getSavedposts().put(feedid,b2);
+//                Post post=jsontopost(savedevents.getJSONObject(q),"event");
+//                post.setSaved(true);
+//                DataHolder.posts.add(post);
+                newuser.getBookmarks().add(feedid);
             }
-//            DataHolder.user=newuser;
-//            DataHolder.user.setToken(token);
             newuser.setToken(token);
             DataHolder.users.put(id,newuser);
             DataHolder.currentuser=id;
@@ -150,5 +152,47 @@ public class SignInAsyncTask extends AsyncTask<String, String, String> {
             nomatch.show();
         }
 
+    }
+
+    public Post jsontopost(JSONObject post,String type) {
+        try {
+            JSONArray imagearray = post.getJSONArray("images");
+            String content = post.getString("content");
+            String id = post.getString("_id");
+            long createtime = post.getLong("createdTime");
+            JSONObject author = post.getJSONObject("author");
+            String authorid = author.getString("_id");
+            Post feed = new Post(authorid, type);
+            feed.setCreatetime(createtime);
+            if (type.equals("event")) {
+                long eventdate = post.getLong("time");
+                feed.setDate(eventdate);
+                feed.setTitle(post.getString("title"));
+            }
+            feed.setContent(content);
+            if (!post.getString("location").equals("null")) {
+                feed.setLocation(post.getString("location"));
+            }
+            JSONArray categories = post.getJSONArray("categories");
+            HashSet<String> cats = new HashSet<>();
+            for (int i = 0; i < categories.length(); i++) {
+                cats.add(categories.getString(i));
+            }
+            feed.setCategories(cats);
+            feed.setPostID(id);
+            if (imagearray.length() > 0) {
+                for (int i = 0; i < imagearray.length(); i++) {
+                    JSONObject image = imagearray.getJSONObject(i);
+                    String imageurl = image.getString("path");
+                    feed.getImageurl().add(imageurl);
+                }
+            }
+            feed.setUser(DataHolder.userholder);
+            return feed;
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

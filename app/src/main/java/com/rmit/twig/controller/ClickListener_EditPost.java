@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rmit.twig.R;
-import com.rmit.twig.com.AsyncTask_EditPost;
+import com.rmit.twig.asynctask.AsyncTask_EditPost;
 import com.rmit.twig.model.Post;
 
 

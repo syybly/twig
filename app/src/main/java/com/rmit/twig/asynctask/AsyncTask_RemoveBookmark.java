@@ -1,9 +1,7 @@
-package com.rmit.twig.com;
+package com.rmit.twig.asynctask;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.rmit.twig.controller.DataHolder;
@@ -14,16 +12,13 @@ import com.rmit.twig.view.Adapter_Bookmark;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AsyncTask_RemoveBookmark extends AsyncTask<Void,String,String> {
     private Context context;
     private Post post;
-    private Bookmark bookmarks;
     private ArrayList<Post> posts;
     private Adapter_Bookmark adapter_bookmark;
     private int position;
@@ -48,19 +43,9 @@ public class AsyncTask_RemoveBookmark extends AsyncTask<Void,String,String> {
 
     @Override
     protected String doInBackground(Void... voids) {
-
-        if(post.getType().equals("post")) {
-            bookmarks= DataHolder.users.get(DataHolder.currentuser).getSavedposts().get(post.getPostID());
-        }
-        if(post.getType().equals("event")) {
-            bookmarks= DataHolder.users.get(DataHolder.currentuser).getSavedevents().get(post.getPostID());
-        }
-        if(bookmarks==null){
-            return null;
-        }
         try {
             String url1="https://twig-api-v2.herokuapp.com/feeds/saved/";
-            String url=url1+bookmarks.getBookmarkid();
+            String url=url1+post.getPostID();
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
                     .header("x-auth", DataHolder.users.get(DataHolder.currentuser).getToken())
@@ -87,12 +72,7 @@ public class AsyncTask_RemoveBookmark extends AsyncTask<Void,String,String> {
             nomatch.show();
         }
         else{
-            if(bookmarks.getType().equals("post")) {
-                DataHolder.users.get(DataHolder.currentuser).getSavedposts().remove(bookmarks.getFeedid());
-            }
-            if(bookmarks.getType().equals("event")) {
-                DataHolder.users.get(DataHolder.currentuser).getSavedevents().remove(bookmarks.getFeedid());
-            }
+            DataHolder.users.get(DataHolder.currentuser).getBookmarks().remove(post.getPostID());
             Toast nomatch = Toast.makeText(context, "Remove bookmark succeeded.", Toast.LENGTH_SHORT);
             nomatch.show();
             if(adapter_bookmark!=null) {

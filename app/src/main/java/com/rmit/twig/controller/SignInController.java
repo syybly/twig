@@ -5,10 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.rmit.twig.R;
-import com.rmit.twig.com.SignInAsyncTask;
-
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.rmit.twig.asynctask.SignInAsyncTask;
 
 public class SignInController implements View.OnClickListener {
     private String email;

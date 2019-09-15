@@ -1,19 +1,14 @@
-package com.rmit.twig.com;
+package com.rmit.twig.asynctask;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ListView;
 
 import com.rmit.twig.R;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
 import com.rmit.twig.model.User;
-import com.rmit.twig.view.Activity_Homepage;
 import com.rmit.twig.view.Adapter_Feedlist;
 
 import org.json.JSONArray;
@@ -24,7 +19,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.ref.WeakReference;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;

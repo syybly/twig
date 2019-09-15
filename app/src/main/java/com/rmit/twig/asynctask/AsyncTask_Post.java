@@ -1,14 +1,12 @@
-package com.rmit.twig.com;
+package com.rmit.twig.asynctask;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
-import com.rmit.twig.view.Activity_CreateGenralPost;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,7 +15,6 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.HashSet;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;

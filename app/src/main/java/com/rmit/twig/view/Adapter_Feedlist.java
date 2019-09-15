@@ -18,8 +18,8 @@ import android.view.MenuInflater;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Transformers.BaseTransformer;
-import com.rmit.twig.com.AsyncTask_RemoveBookmark;
-import com.rmit.twig.com.AsyncTask_SaveToBookmark;
+import com.rmit.twig.asynctask.AsyncTask_RemoveBookmark;
+import com.rmit.twig.asynctask.AsyncTask_SaveToBookmark;
 import com.rmit.twig.controller.DataHolder;
 import android.content.Intent;
 import android.app.AlertDialog;
@@ -27,7 +27,7 @@ import android.content.DialogInterface;
 import android.widget.Toast;
 
 
-import com.rmit.twig.com.AsyncTask_DeletePost;
+import com.rmit.twig.asynctask.AsyncTask_DeletePost;
 import com.rmit.twig.model.Post;
 import com.rmit.twig.R;
 import com.squareup.picasso.Picasso;
@@ -35,7 +35,6 @@ import com.squareup.picasso.Picasso;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
 public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.GeneralViewHolder> {
     private Context context;
@@ -199,6 +198,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                 @Override
                 public void onClick(View v) {
                     posts.get(position).setSaved(true);
+                    Adapter_Feedlist.this.notifyDataSetChanged();
                     AsyncTask_SaveToBookmark asyncTask_saveToBookmark=new AsyncTask_SaveToBookmark(context,posts.get(position));
                     asyncTask_saveToBookmark.execute();
                     holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save_r));

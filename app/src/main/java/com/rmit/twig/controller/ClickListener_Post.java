@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.rmit.twig.R;
-import com.rmit.twig.com.AsyncTask_Post;
+import com.rmit.twig.asynctask.AsyncTask_Post;
 
 public class ClickListener_Post implements View.OnClickListener {
     private String type;
