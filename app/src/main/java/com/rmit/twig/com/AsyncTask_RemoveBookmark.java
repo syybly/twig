@@ -24,14 +24,16 @@ public class AsyncTask_RemoveBookmark extends AsyncTask<Void,String,String> {
     private Context context;
     private Post post;
     private Bookmark bookmarks;
-    private RecyclerView recyclerView;
     private ArrayList<Post> posts;
+    private Adapter_Bookmark adapter_bookmark;
+    private int position;
 
-    public AsyncTask_RemoveBookmark(Context context, Post post, RecyclerView recyclerView, ArrayList<Post> posts) {
+    public AsyncTask_RemoveBookmark(Context context, Adapter_Bookmark adapter_bookmark, ArrayList<Post> posts, int position) {
         this.context = context;
-        this.post = post;
-        this.recyclerView = recyclerView;
         this.posts = posts;
+        this.adapter_bookmark=adapter_bookmark;
+        this.position=position;
+        this.post=posts.get(position);
     }
 
     public AsyncTask_RemoveBookmark(Context context, Post post) {
@@ -93,12 +95,10 @@ public class AsyncTask_RemoveBookmark extends AsyncTask<Void,String,String> {
             }
             Toast nomatch = Toast.makeText(context, "Remove bookmark succeeded.", Toast.LENGTH_SHORT);
             nomatch.show();
-            if(recyclerView!=null) {
-                posts.remove(post);
-                Adapter_Bookmark adapter_bookmark = new Adapter_Bookmark(context, posts, recyclerView);
-                recyclerView.setAdapter(adapter_bookmark);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-                recyclerView.setLayoutManager(linearLayoutManager);
+            if(adapter_bookmark!=null) {
+                posts.remove(position);
+                adapter_bookmark.notifyItemRemoved(position);
+                adapter_bookmark.notifyItemRangeChanged(position,posts.size());
             }
         }
     }

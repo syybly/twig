@@ -39,12 +39,10 @@ public class Adapter_Bookmark extends RecyclerView.Adapter<Adapter_Bookmark.Gene
     private Context context;
     private ArrayList<Post> posts;
     private Post feed;
-    private RecyclerView feedlist;
 
-    public Adapter_Bookmark(Context context, ArrayList<Post> posts, RecyclerView feedlist) {
+    public Adapter_Bookmark(Context context, ArrayList<Post> posts) {
         this.context = context;
         this.posts = posts;
-        this.feedlist = feedlist;
     }
 
     public static class GeneralViewHolder extends RecyclerView.ViewHolder {
@@ -131,7 +129,7 @@ public class Adapter_Bookmark extends RecyclerView.Adapter<Adapter_Bookmark.Gene
                 public void onClick(View v) {
                     holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save));
                     posts.get(position).setSaved(false);
-                    AsyncTask_RemoveBookmark asyncTask_removeBookmark=new AsyncTask_RemoveBookmark(context,posts.get(position),feedlist,posts);
+                    AsyncTask_RemoveBookmark asyncTask_removeBookmark=new AsyncTask_RemoveBookmark(context,Adapter_Bookmark.this,posts,position);
                     asyncTask_removeBookmark.execute();
                     Adapter_Bookmark.this.notifyDataSetChanged();
                 }
@@ -226,7 +224,7 @@ public class Adapter_Bookmark extends RecyclerView.Adapter<Adapter_Bookmark.Gene
                                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(context,feedlist);
+//                                        AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(context,Adapter_Bookmark.this,position);
 
                                         String deleteEndpoint;
                                         feed = posts.get(position);
@@ -240,7 +238,7 @@ public class Adapter_Bookmark extends RecyclerView.Adapter<Adapter_Bookmark.Gene
                                             deleteEndpoint = "/NOT_IMPLEMENTED";
                                         }
 
-                                        asyncTask_deletePost.execute(deleteEndpoint, feed.getPostID());
+//                                        asyncTask_deletePost.execute(deleteEndpoint, feed.getPostID());
 
                                     }
 

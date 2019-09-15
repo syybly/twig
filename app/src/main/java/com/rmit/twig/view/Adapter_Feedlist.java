@@ -281,7 +281,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(context,feedlist);
+                                        AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(context,Adapter_Feedlist.this,position);
 
                                         String deleteEndpoint;
                                         feed = posts.get(position);

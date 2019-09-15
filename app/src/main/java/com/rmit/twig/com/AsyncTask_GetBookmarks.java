@@ -1,17 +1,24 @@
 package com.rmit.twig.com;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.rmit.twig.R;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
 import com.rmit.twig.view.Activity_CreateGenralPost;
+import com.rmit.twig.view.Adapter_Bookmark;
 import com.rmit.twig.view.Adapter_Feedlist;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,9 +30,23 @@ import okhttp3.Response;
 public class AsyncTask_GetBookmarks extends AsyncTask<String, String, String> {
     private ArrayList<String> bookmarkid=new ArrayList<>();
     private Activity activity;
+    private Adapter_Bookmark adapter_bookmark;
+    private ArrayList<Post> bookmarkarray;
+    public static ProgressDialog pd;
 
-    public AsyncTask_GetBookmarks(Activity activity) {
+    public AsyncTask_GetBookmarks(Activity activity, Adapter_Bookmark adapter_bookmark, ArrayList<Post> bookmarkarray) {
         this.activity = activity;
+        this.adapter_bookmark=adapter_bookmark;
+        this.bookmarkarray=bookmarkarray;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+        pd = new ProgressDialog(activity);
+        pd.setMessage("Please wait");
+        pd.setCancelable(false);
+        pd.show();
     }
 
     @Override
@@ -54,17 +75,31 @@ public class AsyncTask_GetBookmarks extends AsyncTask<String, String, String> {
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
-//        for(String id:bookmarkid){
-//            for(Post p: DataHolder.posts){
-//                if(id.equals(p.getPostID())){
-//                    DataHolder.bookmarks.add(p);
-//                    RecyclerView l=activity.findViewById(R.id.bookmarklist);
-//                    adapter_feedlist.notifyDataSetChanged();
-//                    l.setAdapter(adapter_feedlist);
-//                    l.setLayoutManager(new LinearLayoutManager(activity));
-//                }
-//            }
-//        }
-
+        if (pd.isShowing()){
+            pd.dismiss();
+        }
+        if(result.equals("false")){
+            Toast nomatch = Toast.makeText(activity, "Something went wrong, please try again.", Toast.LENGTH_SHORT);
+            nomatch.show();
+        }
+        else {
+            try {
+                JSONObject resultjson = new JSONObject(result);
+                JSONArray jsonArray = resultjson.getJSONArray("savedPosts");
+                System.out.println(DataHolder.users.get(DataHolder.currentuser).getToken());
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject feedjson = jsonArray.getJSONObject(i).getJSONObject("feed");
+                    String feedid = feedjson.getString("_id");
+                    for (Post p : DataHolder.posts) {
+                        if (feedid.equals(p.getPostID()) && !bookmarkarray.contains(p)) {
+                            bookmarkarray.add(p);
+                            adapter_bookmark.notifyDataSetChanged();
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
