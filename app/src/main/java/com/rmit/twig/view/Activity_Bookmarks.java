@@ -68,7 +68,7 @@ public class Activity_Bookmarks extends AppCompatActivity {
         super.onResume();
         ArrayList<Post> bookmarkarray=new ArrayList<>();
         bookmarkarray.addAll(bookmarklist);
-        Adapter_Feedlist adapter2=new Adapter_Feedlist(context,bookmarkarray,feedlist);
+        Adapter_Bookmark adapter2=new Adapter_Bookmark(context,bookmarkarray,feedlist);
         feedlist.setAdapter(adapter2);
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
         feedlist.setLayoutManager(linearLayoutManager);

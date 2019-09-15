@@ -63,6 +63,7 @@ public class AsyncTask_SaveToBookmark extends AsyncTask<Void,String,String> {
     @Override
     protected void onPostExecute(String result) {
         if(result==null){
+            post.setSaved(false);
             Toast nomatch = Toast.makeText(context, "Save bookmark failed, please try again.", Toast.LENGTH_SHORT);
             nomatch.show();
         }
@@ -90,7 +91,6 @@ public class AsyncTask_SaveToBookmark extends AsyncTask<Void,String,String> {
                     Bookmark newmark=new Bookmark(bookmarkid,post.getPostID(),"event");
                     DataHolder.users.get(DataHolder.currentuser).getSavedposts().put(post.getPostID(),newmark);
                 }
-                post.setSaved(true);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
