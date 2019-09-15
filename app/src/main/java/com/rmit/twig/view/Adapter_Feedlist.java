@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.GeneralViewHolder> {
     private Context context;
     private ArrayList<Post> posts;
-    private Post feed;
+//    private Post feed;
     private RecyclerView feedlist;
     private final static int GENERAL=1;
     private final static int EVENT=2;
@@ -156,19 +156,19 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
 
     @Override
     public void onBindViewHolder(@NonNull final GeneralViewHolder holder, final int position) {
-        feed = posts.get(position);
+//        feed = posts.get(position);
         Picasso.with(context)
-                .load(feed.getUser().getPhotourl())
+                .load(posts.get(position).getUser().getPhotourl())
                 .placeholder(R.drawable.nophoto)
                 .error(R.drawable.nophoto)
                 .into(holder.image);
-        holder.name.setText(feed.getUser().getFullname());
-        if(feed.getLocation()!=null) {
-            holder.location.setText(feed.getLocation());
+        holder.name.setText(posts.get(position).getUser().getFullname());
+        if(posts.get(position).getLocation()!=null) {
+            holder.location.setText(posts.get(position).getLocation());
         }
-        holder.content.setText(feed.getContent());
+        holder.content.setText(posts.get(position).getContent());
         String cats="";
-        for(String s:feed.getCategories()){
+        for(String s:posts.get(position).getCategories()){
             cats=cats+"#"+s+"   ";
         }
         holder.feedcat.setText(cats);
@@ -186,10 +186,10 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                 @Override
                 public void onClick(View v) {
                     posts.get(position).setSaved(false);
+                    Adapter_Feedlist.this.notifyDataSetChanged();
                     holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save));
                     AsyncTask_RemoveBookmark asyncTask_removeBookmark=new AsyncTask_RemoveBookmark(context,posts.get(position));
                     asyncTask_removeBookmark.execute();
-                    Adapter_Feedlist.this.notifyDataSetChanged();
                 }
             });
         }
@@ -207,22 +207,23 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
         }
         Timestamp current = new Timestamp(System.currentTimeMillis());
         long currenttime=current.getTime();
-        double creatediff=(double)(currenttime-feed.getCreatetime())/ (60 * 60 * 1000);
+        double creatediff=(double)(currenttime-posts.get(position).getCreatetime())/ (60 * 60 * 1000);
         int sethourago=(int)Math.round(creatediff);
         String houragotext=sethourago+" hour(s) ago";
         if(sethourago>24){
             sethourago=(int)Math.round(sethourago/24);
             houragotext=sethourago+" day(s) ago";
         }
+
         holder.hourago.setText(houragotext);
-        if(feed.getImageurl().size()>0){
-            for(String url:feed.getImageurl()){
+        if(posts.get(position).getImageurl().size()>0){
+            holder.feedimage.removeAllSliders();
+            for(String url:posts.get(position).getImageurl()){
                 DefaultSliderView textSliderView = new DefaultSliderView(context);
-                textSliderView
-                        .image(url);
+                textSliderView.image(url);
                 holder.feedimage.addSlider(textSliderView);
             }
-            if(feed.getImageurl().size()==1){
+            if(posts.get(position).getImageurl().size()==1){
                 holder.feedimage.setPagerTransformer(false, new BaseTransformer() {
                     @Override
                     public void onTransform(View view, float position) {
@@ -233,18 +234,18 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
             holder.feedimage.stopAutoCycle();
             holder.feedimage.setVisibility(View.VISIBLE);
         }
-        if (feed.getType().equals("event")) {
-            Timestamp timestamp = new Timestamp(feed.getDate());
+        if (posts.get(position).getType().equals("event")) {
+            Timestamp timestamp = new Timestamp(posts.get(position).getDate());
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy hh:mm a");
             holder.eventtime.setText(simpleDateFormat.format(timestamp));
             holder.eventbuttons.setVisibility(View.VISIBLE);
             holder.eventtime.setVisibility(View.VISIBLE);
             holder.going.setVisibility(View.VISIBLE);
             holder.decidelater.setVisibility(View.VISIBLE);
-            holder.title.setText(feed.getTitle());
+            holder.title.setText(posts.get(position).getTitle());
             holder.title.setVisibility(View.VISIBLE);
         }
-        if(feed.getImageurl().size()==0){
+        if(posts.get(position).getImageurl().size()==0){
             ((RelativeLayout.LayoutParams) holder.title.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feed_head);
             ((RelativeLayout.LayoutParams) holder.postaction.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.feedcat);
             ((RelativeLayout.LayoutParams) holder.eventbuttons.getLayoutParams()).addRule(RelativeLayout.BELOW, R.id.post_action);
@@ -254,7 +255,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
         }
 
         holder.deletebutton.setVisibility(View.INVISIBLE);
-        if(feed.getAuthor().equals(DataHolder.currentuser)){
+        if(posts.get(position).getAuthor().equals(DataHolder.currentuser)){
             holder.deletebutton.setVisibility(View.VISIBLE);
         }
         holder.deletebutton.setOnClickListener(new View.OnClickListener () {
@@ -282,20 +283,17 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(context,Adapter_Feedlist.this,position);
-
                                         String deleteEndpoint;
-                                        feed = posts.get(position);
-
-                                        if (feed.getType().equals("event")) {
+                                        if (posts.get(position).getType().equals("event")) {
                                             deleteEndpoint = "/events/";
-                                        } else if (feed.getType().equals("post")) {
+                                        } else if (posts.get(position).getType().equals("post")) {
                                             deleteEndpoint = "/posts/";
                                         }
                                         else {
                                             deleteEndpoint = "/NOT_IMPLEMENTED";
                                         }
 
-                                        asyncTask_deletePost.execute(deleteEndpoint, feed.getPostID());
+                                        asyncTask_deletePost.execute(deleteEndpoint, posts.get(position).getPostID());
 
                                     }
 

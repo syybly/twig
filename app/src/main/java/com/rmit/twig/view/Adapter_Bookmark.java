@@ -139,10 +139,9 @@ public class Adapter_Bookmark extends RecyclerView.Adapter<Adapter_Bookmark.Gene
                 @Override
                 public void onClick(View v) {
                     posts.get(position).setSaved(true);
+                    Adapter_Bookmark.this.notifyDataSetChanged();
                     AsyncTask_SaveToBookmark asyncTask_saveToBookmark=new AsyncTask_SaveToBookmark(context,posts.get(position));
                     asyncTask_saveToBookmark.execute();
-                    Intent intent=new Intent(context,Activity_Bookmarks.class);
-                    context.startActivity(intent);
                     holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save_r));
                 }
             });
@@ -158,6 +157,7 @@ public class Adapter_Bookmark extends RecyclerView.Adapter<Adapter_Bookmark.Gene
         }
         holder.hourago.setText(houragotext);
         if(feed.getImageurl().size()>0){
+            holder.feedimage.removeAllSliders();
             for(String url:feed.getImageurl()){
                 DefaultSliderView textSliderView = new DefaultSliderView(context);
                 textSliderView
