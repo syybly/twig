@@ -24,11 +24,13 @@ import okhttp3.Response;
 public class AsyncTask_DeletePost extends AsyncTask<String, String, String> {
     private ProgressDialog pd;
     private Context context;
-    private RecyclerView feedlist;
+    private Adapter_Feedlist adapter_feedlist;
+    private int position;
 
-    public AsyncTask_DeletePost( Context context, RecyclerView feedlist) {
-        this.context=context;
-        this.feedlist=feedlist;
+    public AsyncTask_DeletePost(Context context, Adapter_Feedlist adapter_feedlist, int position) {
+        this.context = context;
+        this.adapter_feedlist = adapter_feedlist;
+        this.position = position;
     }
 
     protected void onPreExecute() {
@@ -82,10 +84,8 @@ public class AsyncTask_DeletePost extends AsyncTask<String, String, String> {
         for (Post post : DataHolder.posts) {
             if (post.getPostID().equals(postID)) {
                 DataHolder.posts.remove(post);
-                Adapter_Feedlist adapter2=new Adapter_Feedlist(context,DataHolder.posts,feedlist);
-                feedlist.setAdapter(adapter2);
-                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
-                feedlist.setLayoutManager(linearLayoutManager);
+                adapter_feedlist.notifyItemRemoved(position);
+                adapter_feedlist.notifyItemRangeChanged(position,DataHolder.posts.size());
                 if (pd.isShowing()){
                     pd.dismiss();
                 }

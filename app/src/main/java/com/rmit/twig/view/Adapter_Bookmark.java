@@ -1,9 +1,14 @@
 package com.rmit.twig.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,45 +18,31 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.support.v7.widget.PopupMenu;
-import android.view.MenuInflater;
+import android.widget.Toast;
+
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.Transformers.BaseTransformer;
+import com.rmit.twig.R;
+import com.rmit.twig.com.AsyncTask_DeletePost;
 import com.rmit.twig.com.AsyncTask_RemoveBookmark;
 import com.rmit.twig.com.AsyncTask_SaveToBookmark;
 import com.rmit.twig.controller.DataHolder;
-import android.content.Intent;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.widget.Toast;
-
-
-import com.rmit.twig.com.AsyncTask_DeletePost;
 import com.rmit.twig.model.Post;
-import com.rmit.twig.R;
 import com.squareup.picasso.Picasso;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutionException;
 
-public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.GeneralViewHolder> {
+public class Adapter_Bookmark extends RecyclerView.Adapter<Adapter_Bookmark.GeneralViewHolder> {
     private Context context;
     private ArrayList<Post> posts;
     private Post feed;
-    private RecyclerView feedlist;
-    private final static int GENERAL=1;
-    private final static int EVENT=2;
-    private final static int IMAGE=3;
-    private final static int NOIMAGE=4;
 
-
-    public Adapter_Feedlist(Context context, ArrayList<Post> posts, RecyclerView feedlist) {
-        this.context=context;
-        this.posts=posts;
-        this.feedlist=feedlist;
+    public Adapter_Bookmark(Context context, ArrayList<Post> posts) {
+        this.context = context;
+        this.posts = posts;
     }
 
     public static class GeneralViewHolder extends RecyclerView.ViewHolder {
@@ -93,41 +84,6 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
         }
     }
 
-//    public static class EventViewHolder extends RecyclerView.ViewHolder {
-//        // each data item is just a string in this case
-//        private ImageView image;
-//        private TextView name;
-//        private TextView location;
-//        private TextView content;
-//        private LinearLayout eventbuttons;
-//        private ImageView feedimage;
-//        private ImageButton deletebutton;
-//        private TextView eventtime;
-//        private TextView hourago;
-//        private TextView feedcat;
-//        private LinearLayout postaction;
-//        private Button going;
-//        private Button decidelater;
-//        public EventViewHolder(View convertView) {
-//            super(convertView);
-//            eventtime=convertView.findViewById(R.id.eventtime);
-//            hourago=convertView.findViewById(R.id.hourago);
-//            feedcat=convertView.findViewById(R.id.feedcat);
-//            image=convertView.findViewById(R.id.feed_userphoto);
-//            name=convertView.findViewById(R.id.feed_name);
-//            location=convertView.findViewById(R.id.feed_location);
-//            content=convertView.findViewById(R.id.feed_content);
-//            eventbuttons=convertView.findViewById(R.id.eventbuttons);
-//            decidelater=convertView.findViewById(R.id.decidelater);
-//            going=convertView.findViewById(R.id.going);
-//            feedimage=convertView.findViewById(R.id.feed_image);
-//            postaction=convertView.findViewById(R.id.post_action);
-//            deletebutton=convertView.findViewById(R.id.delete_edit);
-//
-//
-//        }
-//    }
-
     @Override
     public long getItemId(int position) {
         return position;
@@ -141,22 +97,14 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
 
     @NonNull
     @Override
-    public GeneralViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v=LayoutInflater.from(context).inflate(R.layout.feedlist_items, parent, false);
-        return new GeneralViewHolder(v);
-//        switch (viewType){
-//            case GENERAL:
-//                return new GeneralViewHolder(v);
-//            case EVENT:
-//
-//                default:
-//                    return null;
-//        }
+    public Adapter_Bookmark.GeneralViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v= LayoutInflater.from(context).inflate(R.layout.feedlist_items, parent, false);
+        return new Adapter_Bookmark.GeneralViewHolder(v);
 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final GeneralViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final Adapter_Bookmark.GeneralViewHolder holder, final int position) {
         feed = posts.get(position);
         Picasso.with(context)
                 .load(feed.getUser().getPhotourl())
@@ -174,23 +122,16 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
         }
         holder.feedcat.setText(cats);
 
-        holder.share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context,Activity_Bookmarks.class);
-                context.startActivity(intent);
-            }
-        });
         if(posts.get(position).isSaved()){
             holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save_r));
             holder.savetobookmark.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    posts.get(position).setSaved(false);
                     holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save));
-                    AsyncTask_RemoveBookmark asyncTask_removeBookmark=new AsyncTask_RemoveBookmark(context,posts.get(position));
+                    posts.get(position).setSaved(false);
+                    AsyncTask_RemoveBookmark asyncTask_removeBookmark=new AsyncTask_RemoveBookmark(context,Adapter_Bookmark.this,posts,position);
                     asyncTask_removeBookmark.execute();
-                    Adapter_Feedlist.this.notifyDataSetChanged();
+                    Adapter_Bookmark.this.notifyDataSetChanged();
                 }
             });
         }
@@ -201,6 +142,8 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                     posts.get(position).setSaved(true);
                     AsyncTask_SaveToBookmark asyncTask_saveToBookmark=new AsyncTask_SaveToBookmark(context,posts.get(position));
                     asyncTask_saveToBookmark.execute();
+                    Intent intent=new Intent(context,Activity_Bookmarks.class);
+                    context.startActivity(intent);
                     holder.savetobookmark.setImageDrawable(context.getResources().getDrawable(R.drawable.save_r));
                 }
             });
@@ -281,7 +224,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(context,Adapter_Feedlist.this,position);
+//                                        AsyncTask_DeletePost asyncTask_deletePost  = new AsyncTask_DeletePost(context,Adapter_Bookmark.this,position);
 
                                         String deleteEndpoint;
                                         feed = posts.get(position);
@@ -295,7 +238,7 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                                             deleteEndpoint = "/NOT_IMPLEMENTED";
                                         }
 
-                                        asyncTask_deletePost.execute(deleteEndpoint, feed.getPostID());
+//                                        asyncTask_deletePost.execute(deleteEndpoint, feed.getPostID());
 
                                     }
 
@@ -319,12 +262,6 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
                 popup.show();
             }
         });
-//        switch (holder.getItemViewType()){
-//            case GENERAL:
-//                break;
-//            case EVENT:
-
-//        }
 
     }
 
@@ -332,8 +269,4 @@ public class Adapter_Feedlist extends RecyclerView.Adapter<Adapter_Feedlist.Gene
     public int getItemViewType(int position) {
         return position;
     }
-
-
-
-
 }

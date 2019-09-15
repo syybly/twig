@@ -12,18 +12,15 @@ import com.rmit.twig.com.AsyncTask_GetBookmarks;
 import com.rmit.twig.controller.DataHolder;
 import com.rmit.twig.model.Post;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.concurrent.ExecutionException;
 
 public class Activity_Bookmarks extends AppCompatActivity {
     private RecyclerView feedlist;
     private Context context;
     private HashSet<Post> bookmarklist;
+    private Adapter_Bookmark adapter_bookmark;
+    private ArrayList<Post> bookmarkarray;
 
 
     @Override
@@ -31,48 +28,21 @@ public class Activity_Bookmarks extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmarks);
         bookmarklist=new HashSet<>();
+        bookmarkarray=new ArrayList<>();
         context=this;
         feedlist=findViewById(R.id.bookmarklist);
-
-//        feedlist.setAdapter(adapter);
-//        feedlist.setLayoutManager(new LinearLayoutManager(context));
-        AsyncTask_GetBookmarks asyncTask_getBookmarks=new AsyncTask_GetBookmarks(this);
+        adapter_bookmark=new Adapter_Bookmark(context,bookmarkarray);
+        feedlist.setAdapter(adapter_bookmark);
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
+        feedlist.setLayoutManager(linearLayoutManager);
+        AsyncTask_GetBookmarks asyncTask_getBookmarks=new AsyncTask_GetBookmarks(this,adapter_bookmark,bookmarkarray);
         asyncTask_getBookmarks.execute(DataHolder.currentuser);
-        try {
-            String result=asyncTask_getBookmarks.get();
-            if(result.equals("false")){
-
-            }
-            else{
-                JSONObject resultjson=new JSONObject(result);
-                JSONArray jsonArray=resultjson.getJSONArray("savedPosts");
-                System.out.println(DataHolder.users.get(DataHolder.currentuser).getToken());
-                for(int i=0;i<jsonArray.length();i++){
-                    JSONObject feedjson=jsonArray.getJSONObject(i).getJSONObject("feed");
-                    String feedid=feedjson.getString("_id");
-                    System.out.println(feedid);
-                    for(Post p:DataHolder.posts){
-                        if(feedid.equals(p.getPostID())){
-                            System.out.println(p.getContent());
-                            bookmarklist.add(p);
-                        }
-                    }
-                }
-            }
-        } catch (ExecutionException | InterruptedException | JSONException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ArrayList<Post> bookmarkarray=new ArrayList<>();
-        bookmarkarray.addAll(bookmarklist);
-        Adapter_Feedlist adapter2=new Adapter_Feedlist(context,bookmarkarray,feedlist);
-        feedlist.setAdapter(adapter2);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(context);
-        feedlist.setLayoutManager(linearLayoutManager);
+        adapter_bookmark.notifyDataSetChanged();
     }
 
     @Override

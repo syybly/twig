@@ -17,6 +17,8 @@ public class Post {
     private ArrayList<File> newpostimages;
     private long createtime;
     private String title;
+    private boolean saved;
+    private String bookmarkid;
 
     public Post(String postID, String author, String content, String location) {
         this.postID = postID;
@@ -26,6 +28,7 @@ public class Post {
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
         this.categories=new HashSet<>();
+        this.saved=false;
     }
 
     public Post(String author, String content, String location) {
@@ -35,6 +38,7 @@ public class Post {
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
         this.categories=new HashSet<>();
+        this.saved=false;
     }
 
     public Post(String author, String type){
@@ -43,6 +47,7 @@ public class Post {
         this.imageurl=new ArrayList<>();
         this.newpostimages=new ArrayList<>();
         this.categories=new HashSet<>();
+        this.saved=false;
     }
 
     public String getPostID() {
@@ -139,5 +144,21 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public boolean isSaved() {
+        return saved;
+    }
+
+    public void setSaved(boolean saved) {
+        this.saved = saved;
+    }
+
+    public String getBookmarkid() {
+        return bookmarkid;
+    }
+
+    public void setBookmarkid(String bookmarkid) {
+        this.bookmarkid = bookmarkid;
     }
 }

@@ -60,8 +60,8 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignTop="@+id/feed_name"
-            android:layout_marginLeft="220dp"
-            android:layout_toRightOf="@+id/feed_name"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="30dp"
             android:background="#ffffff"
             app:srcCompat="@drawable/overflow" />
     </RelativeLayout>
@@ -114,9 +114,10 @@
         <ImageButton
             android:id="@+id/feed_save"
             android:layout_width="30dp"
-            android:layout_height="wrap_content"
+            android:layout_height="27dp"
             android:layout_marginLeft="12dp"
             android:background="#ffffff"
+            android:scaleType="fitCenter"
             app:srcCompat="@drawable/save" />
 
         <TextView
